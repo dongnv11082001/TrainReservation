@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Input} from 'antd'
-import {SlackSquareFilled} from '@ant-design/icons'
+import { Input } from 'antd'
+import { SlackSquareFilled } from '@ant-design/icons'
 
-const {Search} = Input
+const { Search } = Input
 
 export const Header: React.FC = () => {
   const handleSearch = () => {
@@ -13,14 +13,14 @@ export const Header: React.FC = () => {
   return (
     <HeaderWrapper>
       <Logo>
-        <SlackSquareFilled style={{marginRight: 10, fontSize: '2rem'}}/>
-                Đặt Vé Tàu Dễ Dàng
+        <SlackSquareFilled style={{ marginRight: 10, fontSize: '2rem' }} />
+        Đặt Vé Tàu Dễ Dàng
       </Logo>
       <SearchBox>
         <Search
-          placeholder="Tìm vé tàu giá rẻ..."
+          placeholder='Tìm vé tàu giá rẻ...'
           onSearch={handleSearch}
-          size="middle"
+          size='middle'
           enterButton
           allowClear
         />

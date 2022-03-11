@@ -1,14 +1,14 @@
-import React, {ReactElement, useState} from 'react'
-import {Layout} from 'antd'
+import React, { ReactElement, useState } from 'react'
+import { Layout } from 'antd'
 import styled from 'styled-components'
-import {AdminSiderMenu} from '../elements/AdminSiderMenu'
-import {GuestSiderMenu} from '../elements/GuestSiderMenu'
-import {Header} from './Header'
+import { AdminSiderMenu } from '../elements/AdminSiderMenu'
+import { GuestSiderMenu } from '../elements/GuestSiderMenu'
+import { Header } from './Header'
 
-const {Sider, Footer} = Layout
+const { Sider, Footer } = Layout
 
 interface LayoutProps {
-    isAdmin?: boolean;
+  isAdmin?: boolean
 }
 
 export const CommonLayout: React.FC<LayoutProps> = ({
@@ -24,7 +24,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
           collapsible
           collapsed={isCollapse}
           onCollapse={() => setIsCollapse(!isCollapse)}
-          theme="light"
+          theme='light'
           style={{
             overflow: 'auto',
             position: 'fixed',
@@ -34,10 +34,10 @@ export const CommonLayout: React.FC<LayoutProps> = ({
             zIndex: 100,
           }}
         >
-          {isAdmin ? <AdminSiderMenu/> : <GuestSiderMenu/>}
+          {isAdmin ? <AdminSiderMenu /> : <GuestSiderMenu />}
         </Sider>
         <MainLayout>
-          <Header/>
+          <Header />
           <Body isDominated={!isCollapse}>{children}</Body>
           <Footer
             style={{
@@ -46,7 +46,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
               color: '#a1a8b4',
             }}
           >
-                        Train Reservation ©2022 Created by Tung-DNT
+            Train Reservation ©2022 Created by Tung-DNT
           </Footer>
         </MainLayout>
       </ParentLayout>
@@ -62,6 +62,6 @@ const MainLayout = styled(Layout)`
 `
 const Body = styled.div<{ isDominated: boolean }>`
   min-height: calc(100vh - 61px - 70px);
-  padding-left: ${({isDominated}) => (isDominated ? '200px' : '80px')};
+  padding-left: ${({ isDominated }) => (isDominated ? '200px' : '80px')};
   transition: padding 0.2s ease;
 `
