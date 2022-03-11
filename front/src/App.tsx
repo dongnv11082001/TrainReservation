@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import HomeLayout from './components/pages/home/layout'
 import 'antd/dist/antd.css'
 import { Routes, Route } from 'react-router-dom'
-import TicketsPage from './components/pages/TicketsPage'
+import TicketsPage from './components/pages/home/TicketList'
 
 function App() {
   return (

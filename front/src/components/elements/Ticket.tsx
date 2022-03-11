@@ -2,7 +2,7 @@ import { Typography } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { ITicket } from '../pages/TicketsPage'
+import { ITicket } from '../pages/home/TicketList'
 
 type TicketsProps = {
   ticket: ITicket
