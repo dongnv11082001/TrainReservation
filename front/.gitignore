@@ -1,0 +1,8 @@
+/.vscode
+.DS_Store
+./front/next-env.d.ts
+node_modules
+.envrc
+.secrets
+.idea
+front/.idea
