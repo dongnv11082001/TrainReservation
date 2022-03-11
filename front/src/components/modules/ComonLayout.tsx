@@ -25,7 +25,6 @@ export const CommonLayout: React.FC<LayoutProps> = ({
           collapsed={isCollapse}
           onCollapse={() => setIsCollapse(!isCollapse)}
           theme="light"
-          style={{}}
         >
           {isAdmin ? <AdminSiderMenu/> : <GuestSiderMenu/>}
         </FixedSider>
