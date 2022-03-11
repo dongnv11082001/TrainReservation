@@ -1,21 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
+import 'swiper/css/bundle'
+import 'swiper/css'
+import 'swiper/css/grid'
+import 'swiper/css/pagination'
 import {CommonLayout} from '../../modules/ComonLayout'
 import {SearchPanel} from '../../modules/SearchPanel'
 import {HomeServiceCard} from './HomeServiceCard'
 import bannerBackground from '../../../asserts/images/banner.jpg'
+import {Ticket} from './Ticket'
+import {TicketProps} from '../../../types/ticket'
 
 type ServiceProps = {
-    title: string
-    content: string
-    image: string
+  title: string
+  content: string
+  image: string
 }
 
 interface HomeProps {
-    services: ServiceProps[]
+  services: ServiceProps[]
+  tickets?: TicketProps[]
 }
 
-const Layout: React.FC<HomeProps> = ({services}) => {
+const Layout: React.FC<HomeProps> = ({services, tickets}) => {
   const servicesWrapper = () => {
     return (
       <ServiceWrapper>
@@ -37,6 +44,17 @@ const Layout: React.FC<HomeProps> = ({services}) => {
         <SearchPanel/>
       </Banner>
       {servicesWrapper()}
+      <TicketsWrapper>
+        {tickets?.map((ticket) => (
+          <Ticket
+            key={ticket.id}
+            label={ticket.label}
+            price={ticket.price}
+            trip={ticket.trip}
+            date={ticket.date}
+          />
+        ))}
+      </TicketsWrapper>
     </CommonLayout>
   )
 }
@@ -59,4 +77,9 @@ const ServiceWrapper = styled.div`
   gap: 3rem;
   padding: 3% 2rem;  
   flex-wrap: wrap;
+`
+const TicketsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 10px;
 `

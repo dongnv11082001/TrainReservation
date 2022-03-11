@@ -29,9 +29,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
 
   return (
     <SearchBarContainer>
-      <Title style={{textAlign: 'center'}} level={3}>
-                Tìm chuyến tàu
-      </Title>
+      <Title style={{textAlign: 'center'}} level={3}>Tìm chuyến tàu</Title>
       <Divider/>
       <SpacingRow align="middle" justify="center" gutter={8}>
         <Col>
@@ -97,6 +95,9 @@ const SearchBarContainer = styled.div`
 `
 const LocationInput = styled(AutoComplete)`
   min-width: 200px;
+  .ant-select-selector {
+    height: 45px !important;  
+  }
 `
 const SwitchText = styled(Text)`
   font-size: 1rem;
