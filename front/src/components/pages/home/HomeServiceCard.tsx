@@ -3,9 +3,9 @@ import {Typography} from 'antd'
 import styled from 'styled-components'
 
 type CardProps = {
-    image: string;
-    title: string;
-    content: string;
+    image: string
+    title: string
+    content: string
 };
 
 const {Title, Text} = Typography
