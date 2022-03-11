@@ -17,9 +17,9 @@ export const HomeServiceCard: React.FC<CardProps> = ({
 }) => {
   return (
     <CardWrapper>
-      <img src={image} width="100px" height="100px" alt=""/>
-      <Title>{title}</Title>
-      <Text>{content}</Text>
+      <img src={image} width="75px" height="75px" alt=""/>
+      <StyledTitle>{title}</StyledTitle>
+      <StyledText>{content}</StyledText>
     </CardWrapper>
   )
 }
@@ -28,4 +28,18 @@ const CardWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap:6px;
+  flex-direction: column;
+  max-width: 300px;
+  padding: 20px;
+  border-radius: 1rem;
+  text-align: center;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+`
+const StyledTitle = styled(Title)`
+    font-size: 0.9rem !important;
+`
+const StyledText = styled(Text)`
+    font-size: 0.8rem !important;
 `
