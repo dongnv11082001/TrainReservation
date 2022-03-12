@@ -29,6 +29,6 @@ const TicketContainer = styled.div`
 `
 const StyledTitle = styled.div`
   display: flex;
-  justifyContent: flex-end';
+  justify-content: flex-end;
   font-size: 20px;
 `
