@@ -41,7 +41,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
 export const FlexBox = styled.div`
   display: flex;
   justify-content: center;
-  align-items; center;  
+  align-items: center;  
 `
 
 const ParentLayout = styled(Layout)`
