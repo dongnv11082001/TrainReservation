@@ -1,3 +1,11 @@
+import {TicketProps} from './ticket'
+import {Offer} from './offer'
+
 export interface Guest {
-  id: number;
+  offers: TicketProps[]
+  purchasedHistories: Offer[]
+  email: string
+  firstName?: string
+  lastName?: string
+  
 }

@@ -6,12 +6,21 @@ import {TicketProps} from '../../../types/ticket'
 
 const {Text, Title} = Typography
 
-export const Ticket: React.FC<TicketProps> = ({id, label, price, trip, date}) => (
+export const Ticket: React.FC<TicketProps> = ({
+  id,
+  destination,
+  departure,
+  departureTime,
+  arrivalTime,
+  airline,
+  price,
+  ticketClass,
+}) => (
   <Link to={`/tickets/${id}`}>
     <TicketContainer>
-      <Text>{label}</Text>
-      <Title style={{fontSize: '20px'}}>{trip}</Title>
-      <Text italic>Departure: {date.substring(0, 10)}</Text>
+      <Text>{}</Text>
+      <Title style={{fontSize: '20px'}}>{destination}</Title>
+      <Text italic>Departure: {departureTime.toString().substring(0, 10)}</Text>
       <StyledTitle>{price}đ</StyledTitle>
     </TicketContainer>
   </Link>
