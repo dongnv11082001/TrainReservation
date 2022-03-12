@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import {Typography} from 'antd'
 import {CommonLayout, FlexBox} from '../../modules/ComonLayout'
 import {SearchPanel} from '../../modules/SearchPanel'
 import {HomeServiceCard} from './HomeServiceCard'
@@ -17,6 +18,8 @@ interface HomeProps {
   services: ServiceProps[]
   tickets?: TicketProps[]
 }
+
+const {Title} = Typography
 
 const Layout: React.FC<HomeProps> = ({services, tickets}) => {
   const servicesWrapper = () => {
@@ -40,7 +43,8 @@ const Layout: React.FC<HomeProps> = ({services, tickets}) => {
         <SearchPanel/>
       </Banner>
       {servicesWrapper()}
-      <FlexBox>
+      <StyledFlexBox>
+        <Title style={{fontSize: '2rem'}}>Chuyến bay giá tốt</Title>
         <TicketWrapper>
           {tickets?.map((ticket) => (
             <Ticket
@@ -52,7 +56,7 @@ const Layout: React.FC<HomeProps> = ({services, tickets}) => {
             />
           ))}
         </TicketWrapper>
-      </FlexBox>
+      </StyledFlexBox>
     </CommonLayout>
   )
 }
@@ -73,10 +77,14 @@ const ServiceWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  padding: 3% 2rem;  
+  padding: 5rem 2rem;  
   flex-wrap: wrap;
 `
-
+const StyledFlexBox = styled(FlexBox)`
+  flex-direction: column;
+  background: #fff5f7;
+  padding: 5rem 0;
+`
 const TicketWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
