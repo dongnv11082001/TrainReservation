@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import {Typography} from 'antd'
-import {CommonLayout, FlexBox} from '../../modules/ComonLayout'
-import {SearchPanel} from '../../modules/SearchPanel'
-import {HomeServiceCard} from './HomeServiceCard'
+import { Typography } from 'antd'
+import { CommonLayout, FlexBox } from '../../modules/ComonLayout'
+import { SearchPanel } from '../../modules/SearchPanel'
+import { HomeServiceCard } from './HomeServiceCard'
 import bannerBackground from '../../../asserts/images/banner.jpg'
-import {Ticket} from './Ticket'
-import {TicketProps} from '../../../types/ticket'
+import { Ticket } from './Ticket'
+import { TicketProps } from '../../../types/ticket'
 
 type ServiceProps = {
   title: string
@@ -19,9 +19,9 @@ interface HomeProps {
   tickets?: TicketProps[]
 }
 
-const {Title} = Typography
+const { Title } = Typography
 
-const Layout: React.FC<HomeProps> = ({services, tickets}) => {
+const Layout: React.FC<HomeProps> = ({ services, tickets }) => {
   const servicesWrapper = () => {
     return (
       <ServiceWrapper>
@@ -40,11 +40,11 @@ const Layout: React.FC<HomeProps> = ({services, tickets}) => {
   return (
     <CommonLayout>
       <Banner background={bannerBackground}>
-        <SearchPanel/>
+        <SearchPanel />
       </Banner>
       {servicesWrapper()}
       <StyledFlexBox>
-        <Title style={{fontSize: '2rem'}}>Chuyến bay giá tốt</Title>
+        <Title style={{ fontSize: '2rem' }}>Chuyến bay giá tốt</Title>
         <TicketWrapper>
           {tickets?.map((ticket) => (
             <Ticket
@@ -80,6 +80,7 @@ const StyledFlexBox = styled(FlexBox)`
   padding: 3rem 5%;
 `
 const TicketWrapper = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 10px;

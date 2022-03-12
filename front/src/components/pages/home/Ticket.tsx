@@ -1,10 +1,10 @@
-import {Typography} from 'antd'
+import { Typography } from 'antd'
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import {TicketProps} from '../../../types/ticket'
+import { TicketProps } from '../../../types/ticket'
 
-const {Text, Title} = Typography
+const { Text, Title } = Typography
 
 export const Ticket: React.FC<TicketProps> = ({
   id,
@@ -18,14 +18,14 @@ export const Ticket: React.FC<TicketProps> = ({
 }) => (
   <Link to={`/tickets/${id}`}>
     <TicketContainer>
-      <Text>{}</Text>
-      <Title style={{fontSize: '20px'}}>{destination}</Title>
-      <Text italic>Departure: {departureTime.toString().substring(0, 10)}</Text>
+      <Title style={{ fontSize: '20px' }}>{destination}</Title>
+      <Text italic style={{ fontSize: '14px' }}>
+        Departure: {departureTime} - Arrival: {arrivalTime}
+      </Text>
       <StyledTitle>{price}đ</StyledTitle>
     </TicketContainer>
   </Link>
 )
-
 
 const TicketContainer = styled.div`
   margin: 8px;

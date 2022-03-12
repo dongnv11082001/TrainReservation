@@ -1,4 +1,4 @@
-import { Breadcrumb, Progress } from 'antd'
+import { Breadcrumb } from 'antd'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -50,7 +50,6 @@ export const CheckoutPage = () => {
         <div>
           <Title>Checkout</Title>
         </div>
-        <Progress />
         {progress === 'contacts' && <Contact />}
         {progress === 'shipping' && <Shipping />}
         {progress === 'payment' && <Payment />}
