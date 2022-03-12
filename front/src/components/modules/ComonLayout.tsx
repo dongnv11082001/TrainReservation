@@ -8,7 +8,7 @@ import {Header} from './Header'
 const {Sider, Footer} = Layout
 
 interface LayoutProps {
-    isAdmin?: boolean;
+  isAdmin?: boolean;
 }
 
 export const CommonLayout: React.FC<LayoutProps> = ({
@@ -37,6 +37,12 @@ export const CommonLayout: React.FC<LayoutProps> = ({
     </>
   )
 }
+
+export const FlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items; center;  
+`
 
 const ParentLayout = styled(Layout)`
   min-height: 100vh;

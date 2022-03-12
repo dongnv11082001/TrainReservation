@@ -23,9 +23,9 @@ const TicketContainer = styled.div`
   border: 1px solid #ddd;
   background-color: #fff;
   border-radius: 5px;
-  width: 360px;
   padding: 12px;
   font-size: 18px;
+  min-height: 200px;
 `
 const StyledTitle = styled.div`
   display: flex;
