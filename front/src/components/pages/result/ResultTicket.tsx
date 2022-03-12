@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { Typography, Divider } from "antd";
-import { SwapRightOutlined } from "@ant-design/icons";
-import { FlexBox } from "../../../components/modules/ComonLayout";
-import { TicketProps } from "../../../types/ticket";
+import React from 'react'
+import styled from 'styled-components'
+import {Typography, Divider} from 'antd'
+import {SwapRightOutlined} from '@ant-design/icons'
+import {FlexBox} from '../../../components/modules/ComonLayout'
+import {TicketProps} from '../../../types/ticket'
 
-const { Text, Title } = Typography;
+const {Text, Title} = Typography
 
 export const ResultTicket: React.FC<TicketProps> = ({
   id,
@@ -18,8 +18,8 @@ export const ResultTicket: React.FC<TicketProps> = ({
   ticketClass,
 }) => {
   const calculateTravelTime = () => {
-    return 0;
-  };
+    return 0
+  }
 
   const renderTicketHeading = () => (
     <TicketHeading>
@@ -32,14 +32,14 @@ export const ResultTicket: React.FC<TicketProps> = ({
           <Title>{departureTime}</Title>
           <Text>{departure}</Text>
         </FlexBox>
-        <SwapRightOutlined />
+        <SwapRightOutlined/>
         <FlexBox>
           <Title>{arrivalTime}</Title>
           <Text>{destination}</Text>
         </FlexBox>
       </FlexBox>
     </TicketHeading>
-  );
+  )
 
   const renderTicketBody = () => (
     <TicketBody>
@@ -49,28 +49,28 @@ export const ResultTicket: React.FC<TicketProps> = ({
         <Text>Bay thẳng</Text>
       </FlexBox>
     </TicketBody>
-  );
+  )
 
   const renderTicketFooter = () => (
     <TicketFooter>
       <Title>{price}</Title>
       <Button>Chọn</Button>
     </TicketFooter>
-  );
+  )
 
   return (
     <TicketContainer>
       {renderTicketHeading()}
-      <Divider />
+      <Divider/>
       {renderTicketBody()}
-      <Divider />
+      <Divider/>
       {renderTicketFooter()}
     </TicketContainer>
-  );
-};
+  )
+}
 
-const TicketContainer = styled.div``;
-const TicketHeading = styled.div``;
-const TicketBody = styled.div``;
-const TicketFooter = styled.div``;
-const Button = styled.div``;
+const TicketContainer = styled.div``
+const TicketHeading = styled.div``
+const TicketBody = styled.div``
+const TicketFooter = styled.div``
+const Button = styled.div``
