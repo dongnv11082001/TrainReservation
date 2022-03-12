@@ -1,7 +1,10 @@
 export interface TicketProps {
-  id?: string
-  trip: string
-  date: string
+  id: string
+  destination: string
+  departure: string
+  departureTime: Date
+  arrivalTime: Date
   price: string
-  label: string
+  ticketClass?: 'soft' | 'bed' | 'chair'
+  airline?: string
 }

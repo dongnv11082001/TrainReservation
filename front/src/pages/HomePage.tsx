@@ -4,6 +4,8 @@ import customerCare from '../asserts/images/247.svg'
 import payment from '../asserts/images/payment.svg'
 import bestPrice from '../asserts/images/bestprice.svg'
 import {TicketProps} from '../types/ticket'
+import axios from 'axios'
+import {LoadingProvider, useLoading} from '../context/loadingContext'
 
 const serviceData = [
   {
@@ -27,19 +29,25 @@ const serviceData = [
 
 const HomePage: React.FC = () => {
   const [tickets, setTickets] = useState<TicketProps[]>([])
+  const {setLoading} = useLoading()
 
-  const fetchApi = async () => {
-    const response = await fetch(
+  const fetchDeals = async () => {
+    const response = await axios.get<TicketProps[]>(
       'https://622b018b14ccb950d22be17d.mockapi.io/tickets'
     )
-    const data = await response.json()
+    const data = await response.data
+    setLoading(false)
     setTickets(data)
   }
 
   useEffect(() => {
-    fetchApi()
+    fetchDeals()
   }, [])
 
-  return <HomeLayout services={serviceData} tickets={tickets}/>
+  return (
+    <LoadingProvider>
+      <HomeLayout services={serviceData} tickets={tickets}/>
+    </LoadingProvider>
+  )
 }
 export default HomePage

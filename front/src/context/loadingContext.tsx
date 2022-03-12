@@ -7,12 +7,12 @@ import React, {
 } from 'react'
 
 interface LoadingContextType {
-    loading: boolean;
-    setLoading: (loading: boolean) => void | Dispatch<boolean>;
+  loading: boolean;
+  setLoading: (loading: boolean) => void | Dispatch<boolean>;
 }
 
 const LoadingContext = createContext<LoadingContextType>({
-  loading: false,
+  loading: true,
   setLoading: (loading: boolean) => console.log(loading),
 })
 
@@ -21,8 +21,11 @@ export function useLoading() {
 }
 
 export const LoadingProvider: React.FC = ({children}): ReactElement => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const value = {loading, setLoading}
+
+  if (!loading) return <>Loading...</>
+
   return (
     <LoadingContext.Provider value={value}>{children}</LoadingContext.Provider>
   )

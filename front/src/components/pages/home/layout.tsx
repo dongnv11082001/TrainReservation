@@ -49,10 +49,14 @@ const Layout: React.FC<HomeProps> = ({services, tickets}) => {
           {tickets?.map((ticket) => (
             <Ticket
               key={ticket.id}
-              label={ticket.label}
+              id={ticket.id}
+              departure={ticket.departure}
+              destination={ticket.destination}
               price={ticket.price}
-              trip={ticket.trip}
-              date={ticket.date}
+              departureTime={ticket.departureTime}
+              arrivalTime={ticket.arrivalTime}
+              airline={ticket.airline}
+              ticketClass={ticket.ticketClass}
             />
           ))}
         </TicketWrapper>
@@ -62,16 +66,6 @@ const Layout: React.FC<HomeProps> = ({services, tickets}) => {
 }
 export default Layout
 
-const Banner = styled.div<{ background?: string }>`
-  position: relative;
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: center no-repeat url(${({background}) => background});
-  background-size: cover;
-  background-attachment: fixed;
-`
 const ServiceWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -82,12 +76,21 @@ const ServiceWrapper = styled.div`
 `
 const StyledFlexBox = styled(FlexBox)`
   flex-direction: column;
-  background: #fff5f7;
-  padding: 5rem 0;
+  background: #e2e3f7;
+  padding: 3rem 5%;
 `
 const TicketWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 20px;
-  width: 90%;
+  grid-gap: 10px;
+  padding: 2rem 5%;
+`
+const Banner = styled.div<{ background?: string }>`
+  position: relative;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: bottom no-repeat url(${({background}) => background});
+  background-size: cover;
 `
