@@ -5,7 +5,7 @@ import { CommonLayout, FlexBox } from '../../modules/ComonLayout'
 import { SearchPanel } from '../../modules/SearchPanel'
 import { HomeServiceCard } from './HomeServiceCard'
 import bannerBackground from '../../../asserts/images/banner.jpg'
-import { Ticket } from './Ticket'
+import { Ticket } from './HomeTicket'
 import { TicketProps } from '../../../types/ticket'
 
 type ServiceProps = {

@@ -1,3 +1,4 @@
+
 import {Guest} from './guest'
 
 export interface User extends Guest {

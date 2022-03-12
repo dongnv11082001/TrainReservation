@@ -14,8 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/result" element={<ResultPage/>}/>
-        <Route path="*" element={<NotFound/>}/>        
         <Route path="/checkout" element={<CheckoutPage/>}/>
+        <Route path="*" element={<NotFound/>}/>        
       </Routes>
       <GlobalStyle/>
     </CartTicketsProvider>
