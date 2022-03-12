@@ -1,21 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
-import HomeLayout from './components/pages/home/layout'
 import 'antd/dist/antd.css'
-import { Routes, Route } from 'react-router-dom'
-import TicketsPage from './components/pages/home/TicketList'
+import {Routes, Route} from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import NotFound from './pages/NotFound'
+import {GlobalStyle} from './GlobalStyle'
 
 function App() {
   return (
-    <AppContainer>
+    <>
       <Routes>
-        <Route path='/' element={<HomeLayout />} />
-        <Route path='/tickets' element={<TicketsPage />} />
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
-    </AppContainer>
+      <GlobalStyle/>
+    </>
   )
 }
 
 export default App
-
-const AppContainer = styled.div``

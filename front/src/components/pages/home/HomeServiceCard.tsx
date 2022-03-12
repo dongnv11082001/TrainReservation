@@ -1,14 +1,14 @@
 import React from 'react'
-import { Typography } from 'antd'
+import {Typography} from 'antd'
 import styled from 'styled-components'
 
 type CardProps = {
-  image: string
-  title: string
-  content: string
-}
+    image: string
+    title: string
+    content: string
+};
 
-const { Title, Text } = Typography
+const {Title, Text} = Typography
 
 export const HomeServiceCard: React.FC<CardProps> = ({
   image,
@@ -17,17 +17,9 @@ export const HomeServiceCard: React.FC<CardProps> = ({
 }) => {
   return (
     <CardWrapper>
-      <img src={image} width='50px' height='50px' alt='' />
-      <Title
-        style={{
-          fontSize: '16px',
-          borderTop: '1px solid #333',
-          paddingTop: '12px',
-        }}
-      >
-        {title}
-      </Title>
-      <Text>{content}</Text>
+      <img src={image} width="75px" height="75px" alt=""/>
+      <StyledTitle>{title}</StyledTitle>
+      <StyledText>{content}</StyledText>
     </CardWrapper>
   )
 }
@@ -36,12 +28,18 @@ const CardWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap:6px;
   flex-direction: column;
-  width: 360px;
+  max-width: 300px;
+  padding: 20px;
+  border-radius: 1rem;
   text-align: center;
-  padding: 60px 0;
-
-  & img {
-    margin-bottom: 12px;
-  }
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+`
+const StyledTitle = styled(Title)`
+    font-size: 0.9rem !important;
+`
+const StyledText = styled(Text)`
+    font-size: 0.8rem !important;
 `

@@ -5,13 +5,16 @@ import { SlackSquareFilled } from '@ant-design/icons'
 
 const { Search } = Input
 
-export const Header: React.FC = () => {
+type HeaderProps = {
+    isDominated: boolean
+}
+
+export const Header: React.FC<HeaderProps> = ({isDominated}) => {
   const handleSearch = () => {
     return null
   }
-
   return (
-    <HeaderWrapper>
+    <HeaderWrapper isShrink={isDominated}>
       <Logo>
         <SlackSquareFilled style={{ marginRight: 10, fontSize: '2rem' }} />
         Đặt Vé Tàu Dễ Dàng
@@ -29,16 +32,21 @@ export const Header: React.FC = () => {
   )
 }
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div<{ isShrink: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1em 1.5em;
-  background: #000;
+  padding-left: ${({isShrink}) => (isShrink ? '100px' : '220px')};
+  transition: padding 0.2s ease;
   position: fixed;
-  top: 0;
+  top:0;
+  left:0;
+  right:0;
   z-index: 1;
-  width: 100%;
+  @media screen and (max-width: 768px){
+    display: none;
+  }
 `
 const Logo = styled.div`
   color: white;

@@ -7,7 +7,6 @@ import {
   DatePicker,
   Col,
   Row,
-  Button,
   Typography,
   Switch,
   Divider,
@@ -30,13 +29,11 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
 
   return (
     <SearchBarContainer>
-      <Title style={{textAlign: 'center'}} level={3}>
-                Tim chuyen tau
-      </Title>
+      <Title style={{textAlign: 'center'}} level={3}>Tìm chuyến tàu</Title>
       <Divider/>
       <SpacingRow align="middle" justify="center" gutter={8}>
         <Col>
-          <SwitchText>Mot chieu</SwitchText>
+          <SwitchText>Một chiều</SwitchText>
         </Col>
         <Col>
           <Switch
@@ -45,7 +42,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
           />
         </Col>
         <Col>
-          <SwitchText>Khu hoi</SwitchText>
+          <SwitchText>Khứ hồi</SwitchText>
         </Col>
       </SpacingRow>
       <Group>
@@ -56,7 +53,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
               onChange={(value: any) => setDeparture(value)}
               options={suggestions}
               allowClear
-              placeholder="Diem khoi hanh..."
+              placeholder="Điểm khời hành..."
             />
           </Col>
           <Col>
@@ -68,7 +65,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
               onChange={(value: any) => setDestination(value)}
               options={suggestions}
               allowClear
-              placeholder="Diem den..."
+              placeholder="Điểm đến..."
             />
           </Col>
         </SpacingRow>
@@ -82,7 +79,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
           />
         </SpacingRow>
         <SpacingRow style={{marginTop: 30}} align="middle" justify="center">
-          <Button type="primary">Tim chuyen bay</Button>
+          <Button>Tìm chuyến bay</Button>
         </SpacingRow>
       </Group>
     </SearchBarContainer>
@@ -98,6 +95,9 @@ const SearchBarContainer = styled.div`
 `
 const LocationInput = styled(AutoComplete)`
   min-width: 200px;
+  .ant-select-selector {
+    height: 45px !important;  
+  }
 `
 const SwitchText = styled(Text)`
   font-size: 1rem;
@@ -105,4 +105,16 @@ const SwitchText = styled(Text)`
 `
 const SpacingRow = styled(Row)`
   margin-bottom: 14px;
+`
+const Button = styled.span`
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  padding: 1rem .8rem;
+  font-weight: bold;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius: 0.4rem;
+  background: #FF3366;
+  color: white;
+  cursor: pointer;
 `
