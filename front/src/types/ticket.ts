@@ -4,7 +4,7 @@ export interface TicketProps {
   departure: string
   departureTime: Date
   arrivalTime: Date
-  price: string
+  price: number
   ticketClass?: 'soft' | 'bed' | 'chair'
   airline?: string
 }
