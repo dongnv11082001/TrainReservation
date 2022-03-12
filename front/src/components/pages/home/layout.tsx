@@ -83,11 +83,10 @@ const ServiceWrapper = styled.div`
 const StyledFlexBox = styled(FlexBox)`
   flex-direction: column;
   background: #fff5f7;
-  padding: 5rem 0;
+  padding: 5rem 5%;
 `
 const TicketWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 20px;
-  width: 90%;
 `
