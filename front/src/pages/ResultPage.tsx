@@ -2,9 +2,9 @@ import axios from 'axios'
 import React, {useEffect, useState} from 'react'
 import ResultLayout from '../components/pages/result/layout'
 import {TicketProps} from '../types/ticket'
-import {LoadingProvider, useLoading} from '../context/loadingContext'
+import {useLoading} from '../context/loadingContext'
 
-export const ResultPage: React.FC = () => {
+const ResultPage: React.FC = () => {
   const [results, setResults] = useState<TicketProps[]>([])
   const {setLoading} = useLoading()
 
@@ -20,8 +20,7 @@ export const ResultPage: React.FC = () => {
   }, [])
 
   return (
-    <LoadingProvider>
-      <ResultLayout results={results}/>
-    </LoadingProvider>
+    <ResultLayout results={results}/>
   )
 }
+export default ResultPage

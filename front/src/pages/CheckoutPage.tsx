@@ -1,11 +1,12 @@
-import { Breadcrumb } from 'antd'
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import {Breadcrumb} from 'antd'
+import React, {useState} from 'react'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import { Contact } from '../components/pages/checkout/Contact'
-import { Payment } from '../components/pages/checkout/Payment'
-import { Shipping } from '../components/pages/checkout/Shipping'
-import { Submit } from '../components/pages/checkout/Submit'
+import {CommonLayout} from '../components/modules/ComonLayout'
+import {Contact} from '../components/pages/checkout/Contact'
+import {Payment} from '../components/pages/checkout/Payment'
+import {Shipping} from '../components/pages/checkout/Shipping'
+import {Submit} from '../components/pages/checkout/Submit'
 
 export const CheckoutPage = () => {
   const [progress, setProgress] = useState('contacts')
@@ -24,7 +25,7 @@ export const CheckoutPage = () => {
       setProgress('submit')
     }
   }
-  
+
   const handlePrevClick = () => {
     if (progress === 'shipping') {
       setProgress('contacts')
@@ -41,8 +42,8 @@ export const CheckoutPage = () => {
   }
 
   return (
-    <Wrapper>
-      <div>
+    <CommonLayout>
+      <Wrapper>
         <Breadcrumb>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>Checkout</Breadcrumb.Item>
@@ -50,10 +51,10 @@ export const CheckoutPage = () => {
         <div>
           <Title>Checkout</Title>
         </div>
-        {progress === 'contacts' && <Contact />}
-        {progress === 'shipping' && <Shipping />}
-        {progress === 'payment' && <Payment />}
-        {progress === 'submit' && <Submit />}
+        {progress === 'contacts' && <Contact/>}
+        {progress === 'shipping' && <Shipping/>}
+        {progress === 'payment' && <Payment/>}
+        {progress === 'submit' && <Submit/>}
         <ButtonWrapper>
           <div>
             {buttonProgress && (
@@ -72,7 +73,7 @@ export const CheckoutPage = () => {
             )}
             {!buttonProgress && (
               <PrevButton>
-                <Link to={'/'} style={{ color: '#000' }}>
+                <Link to={'/'} style={{color: '#000'}}>
                   Come back homepage
                 </Link>
                 <img
@@ -97,15 +98,14 @@ export const CheckoutPage = () => {
             {buttonProgress === '' && <></>}
           </div>
         </ButtonWrapper>
-      </div>
-    </Wrapper>
+      </Wrapper>
+    </CommonLayout>
   )
 }
 
 const Wrapper = styled.div`
   margin-bottom: 50px;
-  display: flex;
-  justify-content: space-between;
+  padding: 8% 5%;
 `
 
 const Title = styled.h1`

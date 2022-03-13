@@ -1,76 +1,63 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Typography, Divider} from 'antd'
-import {SwapRightOutlined} from '@ant-design/icons'
-import {FlexBox} from '../../../components/modules/ComonLayout'
+import {Avatar, List, Skeleton, Typography} from 'antd'
 import {TicketProps} from '../../../types/ticket'
+import {FlexBox} from '../../modules/ComonLayout'
 
-const {Text, Title} = Typography
-
-export const ResultTicket: React.FC<TicketProps> = ({
-  id,
-  destination,
-  departure,
-  departureTime,
-  arrivalTime,
-  airline,
-  price,
-  ticketClass,
-}) => {
-  const calculateTravelTime = () => {
-    return 0
-  }
-
-  const renderTicketHeading = () => (
-    <TicketHeading>
-      <FlexBox>
-        <Title>{airline && airline}</Title>
-        <Text>{id}</Text>
-      </FlexBox>
-      <FlexBox>
-        <FlexBox>
-          <Title>{departureTime}</Title>
-          <Text>{departure}</Text>
-        </FlexBox>
-        <SwapRightOutlined/>
-        <FlexBox>
-          <Title>{arrivalTime}</Title>
-          <Text>{destination}</Text>
-        </FlexBox>
-      </FlexBox>
-    </TicketHeading>
-  )
-
-  const renderTicketBody = () => (
-    <TicketBody>
-      <Text>{ticketClass}</Text>
-      <FlexBox>
-        <Title>{calculateTravelTime()}</Title>
-        <Text>Bay thẳng</Text>
-      </FlexBox>
-    </TicketBody>
-  )
-
-  const renderTicketFooter = () => (
-    <TicketFooter>
-      <Title>{price}</Title>
-      <Button>Chọn</Button>
-    </TicketFooter>
-  )
-
-  return (
-    <TicketContainer>
-      {renderTicketHeading()}
-      <Divider/>
-      {renderTicketBody()}
-      <Divider/>
-      {renderTicketFooter()}
-    </TicketContainer>
-  )
+type ResultTicketProps = {
+  ticket: TicketProps
+  loading: boolean
 }
 
-const TicketContainer = styled.div``
-const TicketHeading = styled.div``
-const TicketBody = styled.div``
-const TicketFooter = styled.div``
-const Button = styled.div``
+const {Text} = Typography
+
+export const ResultTicket: React.FC<ResultTicketProps> = ({ticket, loading}) => {
+  return <Ticket
+    key={ticket.id}
+    extra={
+      !loading &&
+        <Box>
+          <Text style={{fontSize: '20px', fontWeight: 'bold'}}>${ticket.price}</Text>
+          <Button>Chọn</Button>
+        </Box>
+    }>
+    <Skeleton loading={loading} active avatar>
+      <List.Item.Meta
+        avatar={<Avatar src='https://joeschmoe.io/api/v1/random'/>}
+        title="Vé xịn giá shock"
+        description='Dark dark burh burh lamo lmao'
+      />
+      This is dummy text this is dummy text this is dummy text
+    </Skeleton>
+  </Ticket>
+}
+
+const Box = styled(FlexBox)`
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 5px;
+`
+const Ticket = styled(List.Item)`
+  background: white;
+  border-radius: .6rem;
+  margin-bottom: 18px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  transition: outline 0.2s ease;
+  padding: 20px !important;
+  
+  :hover{
+    outline: 1px solid #f36;
+    transition: outline 0.2s ease;
+  }
+`
+const Button = styled(FlexBox)`
+  cursor: pointer;
+  background: #f36;
+  width:80px;
+  padding: 7px 10px;
+  border-radius: .6rem;
+  color: white;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+`

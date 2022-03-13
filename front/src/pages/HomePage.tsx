@@ -5,7 +5,7 @@ import payment from '../asserts/images/payment.svg'
 import bestPrice from '../asserts/images/bestprice.svg'
 import {TicketProps} from '../types/ticket'
 import axios from 'axios'
-import {LoadingProvider, useLoading} from '../context/loadingContext'
+import {useLoading} from '../context/loadingContext'
 
 const serviceData = [
   {
@@ -45,9 +45,7 @@ const HomePage: React.FC = () => {
   }, [])
 
   return (
-    <LoadingProvider>
-      <HomeLayout services={serviceData} tickets={tickets}/>
-    </LoadingProvider>
+    <HomeLayout services={serviceData} tickets={tickets}/>
   )
 }
 export default HomePage
