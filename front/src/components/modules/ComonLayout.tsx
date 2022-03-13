@@ -31,7 +31,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
         <Layout>
           <Header isDominated={isCollapse}/>
           <Body isDominated={isCollapse}>{children}</Body>
-          <StyledFooter>Train Reservation ©2022 Created by Tung-DNT</StyledFooter>
+          <StyledFooter>Train Reservation ©2022 Created by tungdnt & dongnv</StyledFooter>
         </Layout>
       </ParentLayout>
     </>
