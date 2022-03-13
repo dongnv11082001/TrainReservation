@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import moment from 'moment'
 import {
   AutoComplete,
-  Input,
   DatePicker,
   Col,
   Row,
@@ -16,10 +15,9 @@ import {SwapRightOutlined} from '@ant-design/icons'
 import {FlexBox} from './ComonLayout'
 
 type SearchProps = {
-    suggestions?: { value: string }[];
+  suggestions?: { value: string }[];
 };
 
-const {Group} = Input
 const {RangePicker} = DatePicker
 const {Title, Text} = Typography
 
@@ -58,7 +56,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
             allowClear
             placeholder="Điểm khời hành..."
           />
-          <SwapRightOutlined  />
+          <SwapRightOutlined/>
           <LocationInput
             value={destination}
             onChange={(value: any) => setDestination(value)}
@@ -82,7 +80,8 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
 }
 
 const SearchBarContainer = styled.div`
-  border-radius: 8px;
+  width: fit-content;
+  border-radius: 1rem;
   padding: 20px;
   background: #fff;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
