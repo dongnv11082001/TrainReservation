@@ -9,9 +9,11 @@ import {
   Row,
   Typography,
   Switch,
-  Divider,
+  Divider
 } from 'antd'
 import {SwapRightOutlined} from '@ant-design/icons'
+
+import {FlexBox} from './ComonLayout'
 
 type SearchProps = {
     suggestions?: { value: string }[];
@@ -29,59 +31,52 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
 
   return (
     <SearchBarContainer>
-      <Title style={{textAlign: 'center'}} level={3}>Tìm chuyến tàu</Title>
-      <Divider/>
-      <SpacingRow align="middle" justify="center" gutter={8}>
-        <Col>
-          <SwitchText>Một chiều</SwitchText>
-        </Col>
-        <Col>
-          <Switch
-            onChange={() => setIsRoundTrip(!isRoundTrip)}
-            defaultChecked={isRoundTrip}
-          />
-        </Col>
-        <Col>
-          <SwitchText>Khứ hồi</SwitchText>
-        </Col>
-      </SpacingRow>
-      <Group>
+      <FlexBox style={{justifyContent: 'space-between'}}>
+        <Title style={{textAlign: 'center'}} level={3}>Tìm chuyến tàu</Title>
         <SpacingRow align="middle" justify="center" gutter={8}>
           <Col>
-            <LocationInput
-              value={departure}
-              onChange={(value: any) => setDeparture(value)}
-              options={suggestions}
-              allowClear
-              placeholder="Điểm khời hành..."
+            <SwitchText>Một chiều</SwitchText>
+          </Col>
+          <Col>
+            <Switch
+              onChange={() => setIsRoundTrip(!isRoundTrip)}
+              defaultChecked={isRoundTrip}
             />
           </Col>
           <Col>
-            <SwapRightOutlined/>
-          </Col>
-          <Col>
-            <LocationInput
-              value={destination}
-              onChange={(value: any) => setDestination(value)}
-              options={suggestions}
-              allowClear
-              placeholder="Điểm đến..."
-            />
+            <SwitchText>Khứ hồi</SwitchText>
           </Col>
         </SpacingRow>
-        <SpacingRow align="middle" justify="center">
-          <RangePicker
-            defaultValue={[
-              moment('2019-09-03', dateFormat),
-              moment('2019-11-22', dateFormat),
-            ]}
-            disabled={[false, !isRoundTrip]}
+      </FlexBox>
+      <Divider style={{margin: '0 0 16px'}}/>
+      <FlexBox style={{gap: '36px'}}>
+        <FlexBox style={{gap: '8px'}}>
+          <LocationInput
+            value={departure}
+            onChange={(value: any) => setDeparture(value)}
+            options={suggestions}
+            allowClear
+            placeholder="Điểm khời hành..."
           />
-        </SpacingRow>
-        <SpacingRow style={{marginTop: 30}} align="middle" justify="center">
-          <Button>Tìm chuyến bay</Button>
-        </SpacingRow>
-      </Group>
+          <SwapRightOutlined  />
+          <LocationInput
+            value={destination}
+            onChange={(value: any) => setDestination(value)}
+            options={suggestions}
+            allowClear
+            placeholder="Điểm đến..."
+          />
+        </FlexBox>
+        <RangePicker
+          defaultValue={[
+            moment('2019-09-03', dateFormat),
+            moment('2019-11-22', dateFormat),
+          ]}
+          disabled={[false, !isRoundTrip]}
+          style={{height: '45px'}}
+        />
+        <Button>Tìm chuyến tàu</Button>
+      </FlexBox>
     </SearchBarContainer>
   )
 }
