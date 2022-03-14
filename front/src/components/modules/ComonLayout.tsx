@@ -24,7 +24,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
           collapsible
           collapsed={isCollapse}
           onCollapse={() => setIsCollapse(!isCollapse)}
-          theme="light"
+          theme="dark"
         >
           {isAdmin ? <AdminSiderMenu/> : <GuestSiderMenu/>}
         </FixedSider>
@@ -49,7 +49,7 @@ const ParentLayout = styled(Layout)`
   overflow: hidden;
 `
 const Body = styled.div<{ isDominated: boolean }>`
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 70px - 61px);
   padding-left: ${({isDominated}) => (isDominated ? '80px' : '200px')};
   transition: padding 0.2s ease;
 `
@@ -60,6 +60,7 @@ const FixedSider = styled(Sider)`
     top: 0;
     bottom: 0;
     z-index: 100;
+    border-right: 1px solid #d9d9d9;
 `
 const StyledFooter = styled(Footer)`
   text-align: center;

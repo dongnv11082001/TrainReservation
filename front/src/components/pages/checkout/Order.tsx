@@ -10,10 +10,9 @@ export const Order: React.FC = () => {
       <Field>
         <span>Shipping</span>
         <span>FREE</span>
-      </Field><Field>
+      </Field>
+      <Field>
         <span>Order Total</span>
-        
-        <span></span>
       </Field>
     </OrderWrapper>
   )
@@ -24,6 +23,7 @@ const OrderWrapper = styled.div`
   padding: 20px;
   border-radius: 8px;
   background-color: white;
+  height: fit-content;
 `
 
 const Name = styled.h2`

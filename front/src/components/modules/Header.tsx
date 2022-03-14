@@ -50,14 +50,8 @@ const HeaderWrapper = styled.div<{ isShrink: boolean, isTransparent: boolean }>`
   padding: 1em 1.5em;
   padding-left: ${({isShrink}) => (isShrink ? '100px' : '220px')};
   transition: padding 0.2s ease;
-  position: fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index: 1;
-  background: ${({isTransparent}) => (isTransparent ? 'transparent' : 'rgba(226, 227, 247, 0.5)')};
-  backdrop-filter:  ${({isTransparent}) => (isTransparent ? '' : 'blur(10px)')};
-  
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   @media screen and (max-width: 768px){
     display: none;
   }

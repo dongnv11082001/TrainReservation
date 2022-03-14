@@ -11,15 +11,15 @@ import {
 const {SubMenu} = Menu
 
 export const AdminSiderMenu: React.FC = () => (
-  <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
+  <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
     <Menu.Item key="2" icon={<DesktopOutlined/>}>
-            Dashboard
+      Dashboard
     </Menu.Item>
     <Menu.Item key="1" icon={<PieChartOutlined/>}>
-            Offers
+      Offers
     </Menu.Item>
     <Menu.Item key="9" icon={<FileOutlined/>}>
-            Tickets
+      Tickets
     </Menu.Item>
     <SubMenu key="sub1" icon={<UserOutlined/>} title="User">
       <Menu.Item key="3">Tom</Menu.Item>

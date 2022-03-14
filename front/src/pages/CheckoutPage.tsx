@@ -62,10 +62,12 @@ export const CheckoutPage = () => {
           <div>
             <Title>Checkout</Title>
           </div>
-          {progress === 'contacts' && <Contact/>}
-          {progress === 'shipping' && <Shipping/>}
-          {progress === 'payment' && <Payment/>}
-          {progress === 'submit' && <Submit/>}
+          <FormContainer>
+            {progress === 'contacts' && <Contact/>}
+            {progress === 'shipping' && <Shipping/>}
+            {progress === 'payment' && <Payment/>}
+            {progress === 'submit' && <Submit/>}
+          </FormContainer>
           <ButtonWrapper>
             <div>
               {buttonProgress && (
@@ -79,13 +81,13 @@ export const CheckoutPage = () => {
                     }
                     alt=''
                   />
-                Back step
+                  Back step
                 </PrevButton>
               )}
               {!buttonProgress && (
                 <PrevButton>
                   <Link to={'/'} style={{color: '#000'}}>
-                  Come back homepage
+                    Come back homepage
                   </Link>
                   <img
                     src={
@@ -110,7 +112,7 @@ export const CheckoutPage = () => {
             </div>
           </ButtonWrapper>
         </div>
-        <Order />
+        <Order/>
       </Wrapper>
     </CommonLayout>
   )
@@ -121,10 +123,14 @@ const Wrapper = styled.div`
   padding: 8% 5%;
   display: flex;
   justify-content: space-around;
-  background-color: white;
   height: 100%;
 `
-
+const FormContainer = styled.div`
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 2em;
+  border-radius: 10px; 
+`
 const Title = styled.h1`
   margin: 20px 0 40px 0;
   font-weight: 500;
