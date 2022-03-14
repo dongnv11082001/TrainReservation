@@ -12,6 +12,7 @@ export const Order: React.FC = () => {
         <span>FREE</span>
       </Field><Field>
         <span>Order Total</span>
+        
         <span></span>
       </Field>
     </OrderWrapper>

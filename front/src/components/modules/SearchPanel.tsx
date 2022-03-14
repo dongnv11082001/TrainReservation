@@ -19,7 +19,6 @@ type SearchProps = {
     suggestions?: { value: string }[];
 };
 
-const {Group} = Input
 const {RangePicker} = DatePicker
 const {Title, Text} = Typography
 
