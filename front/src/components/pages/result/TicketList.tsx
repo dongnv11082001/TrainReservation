@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Typography, List, Skeleton, Avatar, Badge} from 'antd'
+import {Typography, List, Badge} from 'antd'
 import {Ticket} from '../../../types/ticket'
 import {useLoading} from '../../../context/loadingContext'
 import {ResultTicket} from './ResultTicket'

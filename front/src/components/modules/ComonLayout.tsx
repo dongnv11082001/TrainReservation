@@ -60,9 +60,10 @@ const FixedSider = styled(Sider)`
     bottom: 0;
     z-index: 100;
 `
+
 const StyledFooter = styled(Footer)`
   text-align: center;
   background: #f7fafc;
   color: #a1a8b4;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0 4px 8px -2px, rgba(9, 30, 66, 0.08) 0 0 0 1px;
 `
