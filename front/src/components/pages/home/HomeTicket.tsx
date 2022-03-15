@@ -1,4 +1,5 @@
 import {Typography} from 'antd'
+import moment from 'moment'
 import React from 'react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
@@ -20,7 +21,9 @@ export const Ticket: React.FC<TicketProps> = ({
   <StyledLink to={`/tickets/${id}`}>
     <TitleWithBackground>{destination}</TitleWithBackground>
     <TicketContainer>
-      <Text italic>Departure: {departureTime}</Text>
+      <Text>Departure time: {moment(departureTime).format('h:mm')}</Text>
+      <Text>Arrival time: {moment(arrivalTime).format('h:mm')}</Text>
+      <Text italic>Date: {moment(departureTime).format('DD-MM-YYYY')}</Text>
       <Text>{price}đ</Text>
     </TicketContainer>
   </StyledLink>
@@ -43,8 +46,8 @@ const TicketContainer = styled(FlexBox)`
   flex-direction: column;
 `
 const TitleWithBackground = styled(Title)`
-  background: #ff3366;
+  background: #0056a7;
   font-size: 20px !important;
-  color: white;
+  color: white !important;
   padding: 10px 12px;
 `

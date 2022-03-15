@@ -30,8 +30,8 @@ export const ConfigCenter: React.FC = () => {
   const filterHeader = () => {
     return (
       <FlexBox style={{paddingBottom: 10, borderBottom: '1px solid #ddd', justifyContent: 'space-between'}}>
-        <Text>Bộ lọc</Text>
-        <CancelledFilter onClick={() => setFilter(initialFilterData)}>
+        <BoldText style={{fontSize: '1.2rem'}}>Bộ lọc</BoldText>
+        <CancelledFilter style={{fontSize: '1.2rem'}} onClick={() => setFilter(initialFilterData)}>
           Xóa lọc
         </CancelledFilter>
       </FlexBox>)
@@ -40,7 +40,7 @@ export const ConfigCenter: React.FC = () => {
   const filterPrice = () => {
     return <FlexColumn>
       <BoldText>Khoảng giá</BoldText>
-      <Text>{filter.priceBelowBound}đ - {filter.priceUpperBound}đ</Text>
+      <Text>{filter.priceBelowBound.toLocaleString()}đ - {filter.priceUpperBound.toLocaleString()}đ</Text>
       <Slider
         min={0}
         max={800000}
@@ -122,10 +122,10 @@ const Cell = styled(FlexBox)`
   box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px, rgb(0 0 0 / 30%) 0px 1px 3px -1px;
   cursor: pointer;
 `
-const CancelledFilter = styled.div`
-  color: #00b6f3;
-`
 const BoldText = styled(Text)`
   font-weight: bold;
   margin-bottom: 8px;
+`
+const CancelledFilter = styled(BoldText)`
+  color: #00b6f3;
 `

@@ -43,7 +43,6 @@ export const FlexBox = styled.div`
   justify-content: center;
   align-items: center;  
 `
-
 const ParentLayout = styled(Layout)`
   min-height: 100vh;
   overflow: hidden;
@@ -60,11 +59,11 @@ const FixedSider = styled(Sider)`
     top: 0;
     bottom: 0;
     z-index: 100;
-    border-right: 1px solid #d9d9d9;
 `
+
 const StyledFooter = styled(Footer)`
   text-align: center;
   background: #f7fafc;
   color: #a1a8b4;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0 4px 8px -2px, rgba(9, 30, 66, 0.08) 0 0 0 1px;
 `

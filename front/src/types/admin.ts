@@ -1,6 +1,7 @@
 export interface Admin {
-  id: number;
-  email: string;
-  name: string;
-  password: string;
+  id: number
+  username: string
+  email: string
+  name: string
+  password: string
 }

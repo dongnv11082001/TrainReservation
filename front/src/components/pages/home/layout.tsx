@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import { Typography } from 'antd'
-import { CommonLayout, FlexBox } from '../../modules/ComonLayout'
-import { SearchPanel } from '../../modules/SearchPanel'
-import { HomeServiceCard } from './HomeServiceCard'
+import {Typography} from 'antd'
+import {CommonLayout, FlexBox} from '../../modules/ComonLayout'
+import {SearchPanel} from '../../modules/SearchPanel'
+import {HomeServiceCard} from './HomeServiceCard'
 import bannerBackground from '../../../asserts/images/banner.jpg'
-import { Ticket } from './HomeTicket'
-import { TicketProps } from '../../../types/ticket'
+import {Ticket} from './HomeTicket'
+import {TicketProps} from '../../../types/ticket'
 
 type ServiceProps = {
   title: string
@@ -19,9 +19,9 @@ interface HomeProps {
   tickets?: TicketProps[]
 }
 
-const { Title } = Typography
+const {Title} = Typography
 
-const Layout: React.FC<HomeProps> = ({ services, tickets }) => {
+const Layout: React.FC<HomeProps> = ({services, tickets}) => {
   const servicesWrapper = () => {
     return (
       <ServiceWrapper>
@@ -40,11 +40,11 @@ const Layout: React.FC<HomeProps> = ({ services, tickets }) => {
   return (
     <CommonLayout>
       <Banner background={bannerBackground}>
-        <SearchPanel />
+        <SearchPanel/>
       </Banner>
       {servicesWrapper()}
       <StyledFlexBox>
-        <Title style={{ fontSize: '2rem' }}>Chuyến bay giá tốt</Title>
+        <Title style={{fontSize: '2rem'}}>Chuyến bay giá tốt</Title>
         <TicketWrapper>
           {tickets?.map((ticket) => (
             <Ticket
@@ -76,7 +76,7 @@ const ServiceWrapper = styled.div`
 `
 const StyledFlexBox = styled(FlexBox)`
   flex-direction: column;
-  background: #e2e3f7;
+  background: #f5fcff;
   padding: 3rem 5%;
 `
 const TicketWrapper = styled.div`
@@ -86,12 +86,12 @@ const TicketWrapper = styled.div`
   grid-gap: 10px;
   padding: 2rem 5%;
 `
-const Banner = styled.div<{ background?: string }>`
+export const Banner = styled.div<{ background?: string }>`
   position: relative;
   height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: bottom no-repeat url(${({background}) => background});
+  background: center no-repeat url(${({background}) => background});
   background-size: cover;
 `

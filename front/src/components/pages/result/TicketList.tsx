@@ -59,7 +59,7 @@ const Filter = styled.div`
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   span{
     padding: 16px 20px 10px;
-    color: #f36;
+    color: #466a81;
     font-size: 1rem;
     font-weight: bold;
   }

@@ -13,7 +13,7 @@ const {SubMenu} = Menu
 export const AdminSiderMenu: React.FC = () => (
   <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
     <Menu.Item key="2" icon={<DesktopOutlined/>}>
-      Dashboard
+      Chung
     </Menu.Item>
     <Menu.Item key="1" icon={<PieChartOutlined/>}>
       Offers
