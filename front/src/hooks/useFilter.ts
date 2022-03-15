@@ -1,6 +1,6 @@
 import { TicketProps } from '../types/ticket'
 
-export function useFilter(tickets: TicketProps[]): any {
+export function useFilter(tickets: TicketProps[]) {
   const showAscendingPrice = () =>
     tickets.sort((prev, cur) => +prev.price - +cur.price)
   const showMostRecentFlight = () =>
