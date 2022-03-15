@@ -1,4 +1,4 @@
-export interface TicketProps {
+export interface Ticket {
   id: string
   destination: string
   departure: string
@@ -7,4 +7,5 @@ export interface TicketProps {
   price: number
   ticketClass: 'Ghế mềm' | 'Ghế cứng' | 'Giường nằm'
   airline?: string
+  status?: 'available' | 'pending' | 'sold'
 }

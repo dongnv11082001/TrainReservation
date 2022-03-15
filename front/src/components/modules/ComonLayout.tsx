@@ -26,7 +26,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
           onCollapse={() => setIsCollapse(!isCollapse)}
           theme="dark"
         >
-          {isAdmin ? <AdminSiderMenu/> : <GuestSiderMenu/>}
+          {isAdmin ? <AdminSiderMenu tickets={[]} offers={[]} users={[]}/> : <GuestSiderMenu isLoggedIn/>}
         </FixedSider>
         <Layout>
           <Header isDominated={isCollapse}/>

@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import {CommonLayout, FlexBox} from '../../modules/ComonLayout'
 import {SearchPanel} from '../../modules/SearchPanel'
-import {TicketProps} from '../../../types/ticket'
+import {Ticket} from '../../../types/ticket'
 import {TicketList} from './TicketList'
 import {ConfigCenter} from './ConfigCenter'
 
 type ResultPageProps = {
-  results: TicketProps[]
+  results: Ticket[]
 }
 
 const Layout: React.FC<ResultPageProps> = ({results}) => {
