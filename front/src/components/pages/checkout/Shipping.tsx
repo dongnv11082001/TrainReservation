@@ -1,23 +1,20 @@
-import { Select } from 'antd'
-import React, { useState } from 'react'
+import {Select} from 'antd'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import 'antd/lib/select/style/css'
-import { CaretDownFilled } from '@ant-design/icons/lib/icons'
+import {CaretDownFilled} from '@ant-design/icons/lib/icons'
+import {FormWrapper} from '../../../GlobalStyle'
 
 const availableAddress = [
-  {
-    address:
-      '120 Nguyen Thai Hoc Street, Pham Ngu Lao Ward, Hoang Mai district, Ha Noi',
-  },
-  { address: '233 Cong Hoa Street, 13 Ward, Tan Binh district, HCM city' },
+  {address: '120 Nguyen Thai Hoc Street, Pham Ngu Lao Ward, Hoang Mai district, Ha Noi'},
+  {address: '233 Cong Hoa Street, 13 Ward, Tan Binh district, HCM city'},
 ]
 
 export const Shipping: React.FC = () => {
   const [pickUpClick, setPickUpClick] = useState(false)
   const [courierClick, setCourierClick] = useState(true)
   const [address, setAddress] = useState('')
-
-  const { Option } = Select
+  const {Option} = Select
 
   const handlePickUpClick = () => {
     setCourierClick(false)
@@ -30,14 +27,14 @@ export const Shipping: React.FC = () => {
   }
 
   return (
-    <div>
+    <FormWrapper>
       <Text>Delivery method</Text>
       <Delivery onClick={handlePickUpClick} checked={pickUpClick}>
         <div>
           {pickUpClick ? (
-            <img src={'https://cassiopeia.store/svgs/radio-checked.svg'} />
+            <img src={'https://cassiopeia.store/svgs/radio-checked.svg'} alt={''}/>
           ) : (
-            <img src={'https://cassiopeia.store/svgs/radio-unchecked.svg'} />
+            <img src={'https://cassiopeia.store/svgs/radio-unchecked.svg'} alt={''}/>
           )}
         </div>
         <div className='text'>
@@ -48,9 +45,9 @@ export const Shipping: React.FC = () => {
       <Delivery onClick={handleCourierClick} checked={courierClick}>
         <div>
           {courierClick ? (
-            <img src={'https://cassiopeia.store/svgs/radio-checked.svg'} />
+            <img src={'https://cassiopeia.store/svgs/radio-checked.svg'} alt={''}/>
           ) : (
-            <img src={'https://cassiopeia.store/svgs/radio-unchecked.svg'} />
+            <img src={'https://cassiopeia.store/svgs/radio-unchecked.svg'} alt={''}/>
           )}
         </div>
         <div className='text'>
@@ -64,38 +61,19 @@ export const Shipping: React.FC = () => {
             <Text className='checkout-form-title'>Available stores</Text>
             <div className='pickup-radio-wrapper'>
               {availableAddress.map((item) => (
-                <StorePickup
-                  key={item.address}
-                  className='pickup-radio-options'
-                >
+                <StorePickup key={item.address} className='pickup-radio-options'>
                   <input
                     onChange={(e) => setAddress(e.target.value)}
                     type='radio'
                     name='pick-address'
                     value={item.address}
+                    id={item.address}
                   />
-                  <div className='pickup-radio-options-content'>
+                  <label htmlFor={item.address} className='pickup-radio-options-content'>
                     {item.address}
-                  </div>
+                  </label>
                 </StorePickup>
               ))}
-            </div>
-          </div>
-          <div className='receipt-date-picker'>
-            <Text className='checkout-form-title'>
-              Date {'&'} time of receipt
-            </Text>
-            <div className='pickup-input-wrapper'>
-              <input
-                type='text'
-                className='checkout-form-input'
-                placeholder='dd/mm/yyyy'
-              />{' '}
-              <input
-                type='text'
-                className='checkout-form-input'
-                placeholder='00:00'
-              />
             </div>
           </div>
         </>
@@ -108,7 +86,7 @@ export const Shipping: React.FC = () => {
               labelInValue
               defaultValue={'hanoi'}
               bordered={false}
-              suffixIcon={<CaretDownFilled />}
+              suffixIcon={<CaretDownFilled/>}
               style={{
                 width: '135px',
                 backgroundColor: '#f0f0f9',
@@ -128,7 +106,7 @@ export const Shipping: React.FC = () => {
           </AddressContainer>
         </>
       )}
-    </div>
+    </FormWrapper>
   )
 }
 
@@ -142,6 +120,7 @@ const Delivery = styled.div<{ checked: boolean }>`
   cursor: pointer;
   user-select: none;
   padding: 20px;
+
   & .text {
     display: flex;
     flex-direction: column;
@@ -154,6 +133,7 @@ const AddressContainer = styled.div`
   margin-bottom: 40px;
   align-items: center;
   height: 40px;
+
   & input {
     height: 40px;
     flex: 1;
@@ -168,6 +148,7 @@ const StorePickup = styled.div`
   display: flex;
   align-items: center;
   font-size: 16px;
+
   & input {
     margin-right: 10px;
   }

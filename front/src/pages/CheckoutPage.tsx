@@ -59,7 +59,7 @@ export const CheckoutPage = () => {
       <Wrapper>
         <div>
           <Breadcrumb>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Link to={'/'}><Breadcrumb.Item>Home</Breadcrumb.Item></Link>
             <Breadcrumb.Item>Checkout</Breadcrumb.Item>
           </Breadcrumb>
           <div>
@@ -84,13 +84,13 @@ export const CheckoutPage = () => {
                     }
                     alt=''
                   />
-                  Back step
+                      Back step
                 </PrevButton>
               )}
               {!buttonProgress && (
                 <PrevButton>
                   <Link to={'/'} style={{color: '#000'}}>
-                    Come back homepage
+                        Come back homepage
                   </Link>
                   <img
                     src={
@@ -131,7 +131,7 @@ const FormContainer = styled.div`
   background: #fff;
   padding: 20px;
   margin-bottom: 2em;
-  border-radius: 10px; 
+  border-radius: 10px;
 `
 const Title = styled.h1`
   margin: 20px 0 40px 0;
@@ -143,8 +143,8 @@ const Title = styled.h1`
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 435px;
   font-size: 16px;
+
   & button img {
     margin: 0 10px;
   }

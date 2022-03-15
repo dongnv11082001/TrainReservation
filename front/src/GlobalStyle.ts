@@ -1,10 +1,14 @@
-import {createGlobalStyle} from 'styled-components'
+import styled, {createGlobalStyle} from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
-    *{
-      margin:0;
-      padding:0;
-      box-sizing: border-box;
-      user-select: none;
-    }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+  }
+`
+
+export const FormWrapper = styled.div`
+  width: 480px;
 `

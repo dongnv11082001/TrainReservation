@@ -1,26 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
+import {FormWrapper} from '../../../GlobalStyle'
 
 export const Contact = () => {
   return (
-    <div>
+    <FormWrapper>
       <h3>Fill in your information</h3>
       <div>
-        <Input placeholder={'Full name'} />
-        <Input placeholder={'Phone number'} />
+        <Input placeholder={'Full name'}/>
+        <Input placeholder={'Phone number'}/>
       </div>
       <ContactGender>
         <span>Gender:</span>
         <label>
-          Male
-          <input type={'radio'} name={'gender'} defaultChecked={true} />
+                  Male
+          <input type={'radio'} name={'gender'} defaultChecked={true}/>
         </label>
         <label>
-          Female
-          <input type={'radio'} name={'gender'} value={'female'} />
+                  Female
+          <input type={'radio'} name={'gender'} value={'female'}/>
         </label>
       </ContactGender>
-    </div>
+    </FormWrapper>
   )
 }
 
@@ -31,8 +32,8 @@ const Input = styled.input`
   border: 1px solid #f0f0f5;
   margin-right: 15px;
   margin-bottom: 20px;
-  font-size: 12px;
-  width: 210px;
+  font-size: 14px;
+  width: 100%;
 `
 
 const ContactGender = styled.div`

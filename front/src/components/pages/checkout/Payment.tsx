@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import {FormWrapper} from '../../../GlobalStyle'
 
 const creditCards = [
   {
@@ -57,14 +58,14 @@ export const Payment: React.FC = () => {
   }
 
   return (
-    <div>
+    <FormWrapper>
       <Text>Payment method</Text>
       <Delivery onClick={handlePickUpClick} checked={pickUpClick}>
         <div>
           {pickUpClick ? (
-            <img src={'https://cassiopeia.store/svgs/radio-checked.svg'} />
+            <img src={'https://cassiopeia.store/svgs/radio-checked.svg'} alt={''}/>
           ) : (
-            <img src={'https://cassiopeia.store/svgs/radio-unchecked.svg'} />
+            <img src={'https://cassiopeia.store/svgs/radio-unchecked.svg'} alt={''}/>
           )}
         </div>
         <div className='text'>
@@ -74,9 +75,9 @@ export const Payment: React.FC = () => {
       <Delivery onClick={handleCourierClick} checked={courierClick}>
         <div>
           {courierClick ? (
-            <img src={'https://cassiopeia.store/svgs/radio-checked.svg'} />
+            <img src={'https://cassiopeia.store/svgs/radio-checked.svg'} alt={''}/>
           ) : (
-            <img src={'https://cassiopeia.store/svgs/radio-unchecked.svg'} />
+            <img src={'https://cassiopeia.store/svgs/radio-unchecked.svg'} alt={''}/>
           )}
         </div>
         <div className='text'>
@@ -91,7 +92,7 @@ export const Payment: React.FC = () => {
               <div className='online-payment-grid'>
                 {creditCards.map((card, i) => (
                   <div key={i} className='online-payment-card'>
-                    <img src={card.image} />
+                    <img src={card.image} alt={''}/>
                   </div>
                 ))}
               </div>
@@ -101,7 +102,7 @@ export const Payment: React.FC = () => {
               <div className='online-payment-grid'>
                 {onlineGateWays.map((card) => (
                   <div key={card.image} className='online-payment-card'>
-                    <img src={card.image} />
+                    <img src={card.image} alt={''}/>
                   </div>
                 ))}
               </div>
@@ -109,7 +110,7 @@ export const Payment: React.FC = () => {
           </Container>
         </>
       )}
-    </div>
+    </FormWrapper>
   )
 }
 
