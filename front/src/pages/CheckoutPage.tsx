@@ -2,13 +2,15 @@ import {Breadcrumb} from 'antd'
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import {CommonLayout} from '../components/modules/ComonLayout'
+import {CommonLayout, FlexBox} from '../components/modules/ComonLayout'
 import {Contact} from '../components/pages/checkout/Contact'
 import {Payment} from '../components/pages/checkout/Payment'
 import {Shipping} from '../components/pages/checkout/Shipping'
 import {Submit} from '../components/pages/checkout/Submit'
 import {Order} from '../components/pages/checkout/Order'
+import {Banner} from '../components/pages/home/layout'
 import {useLoading} from '../context/loadingContext'
+import bannerBackground from '../asserts/images/banner.jpg'
 
 export const CheckoutPage = () => {
   const [progress, setProgress] = useState('contacts')
@@ -53,6 +55,7 @@ export const CheckoutPage = () => {
 
   return (
     <CommonLayout>
+      <Banner style={{height: '35vh'}} background={bannerBackground}/>
       <Wrapper>
         <div>
           <Breadcrumb>
@@ -117,13 +120,12 @@ export const CheckoutPage = () => {
     </CommonLayout>
   )
 }
-
-const Wrapper = styled.div`
+const Wrapper = styled(FlexBox)`
   margin-bottom: 50px;
-  padding: 8% 5%;
-  display: flex;
-  justify-content: space-around;
-  height: 100%;
+  padding: 3rem 5%;
+  align-items: initial;
+  gap: 4rem;
+  height: fit-content;
 `
 const FormContainer = styled.div`
   background: #fff;
@@ -135,6 +137,7 @@ const Title = styled.h1`
   margin: 20px 0 40px 0;
   font-weight: 500;
   font-size: 32px;
+  color: #466a81;
 `
 
 const ButtonWrapper = styled.div`
@@ -157,7 +160,7 @@ const PrevButton = styled.button`
 const NextButton = styled.button`
   border: none;
   padding: 0 20px;
-  background-color: #000;
+  background-color: #1890ff;
   color: #fff;
   height: 46px;
   width: 175px;

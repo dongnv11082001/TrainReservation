@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {Input} from 'antd'
 import {SlackSquareFilled} from '@ant-design/icons'
 import {Link} from 'react-router-dom'
+import {FlexBox} from './ComonLayout'
 
 type HeaderProps = {
   isDominated: boolean
@@ -30,22 +31,13 @@ export const Header: React.FC<HeaderProps> = ({isDominated}) => {
         <SlackSquareFilled style={{marginRight: 10, fontSize: '2rem'}}/>
         Đặt Vé Tàu Dễ Dàng
       </Logo>
-      <SearchBox>
-        <Search
-          placeholder='Tìm vé tàu giá rẻ...'
-          onSearch={handleSearch}
-          size='middle'
-          enterButton
-          allowClear
-        />
-      </SearchBox>
     </HeaderWrapper>
   )
 }
 
 const HeaderWrapper = styled.div<{ isShrink: boolean, isTransparent: boolean }>`
-  display: flex;
-  justify-content: space-between;
+  display:flex;
+  justify-content:center;
   align-items: center;
   padding: 1em 1.5em;
   padding-left: ${({isShrink}) => (isShrink ? '100px' : '220px')};

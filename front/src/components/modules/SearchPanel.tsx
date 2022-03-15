@@ -84,8 +84,7 @@ const SearchBarContainer = styled.div`
   border-radius: 1rem;
   padding: 20px;
   background: #fff;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 `
 const LocationInput = styled(AutoComplete)`
   min-width: 200px;
@@ -108,7 +107,7 @@ const Button = styled.span`
   justify-content:center;
   align-items:center;
   border-radius: 0.4rem;
-  background: #FF3366;
+  background: #55b7f3;
   color: white;
   cursor: pointer;
 `

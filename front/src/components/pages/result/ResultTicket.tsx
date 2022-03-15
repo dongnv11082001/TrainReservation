@@ -47,13 +47,13 @@ const Ticket = styled(List.Item)`
   padding: 20px !important;
   
   :hover{
-    outline: 1px solid #f36;
+    outline: 1px solid #55b7f3;
     transition: outline 0.2s ease;
   }
 `
 const Button = styled(FlexBox)`
   cursor: pointer;
-  background: #f36;
+  background: #55b7f3;
   width:80px;
   padding: 7px 10px;
   border-radius: .6rem;

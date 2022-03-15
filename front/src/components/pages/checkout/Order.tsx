@@ -23,7 +23,6 @@ const OrderWrapper = styled.div`
   padding: 20px;
   border-radius: 8px;
   background-color: white;
-  height: fit-content;
 `
 
 const Name = styled.h2`
