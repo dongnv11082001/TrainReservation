@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Typography, List, Skeleton, Avatar, Badge} from 'antd'
+import {Typography, List, Badge} from 'antd'
 import {TicketProps} from '../../../types/ticket'
 import {useLoading} from '../../../context/loadingContext'
-import {FlexBox} from '../../modules/ComonLayout'
 import {ResultTicket} from './ResultTicket'
 
 const filterItems = [

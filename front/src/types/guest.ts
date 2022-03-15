@@ -1,5 +1,5 @@
-import {TicketProps} from './ticket'
-import {Offer} from './offer'
+import { TicketProps } from './ticket'
+import { Offer } from './offer'
 
 export interface Guest {
   offers: TicketProps[]
