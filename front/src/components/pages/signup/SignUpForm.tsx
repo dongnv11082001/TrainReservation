@@ -99,7 +99,7 @@ export const SignUpForm: React.FC = () => {
   )
 
   return <FormWrapper>
-    <Title style={{textAlign: 'center'}}>Sign Up</Title>
+    <Title style={{textAlign: 'center'}}>Đăng Kí</Title>
     <Divider/>
     <Form
       {...formItemLayout}

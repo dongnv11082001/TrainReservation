@@ -58,7 +58,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <FormWrapper>
-      <Title style={{textAlign: 'center'}}>Sign In</Title>
+      <Title style={{textAlign: 'center'}}>Đăng nhập</Title>
       <Divider/>
       <Form
         style={{maxWidth: 500}}
