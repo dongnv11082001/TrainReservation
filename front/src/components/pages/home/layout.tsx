@@ -5,8 +5,8 @@ import {CommonLayout, FlexBox} from '../../modules/ComonLayout'
 import {SearchPanel} from '../../modules/SearchPanel'
 import {HomeServiceCard} from './HomeServiceCard'
 import bannerBackground from '../../../asserts/images/banner.jpg'
-import {Ticket} from './HomeTicket'
-import {TicketProps} from '../../../types/ticket'
+import {HomeTicket} from './HomeTicket'
+import {Ticket} from '../../../types/ticket'
 
 type ServiceProps = {
   title: string
@@ -16,7 +16,7 @@ type ServiceProps = {
 
 interface HomeProps {
   services: ServiceProps[]
-  tickets?: TicketProps[]
+  tickets?: Ticket[]
 }
 
 const {Title} = Typography
@@ -47,7 +47,7 @@ const Layout: React.FC<HomeProps> = ({services, tickets}) => {
         <Title style={{fontSize: '2rem'}}>Chuyến bay giá tốt</Title>
         <TicketWrapper>
           {tickets?.map((ticket) => (
-            <Ticket
+            <HomeTicket
               key={ticket.id}
               id={ticket.id}
               departure={ticket.departure}

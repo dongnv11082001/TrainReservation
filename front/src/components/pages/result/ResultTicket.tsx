@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Avatar, List, Skeleton, Typography} from 'antd'
-import {TicketProps} from '../../../types/ticket'
+import {Ticket} from '../../../types/ticket'
 import {FlexBox} from '../../modules/ComonLayout'
 
 type ResultTicketProps = {
-  ticket: TicketProps
+  ticket: Ticket
   loading: boolean
 }
 
 const {Text} = Typography
 
 export const ResultTicket: React.FC<ResultTicketProps> = ({ticket, loading}) => {
-  return <Ticket
+  return <TicketWrapper
     key={ticket.id}
     extra={
       !loading &&
@@ -29,7 +29,7 @@ export const ResultTicket: React.FC<ResultTicketProps> = ({ticket, loading}) => 
       />
       This is dummy text this is dummy text this is dummy text
     </Skeleton>
-  </Ticket>
+  </TicketWrapper>
 }
 
 const Box = styled(FlexBox)`
@@ -38,7 +38,7 @@ const Box = styled(FlexBox)`
   height: 100%;
   gap: 5px;
 `
-const Ticket = styled(List.Item)`
+const TicketWrapper = styled(List.Item)`
   background: white;
   border-radius: .6rem;
   margin-bottom: 18px;

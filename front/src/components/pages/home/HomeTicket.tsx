@@ -3,12 +3,12 @@ import moment from 'moment'
 import React from 'react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import {TicketProps} from '../../../types/ticket'
+import {Ticket} from '../../../types/ticket'
 import {FlexBox} from '../../modules/ComonLayout'
 
 const {Text, Title} = Typography
 
-export const Ticket: React.FC<TicketProps> = ({
+export const HomeTicket: React.FC<Ticket> = ({
   id,
   destination,
   departure,

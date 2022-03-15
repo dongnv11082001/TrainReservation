@@ -1,34 +1,45 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {Menu} from 'antd'
 import {
   DesktopOutlined,
   PieChartOutlined,
   FileOutlined,
-  TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons'
+import {User} from '../../types/user'
+import {Offer} from '../../types/offer'
+import {Ticket} from '../../types/ticket'
 
 const {SubMenu} = Menu
 
-export const AdminSiderMenu: React.FC = () => (
+interface AdminMenuProps {
+  users: User[]
+  tickets: Ticket[]
+  offers: Offer[]
+}
+
+export const AdminSiderMenu: React.FC<AdminMenuProps> = ({
+  users, tickets, offers
+}) => (
   <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-    <Menu.Item key="2" icon={<DesktopOutlined/>}>
-      Chung
+    <Menu.Item key="1" icon={<DesktopOutlined/>}>
+      <Link to='/'>Chung</Link>
     </Menu.Item>
-    <Menu.Item key="1" icon={<PieChartOutlined/>}>
-      Offers
-    </Menu.Item>
-    <Menu.Item key="9" icon={<FileOutlined/>}>
-      Tickets
-    </Menu.Item>
-    <SubMenu key="sub1" icon={<UserOutlined/>} title="User">
-      <Menu.Item key="3">Tom</Menu.Item>
-      <Menu.Item key="4">Bill</Menu.Item>
-      <Menu.Item key="5">Alex</Menu.Item>
+    <SubMenu key="2" icon={<PieChartOutlined/>} title="Quản lý giao dịch">
+      {offers?.map((offer, index) => (
+        <Menu.Item key={`2${index}`}>{offer.status}</Menu.Item>
+      ))}
     </SubMenu>
-    <SubMenu key="sub2" icon={<TeamOutlined/>} title="Team">
-      <Menu.Item key="6">Team 1</Menu.Item>
-      <Menu.Item key="8">Team 2</Menu.Item>
+    <SubMenu key="3" icon={<FileOutlined/>} title="Quản lý vé">
+      {tickets?.map((ticket, index) => (
+        <Menu.Item key={`3${index}`}>{ticket.departure} - {ticket.destination}</Menu.Item>
+      ))}
+    </SubMenu>
+    <SubMenu key="4" icon={<UserOutlined/>} title="Quản lý Users">
+      {users?.map((user, index) => (
+        <Menu.Item key={`3${index}`}>{`${user.firstName} ${user.lastName}`}</Menu.Item>
+      ))}
     </SubMenu>
   </Menu>
 )
