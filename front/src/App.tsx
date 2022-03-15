@@ -8,6 +8,8 @@ import {GlobalStyle} from './GlobalStyle'
 import {CartTicketsProvider} from './context/cartContext'
 import {CheckoutPage} from './pages/CheckoutPage'
 import {LoadingProvider} from './context/loadingContext'
+import {LoginPage} from './pages/LoginPage'
+import {SignUpPage} from './pages/SignUpPage'
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/result" element={<ResultPage/>}/>
           <Route path="/checkout" element={<CheckoutPage/>}/>
+          <Route path='/sign_in' element={<LoginPage/>}/>
+          <Route path='/sign_up' element={<SignUpPage/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
         <GlobalStyle/>

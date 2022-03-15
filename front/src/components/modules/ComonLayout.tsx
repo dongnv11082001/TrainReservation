@@ -15,7 +15,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
   children,
   isAdmin,
 }): ReactElement => {
-  const [isCollapse, setIsCollapse] = useState<boolean>(false)
+  const [isCollapse, setIsCollapse] = useState<boolean>(true)
 
   return (
     <>
@@ -26,12 +26,12 @@ export const CommonLayout: React.FC<LayoutProps> = ({
           onCollapse={() => setIsCollapse(!isCollapse)}
           theme="dark"
         >
-          {isAdmin ? <AdminSiderMenu tickets={[]} offers={[]} users={[]}/> : <GuestSiderMenu isLoggedIn/>}
+          {isAdmin ? <AdminSiderMenu tickets={[]} offers={[]} users={[]}/> : <GuestSiderMenu/>}
         </FixedSider>
         <Layout>
           <Header isDominated={isCollapse}/>
           <Body isDominated={isCollapse}>{children}</Body>
-          <StyledFooter>Train Reservation ©2022 Created by tungdnt & dongnv</StyledFooter>
+          <StyledFooter>Train Reservation ©2022 Created by TungDNT & DongNV</StyledFooter>
         </Layout>
       </ParentLayout>
     </>
@@ -60,7 +60,6 @@ const FixedSider = styled(Sider)`
     bottom: 0;
     z-index: 100;
 `
-
 const StyledFooter = styled(Footer)`
   text-align: center;
   background: #f7fafc;

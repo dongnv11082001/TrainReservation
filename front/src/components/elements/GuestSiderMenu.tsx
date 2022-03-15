@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons'
 
 type GuestMenuProps = {
-  isLoggedIn: boolean
+  isLoggedIn?: boolean
 }
 
 export const GuestSiderMenu: React.FC<GuestMenuProps> = ({isLoggedIn}) => (
@@ -16,16 +16,19 @@ export const GuestSiderMenu: React.FC<GuestMenuProps> = ({isLoggedIn}) => (
     <Menu.Item key="1" icon={<HomeOutlined/>}>
       <Link to="/">Trang chủ</Link>
     </Menu.Item>
-
     {
-      isLoggedIn && <>
+      isLoggedIn ? <>
         <Menu.Item key="2" icon={<UserOutlined/>}>
           <Link to='/profile'>Chỉnh sửa hồ sơ</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<LogoutOutlined/>}>
-                Đăng xuất
+            Đăng xuất
         </Menu.Item>
       </>
+        :
+        <Menu.Item key="4" icon={<LogoutOutlined/>}>
+          <Link to='sign_in'>Đăng nhập</Link>
+        </Menu.Item>
     }
   </Menu>
 )

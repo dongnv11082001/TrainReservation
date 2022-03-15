@@ -3,9 +3,9 @@ import {Typography} from 'antd'
 import styled from 'styled-components'
 
 type CardProps = {
-    image: string
-    title: string
-    content: string
+  image: string
+  title: string
+  content: string
 };
 
 const {Title, Text} = Typography
@@ -40,6 +40,7 @@ const CardWrapper = styled.div`
 const StyledTitle = styled(Title)`
     font-size: 0.9rem !important;
 `
-const StyledText = styled(Text)`
-    font-size: 0.8rem !important;
+export const StyledText = styled(Text)`
+    font-size: 0.9rem !important;
+    display: block;
 `

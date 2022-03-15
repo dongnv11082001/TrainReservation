@@ -7,6 +7,15 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     user-select: none;
   }
+  .login-form {
+  max-width: 300px;
+  }
+  .login-form-forgot {
+    float: right;
+  }
+  .login-form-forgot {
+    float: left;
+  }
 `
 
 export const FormWrapper = styled.div`

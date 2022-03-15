@@ -36,7 +36,6 @@ const Layout: React.FC<HomeProps> = ({services, tickets}) => {
       </ServiceWrapper>
     )
   }
-
   return (
     <CommonLayout>
       <Banner background={bannerBackground}>
@@ -88,6 +87,7 @@ const TicketWrapper = styled.div`
 `
 export const Banner = styled.div<{ background?: string }>`
   position: relative;
+  width: 100%;
   height: 50vh;
   display: flex;
   justify-content: center;
