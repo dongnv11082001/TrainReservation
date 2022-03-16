@@ -69,35 +69,36 @@ export const LoginForm: React.FC = () => {
       >
         <Form.Item
           name="username"
-          rules={[{required: true, message: 'Please input your Username!'}]}
+          rules={[{required: true, message: 'Vui lòng nhập tên đăng nhập!'}]}
         >
-          <Input style={{height: 50}} prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Username"/>
+          <Input style={{height: 50}} prefix={<UserOutlined className="site-form-item-icon"/>}
+            placeholder="Tên đăng nhập"/>
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{required: true, message: 'Please input your Password!'}]}
+          rules={[{required: true, message: 'Vui lòng nhập mật khẩu'}]}
         >
           <Input
             style={{height: 50}}
             prefix={<LockOutlined className="site-form-item-icon"/>}
             type="password"
-            placeholder="Password"
+            placeholder="Mật khẩu"
           />
         </Form.Item>
         <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox>Lưu mật khẩu</Checkbox>
           </Form.Item>
           <Link to='/forget_password'>
-            Forgot password
+            Quên mật khẩu
           </Link>
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Log in
+            Đăng nhập
           </Button>
-          <span style={{margin: '0 10px 0'}}>Or</span>
-          <Link to="/sign_up">register now!</Link>
+          <span style={{margin: '0 10px 0'}}>Hoặc</span>
+          <Link to="/sign_up">Đăng ký ngay</Link>
         </Form.Item>
       </Form>
     </FormWrapper>
@@ -109,4 +110,4 @@ export const FormWrapper = styled.div`
   padding: 3rem;
   background: #fff;
   border-radius: 1rem;
-box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;`
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;`

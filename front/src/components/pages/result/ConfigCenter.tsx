@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Slider, Typography} from 'antd'
 import {FlexBox} from '../../modules/ComonLayout'
-import DawnIcon from '../../../asserts/images/dawn.svg'
-import MorningIcon from '../../../asserts/images/morning.svg'
-import AfternoonIcon from '../../../asserts/images/afternoon.svg'
-import EveningIcon from '../../../asserts/images/evening.svg'
+import {DawnIcon} from '../../elements/DawnIcon'
+import {MorningIcon} from '../../elements/MorningIcon'
+import {AfternoonIcon} from '../../elements/AfternoonIcon'
+import {EveningIcon} from '../../elements/EveningIcon'
 
 interface FilterParams {
   airline?: string

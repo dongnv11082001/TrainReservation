@@ -99,7 +99,7 @@ export const SignUpForm: React.FC = () => {
   )
 
   return <FormWrapper>
-    <Title style={{textAlign: 'center'}}>Đăng Kí</Title>
+    <Title style={{textAlign: 'center'}}>Đăng Ký</Title>
     <Divider/>
     <Form
       {...formItemLayout}
@@ -114,12 +114,12 @@ export const SignUpForm: React.FC = () => {
     >
       <Form.Item
         name="username"
-        label="Tên tài khoản"
+        label="Tên đăng nhập"
         tooltip="Đây là tên mà chúng tôi sẽ sử dụng để gọi bạn"
         rules={[
           {
             required: true,
-            message: 'Hãy nHập tên tài khoản',
+            message: 'Hãy nhập tên tài khoản',
             whitespace: true,
           },
         ]}
@@ -129,11 +129,11 @@ export const SignUpForm: React.FC = () => {
 
       <Form.Item
         name="password"
-        label="Password"
+        label="Mật khẩu"
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: 'Vui lòng nhập mật khẩu',
           },
         ]}
         hasFeedback
@@ -248,7 +248,7 @@ export const SignUpForm: React.FC = () => {
 
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
-          Register
+          Đăng ký
         </Button>
       </Form.Item>
     </Form>

@@ -18,7 +18,7 @@ export const HomeTicket: React.FC<Ticket> = ({
   price,
   ticketClass,
 }) => (
-  <StyledLink to={`/tickets/${id}`}>
+  <StyledLink to={'/checkout'}>
     <TitleWithBackground>{destination}</TitleWithBackground>
     <TicketContainer>
       <StyledText italic>Khởi hành: {moment(departureTime).format('h:mm')}</StyledText>

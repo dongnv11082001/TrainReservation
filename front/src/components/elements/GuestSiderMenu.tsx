@@ -27,7 +27,7 @@ export const GuestSiderMenu: React.FC<GuestMenuProps> = ({isLoggedIn}) => (
       </>
         :
         <Menu.Item key="4" icon={<LogoutOutlined/>}>
-          <Link to='sign_in'>Đăng nhập</Link>
+          <Link to='/sign_in'>Đăng nhập</Link>
         </Menu.Item>
     }
   </Menu>

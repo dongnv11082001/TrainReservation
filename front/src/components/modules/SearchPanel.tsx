@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
+import {Link} from 'react-router-dom'
 import {
   AutoComplete,
   DatePicker,
@@ -11,7 +12,6 @@ import {
   Divider,
 } from 'antd'
 import {SwapRightOutlined} from '@ant-design/icons'
-
 import {FlexBox} from './ComonLayout'
 
 type SearchProps = {
@@ -75,7 +75,9 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
           disabled={[false, !isRoundTrip]}
           style={{height: '45px'}}
         />
-        <Button>Tìm chuyến tàu</Button>
+        <Link to="/result">
+          <Button>Tìm chuyến tàu</Button>
+        </Link>
       </FlexBox>
     </SearchBarContainer>
   )

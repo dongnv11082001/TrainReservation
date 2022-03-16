@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Avatar, List, Skeleton, Typography} from 'antd'
+import {Link} from 'react-router-dom'
 import {Ticket} from '../../../types/ticket'
 import {FlexBox} from '../../modules/ComonLayout'
 
@@ -18,7 +19,7 @@ export const ResultTicket: React.FC<ResultTicketProps> = ({ticket, loading}) => 
       !loading &&
         <Box>
           <Text style={{fontSize: '20px', fontWeight: 'bold'}}>${ticket.price}</Text>
-          <Button>Chọn</Button>
+          <Link to="/checkout"><Button>Chọn</Button></Link>
         </Box>
     }>
     <Skeleton loading={loading} active avatar>
