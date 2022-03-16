@@ -4,8 +4,9 @@ import styled from 'styled-components'
 import {AdminSiderMenu} from '../elements/AdminSiderMenu'
 import {GuestSiderMenu} from '../elements/GuestSiderMenu'
 import {Header} from './Header'
+import {Footer} from '../elements/Footer'
 
-const {Sider, Footer} = Layout
+const {Sider} = Layout
 
 interface LayoutProps {
   isAdmin?: boolean;
@@ -31,7 +32,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
         <Layout>
           <Header isDominated={isCollapse}/>
           <Body isDominated={isCollapse}>{children}</Body>
-          <StyledFooter>Train Reservation ©2022 Created by TungDNT & DongNV</StyledFooter>
+          <Footer/>
         </Layout>
       </ParentLayout>
     </>
@@ -62,7 +63,7 @@ const FixedSider = styled(Sider)`
 `
 const StyledFooter = styled(Footer)`
   text-align: center;
-  background: #f7fafc;
+  background: #;
   color: #a1a8b4;
   box-shadow: rgba(9, 30, 66, 0.25) 0 4px 8px -2px, rgba(9, 30, 66, 0.08) 0 0 0 1px;
 `
