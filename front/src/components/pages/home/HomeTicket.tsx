@@ -3,12 +3,12 @@ import moment from 'moment'
 import React from 'react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import {TicketProps} from '../../../types/ticket'
-import {FlexBox} from '../../modules/ComonLayout'
+import {Ticket} from '../../../types/ticket'
+import {StyledText} from './HomeServiceCard'
 
-const {Text, Title} = Typography
+const {Text} = Typography
 
-export const Ticket: React.FC<TicketProps> = ({
+export const HomeTicket: React.FC<Ticket> = ({
   id,
   destination,
   departure,
@@ -18,13 +18,13 @@ export const Ticket: React.FC<TicketProps> = ({
   price,
   ticketClass,
 }) => (
-  <StyledLink to={`/tickets/${id}`}>
+  <StyledLink to={'/checkout'}>
     <TitleWithBackground>{destination}</TitleWithBackground>
     <TicketContainer>
-      <Text>Departure time: {moment(departureTime).format('h:mm')}</Text>
-      <Text>Arrival time: {moment(arrivalTime).format('h:mm')}</Text>
-      <Text italic>Date: {moment(departureTime).format('DD-MM-YYYY')}</Text>
-      <Text>{price}đ</Text>
+      <StyledText italic>Khởi hành: {moment(departureTime).format('h:mm')}</StyledText>
+      <StyledText italic>Đến: {moment(arrivalTime).format('h:mm')}</StyledText>
+      <StyledText italic>Ngày: {moment(departureTime).format('DD-MM-YYYY')}</StyledText>
+      <StyledText italic>Giá: ${price}</StyledText>
     </TicketContainer>
   </StyledLink>
 )
@@ -40,14 +40,13 @@ const StyledLink = styled(Link)`
   border-radius: 0.7rem;
   overflow: hidden;
 `
-
-const TicketContainer = styled(FlexBox)`
+const TicketContainer = styled.div`
   padding: 20px;
-  flex-direction: column;
 `
-const TitleWithBackground = styled(Title)`
+const TitleWithBackground = styled(Text)`
   background: #0056a7;
   font-size: 20px !important;
   color: white !important;
   padding: 10px 12px;
+  display:block;
 `

@@ -3,7 +3,7 @@ import HomeLayout from '../components/pages/home/layout'
 import customerCare from '../asserts/images/247.svg'
 import payment from '../asserts/images/payment.svg'
 import bestPrice from '../asserts/images/bestprice.svg'
-import {TicketProps} from '../types/ticket'
+import {Ticket} from '../types/ticket'
 import axios from 'axios'
 import {useLoading} from '../context/loadingContext'
 
@@ -28,11 +28,11 @@ const serviceData = [
 ]
 
 const HomePage: React.FC = () => {
-  const [tickets, setTickets] = useState<TicketProps[]>([])
+  const [tickets, setTickets] = useState<Ticket[]>([])
   const {setLoading} = useLoading()
 
   const fetchDeals = async () => {
-    const response = await axios.get<TicketProps[]>(
+    const response = await axios.get<Ticket[]>(
       'https://622b018b14ccb950d22be17d.mockapi.io/tickets'
     )
     const data = await response.data

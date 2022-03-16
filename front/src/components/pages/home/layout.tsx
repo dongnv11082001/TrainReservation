@@ -5,8 +5,8 @@ import {CommonLayout, FlexBox} from '../../modules/ComonLayout'
 import {SearchPanel} from '../../modules/SearchPanel'
 import {HomeServiceCard} from './HomeServiceCard'
 import bannerBackground from '../../../asserts/images/banner.jpg'
-import {Ticket} from './HomeTicket'
-import {TicketProps} from '../../../types/ticket'
+import {HomeTicket} from './HomeTicket'
+import {Ticket} from '../../../types/ticket'
 
 type ServiceProps = {
   title: string
@@ -16,7 +16,7 @@ type ServiceProps = {
 
 interface HomeProps {
   services: ServiceProps[]
-  tickets?: TicketProps[]
+  tickets?: Ticket[]
 }
 
 const {Title} = Typography
@@ -36,7 +36,6 @@ const Layout: React.FC<HomeProps> = ({services, tickets}) => {
       </ServiceWrapper>
     )
   }
-
   return (
     <CommonLayout>
       <Banner background={bannerBackground}>
@@ -47,7 +46,7 @@ const Layout: React.FC<HomeProps> = ({services, tickets}) => {
         <Title style={{fontSize: '2rem'}}>Chuyến bay giá tốt</Title>
         <TicketWrapper>
           {tickets?.map((ticket) => (
-            <Ticket
+            <HomeTicket
               key={ticket.id}
               id={ticket.id}
               departure={ticket.departure}
@@ -88,6 +87,7 @@ const TicketWrapper = styled.div`
 `
 export const Banner = styled.div<{ background?: string }>`
   position: relative;
+  width: 100%;
   height: 50vh;
   display: flex;
   justify-content: center;

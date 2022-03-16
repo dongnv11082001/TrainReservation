@@ -4,8 +4,9 @@ import styled from 'styled-components'
 import {AdminSiderMenu} from '../elements/AdminSiderMenu'
 import {GuestSiderMenu} from '../elements/GuestSiderMenu'
 import {Header} from './Header'
+import {Footer} from '../elements/Footer'
 
-const {Sider, Footer} = Layout
+const {Sider} = Layout
 
 interface LayoutProps {
   isAdmin?: boolean;
@@ -15,7 +16,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
   children,
   isAdmin,
 }): ReactElement => {
-  const [isCollapse, setIsCollapse] = useState<boolean>(false)
+  const [isCollapse, setIsCollapse] = useState<boolean>(true)
 
   return (
     <>
@@ -26,12 +27,12 @@ export const CommonLayout: React.FC<LayoutProps> = ({
           onCollapse={() => setIsCollapse(!isCollapse)}
           theme="dark"
         >
-          {isAdmin ? <AdminSiderMenu/> : <GuestSiderMenu/>}
+          {isAdmin ? <AdminSiderMenu tickets={[]} offers={[]} users={[]}/> : <GuestSiderMenu/>}
         </FixedSider>
         <Layout>
           <Header isDominated={isCollapse}/>
           <Body isDominated={isCollapse}>{children}</Body>
-          <StyledFooter>Train Reservation ©2022 Created by tungdnt & dongnv</StyledFooter>
+          <Footer/>
         </Layout>
       </ParentLayout>
     </>
@@ -60,10 +61,9 @@ const FixedSider = styled(Sider)`
     bottom: 0;
     z-index: 100;
 `
-
 const StyledFooter = styled(Footer)`
   text-align: center;
-  background: #f7fafc;
+  background: #;
   color: #a1a8b4;
   box-shadow: rgba(9, 30, 66, 0.25) 0 4px 8px -2px, rgba(9, 30, 66, 0.08) 0 0 0 1px;
 `

@@ -1,9 +1,9 @@
 import React, {createContext, useContext, useState, ReactElement} from 'react'
-import {TicketProps} from '../types/ticket'
+import {Ticket} from '../types/ticket'
 
 interface CartContextType {
-  inCartTickets: null | TicketProps[]
-  setInCartTickets: (tickets: TicketProps[]) => void | React.Dispatch<TicketProps[] | null>
+  inCartTickets: null | Ticket[]
+  setInCartTickets: (tickets: Ticket[]) => void | React.Dispatch<Ticket[] | null>
 }
 
 const CartTicketsContext = createContext<CartContextType>({
@@ -16,7 +16,7 @@ function useCartTickets(): CartContextType {
 }
 
 const CartTicketsProvider: React.FC = ({children}): ReactElement => {
-  const [inCartTickets, setInCartTickets] = useState<null | TicketProps[]>(null)
+  const [inCartTickets, setInCartTickets] = useState<null | Ticket[]>(null)
   const value = {inCartTickets, setInCartTickets}
   return (
     <CartTicketsContext.Provider value={value}>

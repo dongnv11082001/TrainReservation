@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
+import {Link} from 'react-router-dom'
 import {
   AutoComplete,
   DatePicker,
@@ -10,18 +11,17 @@ import {
   Switch,
   Divider,
 } from 'antd'
-import { SwapRightOutlined } from '@ant-design/icons'
-
-import { FlexBox } from './ComonLayout'
+import {SwapRightOutlined} from '@ant-design/icons'
+import {FlexBox} from './ComonLayout'
 
 type SearchProps = {
   suggestions?: { value: string }[]
 }
 
-const { RangePicker } = DatePicker
-const { Title, Text } = Typography
+const {RangePicker} = DatePicker
+const {Title, Text} = Typography
 
-export const SearchPanel: React.FC<SearchProps> = ({ suggestions }) => {
+export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
   const [departure, setDeparture] = useState<string>()
   const [destination, setDestination] = useState<string>()
   const [isRoundTrip, setIsRoundTrip] = useState<boolean>(false)
@@ -29,8 +29,8 @@ export const SearchPanel: React.FC<SearchProps> = ({ suggestions }) => {
 
   return (
     <SearchBarContainer>
-      <FlexBox style={{ justifyContent: 'space-between' }}>
-        <Title style={{ textAlign: 'center' }} level={3}>
+      <FlexBox style={{justifyContent: 'space-between'}}>
+        <Title style={{textAlign: 'center'}} level={3}>
           Tìm chuyến tàu
         </Title>
         <SpacingRow align='middle' justify='center' gutter={8}>
@@ -48,9 +48,9 @@ export const SearchPanel: React.FC<SearchProps> = ({ suggestions }) => {
           </Col>
         </SpacingRow>
       </FlexBox>
-      <Divider style={{ margin: '0 0 16px' }} />
-      <FlexBox style={{ gap: '36px' }}>
-        <FlexBox style={{ gap: '8px' }}>
+      <Divider style={{margin: '0 0 16px'}}/>
+      <FlexBox style={{gap: '36px'}}>
+        <FlexBox style={{gap: '8px'}}>
           <LocationInput
             value={departure}
             onChange={(value: any) => setDeparture(value)}
@@ -58,7 +58,7 @@ export const SearchPanel: React.FC<SearchProps> = ({ suggestions }) => {
             allowClear
             placeholder='Điểm khời hành...'
           />
-          <SwapRightOutlined />
+          <SwapRightOutlined/>
           <LocationInput
             value={destination}
             onChange={(value: any) => setDestination(value)}
@@ -73,9 +73,11 @@ export const SearchPanel: React.FC<SearchProps> = ({ suggestions }) => {
             moment('2019-11-22', dateFormat),
           ]}
           disabled={[false, !isRoundTrip]}
-          style={{ height: '45px' }}
+          style={{height: '45px'}}
         />
-        <Button>Tìm chuyến tàu</Button>
+        <Link to="/result">
+          <Button>Tìm chuyến tàu</Button>
+        </Link>
       </FlexBox>
     </SearchBarContainer>
   )
@@ -90,8 +92,11 @@ const SearchBarContainer = styled.div`
 `
 const LocationInput = styled(AutoComplete)`
   min-width: 200px;
-  .ant-select-selector {
+  .ant-select-selector, input {
     height: 45px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
 const SwitchText = styled(Text)`

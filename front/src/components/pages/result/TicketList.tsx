@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Typography, List, Badge} from 'antd'
-import {TicketProps} from '../../../types/ticket'
+import {Ticket} from '../../../types/ticket'
 import {useLoading} from '../../../context/loadingContext'
 import {ResultTicket} from './ResultTicket'
 
@@ -20,7 +20,7 @@ const filterItems = [
   }]
 
 type TicketListProps = {
-  tickets: TicketProps[]
+  tickets: Ticket[]
 }
 
 const {Text} = Typography
