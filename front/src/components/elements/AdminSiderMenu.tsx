@@ -7,39 +7,22 @@ import {
   FileOutlined,
   UserOutlined,
 } from '@ant-design/icons'
-import {User} from '../../types/user'
-import {Offer} from '../../types/offer'
-import {Ticket} from '../../types/ticket'
 
 const {SubMenu} = Menu
 
-interface AdminMenuProps {
-  users: User[]
-  tickets: Ticket[]
-  offers: Offer[]
-}
-
-export const AdminSiderMenu: React.FC<AdminMenuProps> = ({
-  users, tickets, offers
-}) => (
+export const AdminSiderMenu: React.FC = () => (
   <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
     <Menu.Item key="1" icon={<DesktopOutlined/>}>
-      <Link to='/'>Chung</Link>
+      <Link to='/admin'>General</Link>
     </Menu.Item>
-    <SubMenu key="2" icon={<PieChartOutlined/>} title="Quản lý giao dịch">
-      {offers?.map((offer, index) => (
-        <Menu.Item key={`2${index}`}>{offer.status}</Menu.Item>
-      ))}
+    <SubMenu key="2" icon={<PieChartOutlined/>} title="Offers">
+      <Menu.Item key="21">Edit Offers</Menu.Item>
+      <Menu.Item key="22">Add Offer</Menu.Item>
     </SubMenu>
-    <SubMenu key="3" icon={<FileOutlined/>} title="Quản lý vé">
-      {tickets?.map((ticket, index) => (
-        <Menu.Item key={`3${index}`}>{ticket.departure} - {ticket.destination}</Menu.Item>
-      ))}
+    <SubMenu key="3" icon={<FileOutlined/>} title="Tickets">
+      <Menu.Item key="31">Edit Tickets</Menu.Item>
+      <Menu.Item key="32">Add Ticket</Menu.Item>
     </SubMenu>
-    <SubMenu key="4" icon={<UserOutlined/>} title="Quản lý Users">
-      {users?.map((user, index) => (
-        <Menu.Item key={`3${index}`}>{`${user.firstName} ${user.lastName}`}</Menu.Item>
-      ))}
-    </SubMenu>
+    <Menu.Item key="4" icon={<UserOutlined/>}>Users</Menu.Item>
   </Menu>
 )
