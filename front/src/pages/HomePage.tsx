@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
+import axios from 'axios'
+
 import HomeLayout from '../components/pages/home/layout'
 import customerCare from '../asserts/images/247.svg'
 import payment from '../asserts/images/payment.svg'
 import bestPrice from '../asserts/images/bestprice.svg'
-import {Ticket} from '../types/ticket'
-import axios from 'axios'
 import {useLoading} from '../context/loadingContext'
+import {Ticket} from '../types/ticket'
 
 const serviceData = [
   {
