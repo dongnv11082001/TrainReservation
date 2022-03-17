@@ -43,7 +43,7 @@ const Layout: React.FC<HomeProps> = ({services, tickets}) => {
       </Banner>
       {servicesWrapper()}
       <StyledFlexBox>
-        <Title style={{fontSize: '2rem'}}>Chuyến bay giá tốt</Title>
+        <Title style={{fontSize: '2rem'}}>Good-price flights</Title>
         <TicketWrapper>
           {tickets?.map((ticket) => (
             <HomeTicket

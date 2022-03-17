@@ -21,10 +21,10 @@ export const HomeTicket: React.FC<Ticket> = ({
   <StyledLink to={'/checkout'}>
     <TitleWithBackground>{destination}</TitleWithBackground>
     <TicketContainer>
-      <StyledText italic>Khởi hành: {moment(departureTime).format('h:mm')}</StyledText>
-      <StyledText italic>Đến: {moment(arrivalTime).format('h:mm')}</StyledText>
-      <StyledText italic>Ngày: {moment(departureTime).format('DD-MM-YYYY')}</StyledText>
-      <StyledText italic>Giá: ${price}</StyledText>
+      <StyledText italic>Departure: {moment(departureTime).format('h:mm')}</StyledText>
+      <StyledText italic>Arrival: {moment(arrivalTime).format('h:mm')}</StyledText>
+      <StyledText italic>Date: {moment(departureTime).format('DD-MM-YYYY')}</StyledText>
+      <StyledText italic>Price: ${price}</StyledText>
     </TicketContainer>
   </StyledLink>
 )

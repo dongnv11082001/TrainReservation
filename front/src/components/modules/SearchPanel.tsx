@@ -31,11 +31,11 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
     <SearchBarContainer>
       <FlexBox style={{justifyContent: 'space-between'}}>
         <Title style={{textAlign: 'center'}} level={3}>
-          Tìm chuyến tàu
+          Find train
         </Title>
         <SpacingRow align='middle' justify='center' gutter={8}>
           <Col>
-            <SwitchText>Một chiều</SwitchText>
+            <SwitchText>One-way</SwitchText>
           </Col>
           <Col>
             <Switch
@@ -44,7 +44,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
             />
           </Col>
           <Col>
-            <SwitchText>Khứ hồi</SwitchText>
+            <SwitchText>Round-trip</SwitchText>
           </Col>
         </SpacingRow>
       </FlexBox>
@@ -56,7 +56,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
             onChange={(value: any) => setDeparture(value)}
             options={suggestions}
             allowClear
-            placeholder='Điểm khời hành...'
+            placeholder='Departure destination...'
           />
           <SwapRightOutlined/>
           <LocationInput
@@ -64,7 +64,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
             onChange={(value: any) => setDestination(value)}
             options={suggestions}
             allowClear
-            placeholder='Điểm đến...'
+            placeholder='Arrival destination...'
           />
         </FlexBox>
         <RangePicker
@@ -76,7 +76,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
           style={{height: '45px'}}
         />
         <Link to="/result">
-          <Button>Tìm chuyến tàu</Button>
+          <Button>Find</Button>
         </Link>
       </FlexBox>
     </SearchBarContainer>
