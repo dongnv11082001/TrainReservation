@@ -25,7 +25,7 @@ export const Header: React.FC<HeaderProps> = ({ isDominated }) => {
     <HeaderWrapper isTransparent={isTransparent} isShrink={isDominated}>
       <Logo to='/'>
         <SlackSquareFilled style={{ marginRight: 10, fontSize: '2rem' }} />
-        Đặt Vé Tàu Dễ Dàng
+        Book train ticket easily
       </Logo>
     </HeaderWrapper>
   )

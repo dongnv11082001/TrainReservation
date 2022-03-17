@@ -8,22 +8,42 @@ import bestPrice from '../asserts/images/bestprice.svg'
 import {useLoading} from '../context/loadingContext'
 import {Ticket} from '../types/ticket'
 
+// const serviceData = [
+//   {
+//     title: 'Hỗ trợ khách hàng 24/7',
+//     content:
+//       'Chat là có, gọi là nghe, không quản đêm hôm, ngày nghỉ và ngày lễ.',
+//     image: customerCare,
+//   },
+//   {
+//     title: 'Thanh toán dễ dàng, đa dạng',
+//     content: 'Bao gồm thêm chuyển khoản ngân hàng và tiền mặt tại cửa hàng.',
+//     image: payment,
+//   },
+//   {
+//     title: 'Săn vé giá tốt nội địa, quốc tế ',
+//     content:
+//       'So sánh giá tốt nhất từ các hãng hàng không nội địa và 50.000 đường bay quốc tế.',
+//     image: bestPrice,
+//   },
+// ]
+
 const serviceData = [
   {
-    title: 'Hỗ trợ khách hàng 24/7',
+    title: 'Support 24/7',
     content:
-      'Chat là có, gọi là nghe, không quản đêm hôm, ngày nghỉ và ngày lễ.',
+        'Available on holidays.',
     image: customerCare,
   },
   {
-    title: 'Thanh toán dễ dàng, đa dạng',
-    content: 'Bao gồm thêm chuyển khoản ngân hàng và tiền mặt tại cửa hàng.',
+    title: 'Convenient and Easy payment',
+    content: 'Including banking and cash at the shop.',
     image: payment,
   },
   {
-    title: 'Săn vé giá tốt nội địa, quốc tế ',
+    title: 'Good price on domestic and international',
     content:
-      'So sánh giá tốt nhất từ các hãng hàng không nội địa và 50.000 đường bay quốc tế.',
+        'Best price in comparison from domestic and international airlines.',
     image: bestPrice,
   },
 ]
