@@ -27,7 +27,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
           onCollapse={() => setIsCollapse(!isCollapse)}
           theme="dark"
         >
-          {isAdmin ? <AdminSiderMenu tickets={[]} offers={[]} users={[]}/> : <GuestSiderMenu/>}
+          {isAdmin ? <AdminSiderMenu/> : <GuestSiderMenu/>}
         </FixedSider>
         <Layout>
           <Header isDominated={isCollapse}/>
@@ -60,10 +60,4 @@ const FixedSider = styled(Sider)`
     top: 0;
     bottom: 0;
     z-index: 100;
-`
-const StyledFooter = styled(Footer)`
-  text-align: center;
-  background: #;
-  color: #a1a8b4;
-  box-shadow: rgba(9, 30, 66, 0.25) 0 4px 8px -2px, rgba(9, 30, 66, 0.08) 0 0 0 1px;
 `
