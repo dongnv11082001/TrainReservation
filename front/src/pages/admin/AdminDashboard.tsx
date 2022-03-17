@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Typography} from 'antd'
+import {Space, Table, Typography} from 'antd'
 import styled from 'styled-components'
 import {CommonLayout} from '../../components/modules/ComonLayout'
 
@@ -33,6 +33,19 @@ const columns = [
     title: 'Address',
     dataIndex: 'address',
     key: 'address',
+  },
+  {
+    title: 'Action',
+    dataIndex: 'actions',
+    key: 'action',
+    render: () => (
+      <>
+        <Space size={'middle'}>
+          <a>Edit</a>
+          <a>Delete</a>
+        </Space>
+      </>
+    )
   },
 ]
 
