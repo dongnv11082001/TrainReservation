@@ -11,6 +11,9 @@ import {LoadingProvider} from './context/loadingContext'
 import {LoginPage} from './pages/LoginPage'
 import {SignUpPage} from './pages/SignUpPage'
 import AdminDashboard from './pages/admin/AdminDashboard'
+import {OfferManagePage} from './pages/admin/OfferManagePage'
+import {TicketManagePage} from './pages/admin/TicketManagePage'
+import {UserManagePage} from './pages/admin/UserManagePage'
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
           <Route path="/result" element={<ResultPage/>}/>
           <Route path="/checkout" element={<CheckoutPage/>}/>
           <Route path="/admin" element={<AdminDashboard/>}/>
+          <Route path="/admin/offers" element={<OfferManagePage/>}/>
+          <Route path="/admin/tickets" element={<TicketManagePage/>}/>
+          <Route path="/admin/users" element={<UserManagePage/>}/>
           <Route path='/sign_in' element={<LoginPage/>}/>
           <Route path='/sign_up' element={<SignUpPage/>}/>
           <Route path="*" element={<NotFound/>}/>

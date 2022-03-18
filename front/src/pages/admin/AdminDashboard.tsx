@@ -54,17 +54,17 @@ const {Title} = Typography
 const AdminDashboard: React.FC = () => {
   return <CommonLayout isAdmin>
     <Spacing>
-      <Title level={3}>Quản lý vé</Title>
+      <Title level={3}>Tickets Management</Title>
       <Table dataSource={dataSource} columns={columns}/>
-      <Title level={3}>Quản lý đơn</Title>
+      <Title level={3}>Offers Management</Title>
       <Table dataSource={dataSource} columns={columns}/>
-      <Title level={3}>Quản lý Người dùng</Title>
+      <Title level={3}>Users Management</Title>
       <Table dataSource={dataSource} columns={columns}/>
     </Spacing>
   </CommonLayout>
 }
 export default AdminDashboard
 
-const Spacing = styled.div`
+export const Spacing = styled.div`
   padding: 4rem 5%;
 `

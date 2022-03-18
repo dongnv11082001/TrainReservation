@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
-import { SlackSquareFilled } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+import {SlackSquareFilled} from '@ant-design/icons'
+import {Link} from 'react-router-dom'
 
 type HeaderProps = {
   isDominated: boolean
 }
 
-export const Header: React.FC<HeaderProps> = ({ isDominated }) => {
+export const Header: React.FC<HeaderProps> = ({isDominated}) => {
   const [isTransparent, setIsTransparent] = useState<boolean>(true)
 
   const handleToggleTransparent = () =>
@@ -24,8 +24,8 @@ export const Header: React.FC<HeaderProps> = ({ isDominated }) => {
   return (
     <HeaderWrapper isTransparent={isTransparent} isShrink={isDominated}>
       <Logo to='/'>
-        <SlackSquareFilled style={{ marginRight: 10, fontSize: '2rem' }} />
-        Book train ticket easily
+        <SlackSquareFilled style={{marginRight: 10, fontSize: '2rem'}}/>
+        Train Reservation
       </Logo>
     </HeaderWrapper>
   )
@@ -36,7 +36,7 @@ const HeaderWrapper = styled.div<{ isShrink: boolean; isTransparent: boolean }>`
   justify-content: center;
   align-items: center;
   padding: 1em 1.5em;
-  padding-left: ${({ isShrink }) => (isShrink ? '100px' : '220px')};
+  padding-left: ${({isShrink}) => (isShrink ? '100px' : '220px')};
   transition: padding 0.2s ease;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
