@@ -90,7 +90,7 @@ const SearchBarContainer = styled.div`
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 `
-const LocationInput = styled(AutoComplete)`
+export const LocationInput = styled(AutoComplete)`
   min-width: 200px;
   .ant-select-selector, input {
     height: 45px !important;
