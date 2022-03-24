@@ -1,7 +1,11 @@
 import React from 'react'
+import { FormWrapper } from '../../../GlobalStyle'
 
 export const Submit = () => {
   return (
-    <div>Order</div>
+    <FormWrapper>
+      <h1>Order</h1>
+        
+    </FormWrapper>
   )
 }
