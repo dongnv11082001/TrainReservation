@@ -23,11 +23,11 @@ export const LoginForm: React.FC = () => {
   const [form, setForm] = useState(initialState)
   const [isSignup, setIsSignup] = useState(true)
 
-  const handleChange = (e: any) => {
-    setForm({...form, [e.target.name]: e.target.value})
+  const handleChange = (e: React.FormEvent) => {
+    setForm({...form, [e.currentTarget.tagName]: e.currentTarget.textContent})
   }
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async () => {
     const {username, password, phoneNumber, avatarURL, firstName, lastName} = form
     const URL = 'https://apihere.com'
     const {
@@ -55,6 +55,8 @@ export const LoginForm: React.FC = () => {
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup)
   }
+
+  console.log(switchMode, handleChange)
 
   return (
     <FormWrapper>

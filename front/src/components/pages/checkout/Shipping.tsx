@@ -1,20 +1,10 @@
-import {Select} from 'antd'
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import 'antd/lib/select/style/css'
-import {CaretDownFilled} from '@ant-design/icons/lib/icons'
 import {FormWrapper} from '../../../GlobalStyle'
-
-const availableAddress = [
-  {address: '120 Nguyen Thai Hoc Street, Pham Ngu Lao Ward, Hoang Mai district, Ha Noi'},
-  {address: '233 Cong Hoa Street, 13 Ward, Tan Binh district, HCM city'},
-]
-
 export const Shipping: React.FC = () => {
   const [pickUpClick, setPickUpClick] = useState(false)
   const [courierClick, setCourierClick] = useState(true)
-  const [address, setAddress] = useState('')
-  const {Option} = Select
 
   const handlePickUpClick = () => {
     setCourierClick(false)
@@ -55,57 +45,6 @@ export const Shipping: React.FC = () => {
           <span>About 2 days</span>
         </div>
       </Delivery>
-      {pickUpClick && (
-        <>
-          <div className='store-picker'>
-            <Text className='checkout-form-title'>Available stores</Text>
-            <div className='pickup-radio-wrapper'>
-              {availableAddress.map((item) => (
-                <StorePickup key={item.address} className='pickup-radio-options'>
-                  <input
-                    onChange={(e) => setAddress(e.target.value)}
-                    type='radio'
-                    name='pick-address'
-                    value={item.address}
-                    id={item.address}
-                  />
-                  <label htmlFor={item.address} className='pickup-radio-options-content'>
-                    {item.address}
-                  </label>
-                </StorePickup>
-              ))}
-            </div>
-          </div>
-        </>
-      )}
-      {courierClick && (
-        <>
-          <Text>Delivery address</Text>
-          <AddressContainer>
-            <Select
-              labelInValue
-              defaultValue={'hanoi'}
-              bordered={false}
-              suffixIcon={<CaretDownFilled/>}
-              style={{
-                width: '135px',
-                backgroundColor: '#f0f0f9',
-                height: '40px',
-              }}
-            >
-              <Option value='hanoi'>Ha Noi</Option>
-              <Option value='hcm'>HCM City</Option>
-            </Select>
-            <input
-              type='text'
-              className='checkout-form-input'
-              placeholder='Address...'
-              onChange={(e) => setAddress(e.target.value)}
-              value={address}
-            />
-          </AddressContainer>
-        </>
-      )}
     </FormWrapper>
   )
 }
@@ -125,32 +64,6 @@ const Delivery = styled.div<{ checked: boolean }>`
     display: flex;
     flex-direction: column;
     margin-left: 10px;
-  }
-`
-
-const AddressContainer = styled.div`
-  display: flex;
-  margin-bottom: 40px;
-  align-items: center;
-  height: 40px;
-
-  & input {
-    height: 40px;
-    flex: 1;
-    border: none;
-    background-color: #f0f0f9;
-    margin-left: 20px;
-    padding-left: 20px;
-  }
-`
-
-const StorePickup = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-
-  & input {
-    margin-right: 10px;
   }
 `
 
