@@ -1,7 +1,7 @@
 export interface Offer {
-  id: string
-  willBack?: boolean
+  id?: number
+  isRoundTrip?: boolean
   status: 'pending' | 'paid' | 'cancelled'
-  createdAt: Date
-  deleteAt: Date
+  createdAt?: Date
+  deleteAt?: Date
 }
