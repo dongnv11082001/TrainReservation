@@ -8,21 +8,8 @@ type HeaderProps = {
 }
 
 export const Header: React.FC<HeaderProps> = ({isDominated}) => {
-  const [isTransparent, setIsTransparent] = useState<boolean>(true)
-
-  const handleToggleTransparent = () =>
-    window.scrollY <= 60 ? setIsTransparent(true) : setIsTransparent(false)
-
-  useEffect(() => {
-    const scrollListener = document.addEventListener(
-      'scroll',
-      handleToggleTransparent
-    )
-    return scrollListener
-  })
-
   return (
-    <HeaderWrapper isTransparent={isTransparent} isShrink={isDominated}>
+    <HeaderWrapper isShrink={isDominated}>
       <Logo to='/'>
         <SlackSquareFilled style={{marginRight: 10, fontSize: '2rem'}}/>
         Train Reservation
@@ -31,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({isDominated}) => {
   )
 }
 
-const HeaderWrapper = styled.div<{ isShrink: boolean; isTransparent: boolean }>`
+const HeaderWrapper = styled.div<{ isShrink: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;

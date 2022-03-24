@@ -71,7 +71,7 @@ export const Footer: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="copyright">© Copyright, 2020</div>
+      <div className="copyright">© Copyright Team 1, 2022</div>
     </Container>
   )
 }
@@ -113,6 +113,7 @@ const Container = styled.div`
     font-size: 1rem;
     padding: 1.2rem 0 3rem;
     margin-top: 2rem;
+    text-align: center;
   }
   .title {
     font-weight: bold;
