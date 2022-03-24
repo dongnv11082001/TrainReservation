@@ -12,6 +12,7 @@ import {Banner} from '../components/pages/home/layout'
 import {useLoading} from '../context/loadingContext'
 import bannerBackground from '../asserts/images/banner.jpg'
 import { useProgress } from '../hooks/useProgress'
+import Button from '../components/pages/checkout/Button'
 
 export const CheckoutPage = () => {
   const [stages, setStages] = useState(0)
@@ -25,6 +26,7 @@ export const CheckoutPage = () => {
   }
 
   const handlePrevClick = () => {
+    if (stages <= 0) return
     setStages(stages - 1)
     setLoading(true)
   }
@@ -47,48 +49,7 @@ export const CheckoutPage = () => {
             {stages === 2 && <Payment/>}
             {stages === 3 && <Submit/>}
           </FormContainer>
-          <ButtonWrapper>
-            <div>
-              {buttonProgress && (
-                <PrevButton
-                  onClick={handlePrevClick}
-                  disabled={stages <= 0}
-                >
-                  <img
-                    src={
-                      'https://cassiopeia.store/svgs/line-left-arrow-black.svg'
-                    }
-                    alt=''
-                  />
-                      Back step
-                </PrevButton>
-              )}
-              {!buttonProgress && (
-                <PrevButton>
-                  <Link to={'/'} style={{color: '#000'}}>
-                        Come back homepage
-                  </Link>
-                  <img
-                    src={
-                      'https://cassiopeia.store/svgs/line-right-arrow-black.svg'
-                    }
-                    alt=''
-                  />
-                </PrevButton>
-              )}
-            </div>
-            <div>
-              {buttonProgress && (
-                <NextButton onClick={handleNextClick}>
-                  <span>{buttonProgress}</span>
-                  <img
-                    src={'https://cassiopeia.store/svgs/line-right-arrow.svg'}
-                    alt=''
-                  />
-                </NextButton>
-              )}
-            </div>
-          </ButtonWrapper> 
+          <Button buttonProgress={buttonProgress} onNextClick={handleNextClick} onPrevClick={handlePrevClick} />
         </div>
         <Order/>
       </Wrapper>
@@ -113,32 +74,4 @@ const Title = styled.h1`
   font-weight: 500;
   font-size: 32px;
   color: #466a81;
-`
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  font-size: 16px;
-
-  & button img {
-    margin: 0 10px;
-  }
-`
-
-const PrevButton = styled.button`
-  border: none;
-  height: 46px;
-  cursor: pointer;
-  background: transparent;
-`
-
-const NextButton = styled.button`
-  border: none;
-  padding: 0 20px;
-  background-color: #1890ff;
-  color: #fff;
-  height: 46px;
-  width: 175px;
-  border-radius: 8px;
-  cursor: pointer;
 `
