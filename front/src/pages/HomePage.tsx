@@ -8,31 +8,10 @@ import bestPrice from '../asserts/images/bestprice.svg'
 import {useLoading} from '../context/loadingContext'
 import {Ticket} from '../types/ticket'
 
-// const serviceData = [
-//   {
-//     title: 'Hỗ trợ khách hàng 24/7',
-//     content:
-//       'Chat là có, gọi là nghe, không quản đêm hôm, ngày nghỉ và ngày lễ.',
-//     image: customerCare,
-//   },
-//   {
-//     title: 'Thanh toán dễ dàng, đa dạng',
-//     content: 'Bao gồm thêm chuyển khoản ngân hàng và tiền mặt tại cửa hàng.',
-//     image: payment,
-//   },
-//   {
-//     title: 'Săn vé giá tốt nội địa, quốc tế ',
-//     content:
-//       'So sánh giá tốt nhất từ các hãng hàng không nội địa và 50.000 đường bay quốc tế.',
-//     image: bestPrice,
-//   },
-// ]
-
 const serviceData = [
   {
     title: 'Support 24/7',
-    content:
-        'Available on holidays.',
+    content: 'Available on holidays.',
     image: customerCare,
   },
   {
@@ -42,8 +21,7 @@ const serviceData = [
   },
   {
     title: 'Good price on domestic and international',
-    content:
-        'Best price in comparison from domestic and international airlines.',
+    content: 'Best price in comparison from domestic and international airlines.',
     image: bestPrice,
   },
 ]
@@ -52,17 +30,25 @@ const HomePage: React.FC = () => {
   const [tickets, setTickets] = useState<Ticket[]>([])
   const {setLoading} = useLoading()
 
-  const fetchDeals = async () => {
-    const response = await axios.get<Ticket[]>(
-      'https://622b018b14ccb950d22be17d.mockapi.io/tickets'
-    )
-    const data = await response.data
-    setLoading(false)
-    setTickets(data)
-  }
-
   useEffect(() => {
+    const controller = new AbortController()
+    setLoading(true)
+    const fetchDeals = async () => {
+      try {
+        const response = await axios.get<Ticket[]>('https://622b018b14ccb950d22be17d.mockapi.io/tickets',{signal: controller.signal})
+        const data = response.data
+        setLoading(false)
+        setTickets(data)
+      } catch (err: unknown) {
+        setLoading(true)
+      }
+    }
     fetchDeals()
+
+    return () => {
+      setLoading(false)
+      controller.abort()
+    }
   }, [])
 
   return (

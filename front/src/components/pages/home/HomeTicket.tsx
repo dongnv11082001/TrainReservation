@@ -9,14 +9,10 @@ import {StyledText} from './HomeServiceCard'
 const {Text} = Typography
 
 export const HomeTicket: React.FC<Ticket> = ({
-  id,
   destination,
-  departure,
   departureTime,
   arrivalTime,
-  airline,
   price,
-  ticketClass,
 }) => (
   <StyledLink to={'/checkout'}>
     <TitleWithBackground>{destination}</TitleWithBackground>

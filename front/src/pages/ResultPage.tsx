@@ -8,15 +8,26 @@ const ResultPage: React.FC = () => {
   const [results, setResults] = useState<Ticket[]>([])
   const {setLoading} = useLoading()
 
-  const fetchTicketResults = async () => {
-    const response = await axios.get<Ticket[]>('https://622b018b14ccb950d22be17d.mockapi.io/tickets')
-    const data = await response.data
-    setLoading(false)
-    setResults(data)
-  }
-
   useEffect(() => {
+    const controller = new AbortController()
+    setLoading(true)
+    const fetchTicketResults = async () => {
+      try {
+        const response = await axios.get<Ticket[]>('https://622b018b14ccb950d22be17d.mockapi.io/tickets', { signal: controller.signal })
+        const data = response.data
+        setLoading(false)
+        setResults(data)
+      } catch (err: unknown) {
+        setLoading(true)
+      }
+    }
+
     fetchTicketResults()
+
+    return () => {
+      setLoading(false)
+      controller.abort()
+    }
   }, [])
 
   return (
