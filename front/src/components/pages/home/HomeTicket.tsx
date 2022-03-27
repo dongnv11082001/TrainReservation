@@ -44,7 +44,7 @@ const TicketContainer = styled.div`
   padding: 20px;
 `
 const TitleWithBackground = styled(Text)`
-  background: #0056a7;
+  background: #847c71;
   font-size: 20px !important;
   color: white !important;
   padding: 10px 12px;

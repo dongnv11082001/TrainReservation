@@ -12,7 +12,7 @@ type GuestMenuProps = {
 }
 
 export const GuestSiderMenu: React.FC<GuestMenuProps> = ({isLoggedIn}) => (
-  <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+  <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
     <Menu.Item key="1" icon={<HomeOutlined/>}>
       <Link to="/">Trang chủ</Link>
     </Menu.Item>

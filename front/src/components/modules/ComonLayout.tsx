@@ -5,7 +5,6 @@ import {AdminSiderMenu} from '../elements/AdminSiderMenu'
 import {GuestSiderMenu} from '../elements/GuestSiderMenu'
 import {Header} from '../elements/Header'
 import {Footer} from '../elements/Footer'
-import {useLoading} from '../../context/loadingContext'
 
 const {Sider} = Layout
 
@@ -17,10 +16,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
   children,
   isAdmin,
 }): ReactElement => {
-  const {loading} = useLoading()
   const [isCollapse, setIsCollapse] = useState<boolean>(true)
-
-  if (loading) return <>Loading...</>
 
   return (
     <ParentLayout>
@@ -28,7 +24,7 @@ export const CommonLayout: React.FC<LayoutProps> = ({
         collapsible
         collapsed={isCollapse}
         onCollapse={() => setIsCollapse(!isCollapse)}
-        theme="dark"
+        theme="light"
       >
         {isAdmin ? <AdminSiderMenu/> : <GuestSiderMenu/>}
       </FixedSider>

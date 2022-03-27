@@ -17,7 +17,9 @@ export const HomeServiceCard: React.FC<CardProps> = ({
 }) => {
   return (
     <CardWrapper>
-      <img src={image} width="100px" height="100px" alt=""/>
+      <div className="image-wrapper">
+        <img src={image} alt=""/>
+      </div>
       <StyledTitle>{title}</StyledTitle>
       <StyledText>{content}</StyledText>
     </CardWrapper>
@@ -30,13 +32,24 @@ const CardWrapper = styled.div`
   align-items: center;
   gap:6px;
   flex-direction: column;
-  width: 300px;
+  width: 250px;
   padding: 20px;
   border-radius: 1rem;
   text-align: center;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   height: 240px;
+  .image-wrapper{
+    width: 100px;
+    height: 100px;
+  }
+  @media screen and (max-width: 768px){
+    .image-wrapper{
+      display: none;
+    }
+    width: 90%;
+    height: fit-content;
+  }
 `
 const StyledTitle = styled(Title)`
     font-size: 0.9rem !important;

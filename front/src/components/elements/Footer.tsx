@@ -78,7 +78,7 @@ export const Footer: React.FC = () => {
 
 const Container = styled.div`
   padding: 2rem 12% 0;
-  background: #334c76;
+  background: #729c98;
   color: white;
   .quick-links {
     display: flex;

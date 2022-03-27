@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons'
 
 export const AdminSiderMenu: React.FC = () => (
-  <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+  <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
     <Menu.Item key="1" icon={<DesktopOutlined/>}>
       <Link to='/admin'>General</Link>
     </Menu.Item>

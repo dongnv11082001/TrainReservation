@@ -84,6 +84,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
 }
 
 const SearchBarContainer = styled.div`
+  z-index:10;
   width: fit-content;
   border-radius: 1rem;
   padding: 20px;

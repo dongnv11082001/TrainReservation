@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-
 import HomeLayout from '../components/pages/home/layout'
 import customerCare from '../asserts/images/247.svg'
 import payment from '../asserts/images/payment.svg'
 import bestPrice from '../asserts/images/bestprice.svg'
 import {useLoading} from '../context/loadingContext'
 import {Ticket} from '../types/ticket'
+import {getLocationByLocationKey, getLocationKeyByGeoposition} from '../api/utils/getLocation'
+import {getForecast, getWeatherReport} from '../api/utils/getWeather'
 
 const serviceData = [
   {
@@ -30,23 +31,41 @@ const serviceData = [
 
 const HomePage: React.FC = () => {
   const [tickets, setTickets] = useState<Ticket[]>([])
-  const {setLoading} = useLoading()
+  const {loading, setLoading} = useLoading()
+  const [forecast5Day, setForecast5Day] = useState([])
+  const [todayCondition, setTodayCondition] = useState([])
+  const [currentCity, setCurrentCity] = useState<string>()
 
-  const fetchDeals = async () => {
+  const fetchData = async () => {
     const response = await axios.get<Ticket[]>(
       'https://622b018b14ccb950d22be17d.mockapi.io/tickets'
     )
-    const data = await response.data
+    const resTickets = await response.data
+    const locationKey = await getLocationKeyByGeoposition()
+    const forecast = await getForecast(locationKey.Key, 5)
+    const condition = await getWeatherReport(locationKey.Key)
+    const city = await getLocationByLocationKey(locationKey.Key)
+    setForecast5Day(forecast)
+    setTodayCondition(condition)
+    setCurrentCity(city)
+    setTickets(resTickets)
     setLoading(false)
-    setTickets(data)
   }
 
   useEffect(() => {
-    fetchDeals()
+    fetchData()
   }, [])
 
+  if (loading) return <>Loading...</>
+
   return (
-    <HomeLayout services={serviceData} tickets={tickets}/>
+    <HomeLayout
+      city={currentCity}
+      condition={todayCondition}
+      forecast={forecast5Day}
+      services={serviceData}
+      tickets={tickets}
+    />
   )
 }
 export default HomePage

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {SlackSquareFilled} from '@ant-design/icons'
 import {Link} from 'react-router-dom'
@@ -25,7 +25,7 @@ const HeaderWrapper = styled.div<{ isShrink: boolean }>`
   padding: 1em 1.5em;
   padding-left: ${({isShrink}) => (isShrink ? '100px' : '220px')};
   transition: padding 0.2s ease;
-  background: #fff;
+  background: #325a50;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   @media screen and (max-width: 768px) {
@@ -33,7 +33,7 @@ const HeaderWrapper = styled.div<{ isShrink: boolean }>`
   }
 `
 const Logo = styled(Link)`
-  color: black;
+  color: white;
   font-size: 1.5em;
   font-family: Garamond, serif;
   display: flex;

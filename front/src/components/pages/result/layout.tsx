@@ -29,6 +29,6 @@ const StickyContainer = styled(FlexBox)`
 `
 const ResultBody = styled(FlexBox)`
   align-items: inherit;
-  gap: 4rem;
+  gap: 2rem;
   margin-bottom: 4rem;
 `
