@@ -29,7 +29,7 @@ export const TicketList: React.FC<TicketListProps> = ({tickets}) => {
   const {loading} = useLoading()
 
   return (
-    <TicketListWrapper>
+    <div>
       <Filter>
         {
           filterItems.map((item, index) => <Text key={index}>{item.title}</Text>)
@@ -45,16 +45,14 @@ export const TicketList: React.FC<TicketListProps> = ({tickets}) => {
           </Ribbon>
         )}
       />
-    </TicketListWrapper>
+    </div>
   )
 }
-const TicketListWrapper = styled.div``
 const Filter = styled.div`
   display: flex;
   align-items:center;
   gap: 20px;
   border: 1px solid #d9d9d9;
-  margin-bottom: 20px;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   span{

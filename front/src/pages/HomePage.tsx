@@ -53,6 +53,7 @@ const HomePage: React.FC = () => {
   }
 
   useEffect(() => {
+    setLoading(true)
     fetchData()
   }, [])
 

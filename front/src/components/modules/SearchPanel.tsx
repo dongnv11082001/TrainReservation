@@ -76,7 +76,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
           style={{height: '45px'}}
         />
         <Link to="/result">
-          <Button>Find</Button>
+          <Button>Find Train</Button>
         </Link>
       </FlexBox>
     </SearchBarContainer>
@@ -115,7 +115,7 @@ const Button = styled.span`
   justify-content: center;
   align-items: center;
   border-radius: 0.4rem;
-  background: #55b7f3;
-  color: white;
+  background: #729c98;
+  color: #f7f6f4;
   cursor: pointer;
 `

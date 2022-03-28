@@ -18,6 +18,7 @@ public class ticketController {
     @Autowired
     private TicketRepository ticketRepository;
 
+
     //get all ticket
     @GetMapping(value = "/")
     public List<Ticket> getAllTicket() {
@@ -27,9 +28,9 @@ public class ticketController {
 
     //get ticket by id
     @GetMapping(value = "/search/{id}")
-    public Ticket findTicketById(@PathVariable Long id){
+    public Ticket findTicketById(@PathVariable Long id) {
         Ticket ticket = ticketRepository.findById(id)
-                .orElseThrow(() ->new ResourceNotFoundException("Ticket with id "+ id+ " does not exist!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Ticket with id " + id + " does not exist!"));
         return ticket;
     }
 
@@ -43,9 +44,9 @@ public class ticketController {
 
     //remove ticket by id
     @DeleteMapping(value = "/remove/{id}")
-    public ResponseEntity<Map<String, Boolean>> removeTicket(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> removeTicket(@PathVariable Long id) {
         Ticket ticket = ticketRepository.findById(id)
-                .orElseThrow(() ->new ResourceNotFoundException("Ticket with id "+ id+ " does not exist!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Ticket with id " + id + " does not exist!"));
         ticketRepository.delete(ticket);
 
         Map<String, Boolean> response = new HashMap<>();
@@ -55,9 +56,9 @@ public class ticketController {
 
     //update ticket by id
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<Ticket> updateTicket(@PathVariable  Long id, @RequestBody Ticket updatedTicketDetail){
+    public ResponseEntity<Ticket> updateTicket(@PathVariable Long id, @RequestBody Ticket updatedTicketDetail) {
         Ticket ticket = ticketRepository.findById(id)
-                .orElseThrow(() ->new ResourceNotFoundException("Ticket with id "+ id+ " does not exist!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Ticket with id " + id + " does not exist!"));
 
         ticket.setTicketDepature(updatedTicketDetail.getTicketDepature());
         ticket.setTicketPrice(updatedTicketDetail.getTicketPrice());
@@ -75,11 +76,17 @@ public class ticketController {
 
     }
 
-
     //get searched ticket
-    @GetMapping(value = "/{search}")
-    public List<Ticket> showFilteredTicket ( @RequestParam("ticketDestination") String ticketDestination, @RequestParam("ticketDeparture") String ticketDeparture, @RequestParam("depatureDate")Date departureDate, @RequestParam("arrivalDate") Date arrivaDate){
-        List<Ticket> ticketList = ticketRepository.findAllByTicketDestinationAndTicketDepatureAndArrivalDateAndDepatureDate(ticketDestination, ticketDeparture, arrivaDate, departureDate);
+    @GetMapping(value = "/search{destination}{departure}{depatureDate}{arrivalDate}{class}{passengers}")
+    public List<Ticket> showFilteredTicket(
+            @PathVariable("destination") String destination,
+            @PathVariable("departure") String departure,
+            @PathVariable("depatureDate") Date departureDate,
+            @PathVariable("arrivalDate") Date arrivalDate,
+            @PathVariable("class") String ticketClass,
+            @PathVariable("passengers") int passengers
+    ) {
+        List<Ticket> ticketList = ticketRepository.findAllByDestinationAndDepatureAndArrivalDateAndDepatureDateAndClassAndPassengers(destination, departure, arrivalDate, ticketClass, passengers);
         return ticketList;
     }
 

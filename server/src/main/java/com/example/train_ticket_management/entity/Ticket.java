@@ -12,27 +12,46 @@ import java.sql.Date;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tickID", nullable = false)
+    @Column(name = "ID", nullable = false)
     private long ticketID;
 
-    @Column(name = "ticketPrice", nullable = false)
+    @Column(name = "price", nullable = false)
     private Double ticketPrice;
 
-    @Column(name = "tickTrain", nullable = false)
+    @Column(name = "train", nullable = false)
     private int ticketTrain;
 
     @Min(1)
     @Max(50)
-    @Column(name = "tickSeat", nullable = false)
+    @Column(name = "seat", nullable = false)
     private int ticketSeat;
 
     @Length(min = 3, max = 45)
-    @Column(name = "tickDepature", nullable = false)
+    @Column(name = "depature", nullable = false)
     private String ticketDepature;
 
     @Length(min = 3, max = 45)
-    @Column(name = "tickDestination", nullable = false)
+    @Column(name = "destination", nullable = false)
     private String ticketDestination;
+
+
+    @Column(name = "departureDate", nullable = false)
+    private Date depatureDate;
+
+    @Column(name = "arrivalDate", nullable = false)
+    private Date arrivalDate;
+
+    @Column(name = "travelDuration", nullable = false)
+    private Double travelDuration;
+
+    @Column(name = "isRoundTrip", nullable = false)
+    private boolean isRoundTrip;
+
+    @Column(name = "class", nullable = false)
+    private String ticketClass;
+
+    @Column(name = "passengers", nullable = false)
+    private int passenger;
 
     @Override
     public String toString() {
@@ -49,18 +68,6 @@ public class Ticket {
                 ", isRoundTrip=" + isRoundTrip +
                 '}';
     }
-
-    @Column(name = "departureDate", nullable = false)
-    private Date depatureDate;
-
-    @Column(name = "arrivalDate", nullable = false)
-    private Date arrivalDate;
-
-    @Column(name = "travelDuration", nullable = false)
-    private Double travelDuration;
-
-    @Column(name = "isRoundTrip", nullable = false)
-    private boolean isRoundTrip;
 
     public long getTicketID() {
         return ticketID;
