@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Avatar, List, Skeleton, Typography} from 'antd'
-import {Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {Ticket} from '../../../types/ticket'
 import {FlexBox} from '../../modules/ComonLayout'
+import {useResult} from '../../../context/searchContext'
+import {useCartTickets} from '../../../context/cartContext'
 
 type ResultTicketProps = {
   ticket: Ticket
@@ -13,13 +15,26 @@ type ResultTicketProps = {
 const {Text} = Typography
 
 export const ResultTicket: React.FC<ResultTicketProps> = ({ticket, loading}) => {
+  const navigate = useNavigate()
+  const {contextRoundTrip} = useResult()
+  const {inCartTickets, setInCartTickets} = useCartTickets()
+
+  console.log(inCartTickets)
+
+  const handleSelect = () => {
+    setInCartTickets([...inCartTickets, ticket])
+    if (!contextRoundTrip || inCartTickets.length === 1) {
+      navigate('/checkout')
+    }
+  }
+
   return <TicketWrapper
     key={ticket.id}
     extra={
       !loading &&
         <Box>
           <Text style={{fontSize: '20px', fontWeight: 'bold'}}>${ticket.price}</Text>
-          <Link to="/checkout"><Button>Chọn</Button></Link>
+          <Button onClick={handleSelect}>Select</Button>
         </Box>
     }>
     <Skeleton loading={loading} active avatar>

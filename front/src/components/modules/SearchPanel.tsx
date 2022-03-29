@@ -36,13 +36,12 @@ const initialTicket = {
   arrivalTime: new Date(),
   price: 10000000,
   status: 'available' as 'available' | 'pending' | 'sold',
-  passengers: 1,
-  isRoundTrip: false
+  passengers: 1
 }
 
 export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
   const navigate = useNavigate()
-  const {setResultTickets} = useResult()
+  const {contextRoundTrip, setContextRoundTrip, setResultTickets} = useResult()
   const {setLoading} = useLoading()
   const [findingTicket, setFindingTicket] = useState<FindingTicketProps>(initialTicket)
   const dateFormat = 'YYYY-MM-DD'
@@ -70,8 +69,8 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
           </Col>
           <Col>
             <Switch
-              onChange={() => setFindingTicket({...findingTicket, isRoundTrip: !findingTicket.isRoundTrip})}
-              defaultChecked={findingTicket.isRoundTrip}
+              onChange={() => setContextRoundTrip(!contextRoundTrip)}
+              defaultChecked={contextRoundTrip}
             />
           </Col>
           <Col>
