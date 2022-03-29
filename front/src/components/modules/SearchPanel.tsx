@@ -10,6 +10,7 @@ import {
   Typography,
   Switch,
   Divider,
+  Modal
 } from 'antd'
 import {SwapRightOutlined} from '@ant-design/icons'
 import {FlexBox} from './ComonLayout'
@@ -17,6 +18,7 @@ import {Ticket} from '../../types/ticket'
 import {useResult} from '../../context/searchContext'
 import {useNavigate} from 'react-router-dom'
 import {useLoading} from '../../context/loadingContext'
+import {Counter} from './Counter'
 
 type SearchProps = {
   suggestions?: { value: string }[]
@@ -28,6 +30,8 @@ interface FindingTicketProps extends Ticket {
 
 const {RangePicker} = DatePicker
 const {Title, Text} = Typography
+
+const classes = ['Soft', 'Hard', 'Bed']
 
 const initialTicket = {
   destination: '',
@@ -45,6 +49,26 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
   const {setLoading} = useLoading()
   const [findingTicket, setFindingTicket] = useState<FindingTicketProps>(initialTicket)
   const dateFormat = 'YYYY-MM-DD'
+  const [amount, setAmount] = useState(1)
+  const [check, setCheck] = useState('')
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
+
+  const handleIncreaseAmount = () => {
+    setAmount(prevState => prevState + 1)
+  }
+  const handleDecreaseAmount = () => {
+    setAmount(prevState => prevState - 1)
+  }
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+  const handleOk = () => {
+    setIsModalVisible(false)
+  }
+  const handleCancel = () => {
+    setIsModalVisible(false)
+  }
 
   const handleSearch = async () => {
     setLoading(true)
@@ -69,7 +93,8 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
             {check ? ', ' + check : ''}
           </Title>
         </PassengerInfoWrapper>
-        <Modal title={'Modal'} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} bodyStyle={{display: 'flex', justifyContent: 'space-evenly'}}>
+        <Modal title={'Modal'} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
+          bodyStyle={{display: 'flex', justifyContent: 'space-evenly'}}>
           <div>
             <Title level={5}>Number</Title>
             <Counter amount={amount} handleDecreaseAmount={handleDecreaseAmount}
