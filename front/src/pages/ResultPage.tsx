@@ -12,17 +12,19 @@ const ResultPage: React.FC = () => {
   const {resultTickets} = useResult()
   const [isTimeOut, setIsTimeOut] = useState<boolean>(false)
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsTimeOut(true)
-    }, 10000)
-  }, [])
-
-  useEffect(() => {
-    setTimeout(() => {
-      navigate('/')
-    }, 14000)
-  }, [isTimeOut])
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsTimeOut(true)
+  //   }, 1000)
+  //   if (resultTickets || resultTickets!.length > 0) clearTimeout(timer)
+  // }, [])
+  //
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     navigate('/')
+  //   }, 2000)
+  //   if (resultTickets || resultTickets!.length > 0) clearTimeout(timer)
+  // }, [isTimeOut])
 
   if (isTimeOut) return <NotFound/>
   if (loading) return <LoadingOverlay/>

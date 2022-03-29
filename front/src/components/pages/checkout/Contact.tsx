@@ -13,11 +13,11 @@ export const Contact = () => {
       <ContactGender>
         <span>Gender:</span>
         <label>
-                  Male
+          Male
           <input type={'radio'} name={'gender'} defaultChecked={true}/>
         </label>
         <label>
-                  Female
+          Female
           <input type={'radio'} name={'gender'} value={'female'}/>
         </label>
       </ContactGender>
