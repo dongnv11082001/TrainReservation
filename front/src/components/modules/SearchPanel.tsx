@@ -60,9 +60,31 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
   return (
     <SearchBarContainer>
       <FlexBox style={{justifyContent: 'space-between'}}>
-        <Title style={{textAlign: 'center'}} level={3}>
-          Find train
-        </Title>
+        <Title style={{textAlign: 'center'}} level={3}>Find train</Title>
+        <PassengerInfoWrapper onClick={showModal}>
+          <span>Number of Passenger, Class</span>
+          <Title level={5}>
+            {amount}
+            {amount === 1 ? ' Passenger' : ' Passengers'}
+            {check ? ', ' + check : ''}
+          </Title>
+        </PassengerInfoWrapper>
+        <Modal title={'Modal'} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} bodyStyle={{display: 'flex', justifyContent: 'space-evenly'}}>
+          <div>
+            <Title level={5}>Number</Title>
+            <Counter amount={amount} handleDecreaseAmount={handleDecreaseAmount}
+              handleIncreaseAmount={handleIncreaseAmount}/>
+          </div>
+          <div style={{textAlign: 'center'}}>
+            <Title level={5}>Class</Title>
+            {classes.map((c) => (
+              <div key={c}>
+                <input type='radio' value={c} checked={c === check} onChange={() => setCheck(c)}/>
+                {c}
+              </div>
+            ))}
+          </div>
+        </Modal>
         <SpacingRow align='middle' justify='center' gutter={8}>
           <Col>
             <SwitchText>One-way</SwitchText>
@@ -145,5 +167,9 @@ const Button = styled.span`
   border-radius: 0.4rem;
   background: #729c98;
   color: #f7f6f4;
+  cursor: pointer;
+`
+
+const PassengerInfoWrapper = styled.div`
   cursor: pointer;
 `

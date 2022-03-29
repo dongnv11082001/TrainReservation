@@ -10,11 +10,11 @@ import {getLocationByLocationKey, getLocationKeyByGeoposition} from '../api/util
 import {getForecast, getWeatherReport} from '../api/utils/getWeather'
 import {LoadingOverlay} from '../components/elements/LoadingOverlay'
 
+
 const serviceData = [
   {
     title: 'Support 24/7',
-    content:
-      'Available on holidays.',
+    content: 'Available on holidays.',
     image: customerCare,
   },
   {
