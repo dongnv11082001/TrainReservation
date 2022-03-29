@@ -30,21 +30,21 @@ export const ConfigCenter: React.FC = () => {
   const filterHeader = () => {
     return (
       <FlexBox style={{paddingBottom: 10, borderBottom: '1px solid #ddd', justifyContent: 'space-between'}}>
-        <BoldText style={{fontSize: '1.2rem'}}>Bộ lọc</BoldText>
+        <BoldText style={{fontSize: '1.2rem'}}>Filter</BoldText>
         <CancelledFilter style={{fontSize: '1.2rem'}} onClick={() => setFilter(initialFilterData)}>
-          Xóa lọc
+          Clear
         </CancelledFilter>
       </FlexBox>)
   }
 
   const filterPrice = () => {
     return <FlexColumn>
-      <BoldText>Khoảng giá</BoldText>
+      <BoldText>Price</BoldText>
       <Text>{filter.priceBelowBound.toLocaleString()}đ - {filter.priceUpperBound.toLocaleString()}đ</Text>
       <Slider
         min={0}
         max={800000}
-        step={0.01}
+        step={1}
         // onChange={this.onChange}
         // value={typeof inputValue === 'number' ? inputValue : 0}
       />
@@ -53,26 +53,26 @@ export const ConfigCenter: React.FC = () => {
 
   const filterDepartureTime = () => {
     return <FlexColumn>
-      <BoldText>Thời gian cất cánh</BoldText>
+      <BoldText>Take off time</BoldText>
       <Grid>
         <Cell>
           <DawnIcon/>
-          <Text>Sáng sớm</Text>
+          <Text>Dawn</Text>
           <BoldText>00:00 - 06:00</BoldText>
         </Cell>
         <Cell>
           <MorningIcon/>
-          <Text>Buổi sáng</Text>
+          <Text>Morning</Text>
           <BoldText>06:00 - 12:00</BoldText>
         </Cell>
         <Cell>
           <AfternoonIcon/>
-          <Text>Buổi chiều</Text>
+          <Text>Afternoon</Text>
           <BoldText>12:00 - 18:00</BoldText>
         </Cell>
         <Cell>
           <EveningIcon/>
-          <Text>Buổi tối</Text>
+          <Text>Evening</Text>
           <BoldText>18:00 - 24:00</BoldText>
         </Cell>
       </Grid>
@@ -81,11 +81,11 @@ export const ConfigCenter: React.FC = () => {
 
   const filterClass = () => {
     return <FlexColumn>
-      <BoldText>Loại vé</BoldText>
+      <BoldText>Ticket Class</BoldText>
       <Grid>
-        <Cell>Ghế mềm</Cell>
-        <Cell>Ghế cứng</Cell>
-        <Cell>Giường nằm</Cell>
+        <Cell>Soft chair</Cell>
+        <Cell>Long chair</Cell>
+        <Cell>Bed</Cell>
       </Grid>
     </FlexColumn>
   }

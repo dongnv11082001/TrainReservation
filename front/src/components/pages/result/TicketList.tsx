@@ -7,15 +7,15 @@ import {ResultTicket} from './ResultTicket'
 
 const filterItems = [
   {
-    title: 'Đề xuất',
+    title: 'Suggestion',
     query: '?q=suggestion'
   },
   {
-    title: 'Giá tăng dần',
+    title: 'Ascending',
     query: '?q=ascending'
   },
   {
-    title: 'Thời gian cất cánh',
+    title: 'Take off',
     query: '?q=departureTime'
   }]
 

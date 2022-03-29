@@ -1,5 +1,5 @@
 import {Breadcrumb} from 'antd'
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 import {CommonLayout, FlexBox} from '../components/modules/ComonLayout'
@@ -11,14 +11,21 @@ import {Order} from '../components/pages/checkout/Order'
 import {Banner} from '../components/pages/home/layout'
 import {useLoading} from '../context/loadingContext'
 import bannerBackground from '../asserts/images/banner.jpg'
-import { useProgress } from '../hooks/useProgress'
+import {useProgress} from '../hooks/useProgress'
 import Button from '../components/pages/checkout/Button'
+import {useCartTickets} from '../context/cartContext'
 
 export const CheckoutPage = () => {
   const [stages, setStages] = useState(0)
   const {buttonProgress} = useProgress(stages)
-
   const {setLoading} = useLoading()
+  const {inCartTickets, setInCartTickets} = useCartTickets()
+
+  console.log(inCartTickets)
+
+  const handleCancle = () => {
+    setInCartTickets([])
+  }
 
   const handleNextClick = () => {
     setStages(stages + 1)
@@ -49,7 +56,7 @@ export const CheckoutPage = () => {
             {stages === 2 && <Payment/>}
             {stages === 3 && <Submit/>}
           </FormContainer>
-          <Button buttonProgress={buttonProgress} onNextClick={handleNextClick} onPrevClick={handlePrevClick} />
+          <Button buttonProgress={buttonProgress} onNextClick={handleNextClick} onPrevClick={handlePrevClick}/>
         </div>
         <Order/>
       </Wrapper>

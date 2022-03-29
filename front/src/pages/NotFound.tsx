@@ -10,7 +10,9 @@ const {Title} = Typography
 const NotFound: React.FC = () => (
   <Link to='/'>
     <NotFoundContainer>
-      <img width={500} height={500} src={notfoundImage} alt="not-found"/>
+      <div className="image-wrapper">
+        <img src={notfoundImage} alt="not-found"/>
+      </div>
       <Title>Oops...Something went wrong here...</Title>
     </NotFoundContainer>
   </Link>
@@ -22,4 +24,8 @@ const NotFoundContainer = styled(FlexBox)`
   height: 100vh;
   flex-direction: column;
   gap: 1rem;
+  .image-wrapper{
+    width:500px;
+    height:500px;
+  }
 `
