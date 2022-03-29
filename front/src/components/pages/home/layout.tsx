@@ -38,7 +38,7 @@ const Layout: React.FC<HomeProps> = ({services, tickets, condition, city, foreca
 
   const loadMoreButton = () => (
     <FlexBox>
-      <Button type="primary" shape="round" size="large" onClick={handleLoadMore}>
+      <Button shape="round" size="large" onClick={handleLoadMore}>
         Load More
       </Button>
     </FlexBox>

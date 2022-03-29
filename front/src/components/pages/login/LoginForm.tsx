@@ -56,8 +56,6 @@ export const LoginForm: React.FC = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup)
   }
 
-  console.log(switchMode, handleChange)
-
   return (
     <FormWrapper>
       <Title style={{textAlign: 'center'}}>Đăng nhập</Title>

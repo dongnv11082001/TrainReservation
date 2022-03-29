@@ -8,6 +8,7 @@ import {useLoading} from '../context/loadingContext'
 import {Ticket} from '../types/ticket'
 import {getLocationByLocationKey, getLocationKeyByGeoposition} from '../api/utils/getLocation'
 import {getForecast, getWeatherReport} from '../api/utils/getWeather'
+import {LoadingOverlay} from '../components/elements/LoadingOverlay'
 
 const serviceData = [
   {
@@ -23,8 +24,7 @@ const serviceData = [
   },
   {
     title: 'Good price on domestic and international',
-    content:
-      'Best price in comparison from domestic and international airlines.',
+    content: 'Best price in comparison from domestic and international airlines.',
     image: bestPrice,
   },
 ]
@@ -53,20 +53,21 @@ const HomePage: React.FC = () => {
   }
 
   useEffect(() => {
-    setLoading(true)
     fetchData()
   }, [])
 
-  if (loading) return <>Loading...</>
+  if (loading) return <LoadingOverlay/>
 
   return (
-    <HomeLayout
-      city={currentCity}
-      condition={todayCondition}
-      forecast={forecast5Day}
-      services={serviceData}
-      tickets={tickets}
-    />
+    <>{!loading && tickets.length &&
+        <HomeLayout
+          city={currentCity}
+          condition={todayCondition}
+          forecast={forecast5Day}
+          services={serviceData}
+          tickets={tickets}
+        />
+    }</>
   )
 }
 export default HomePage

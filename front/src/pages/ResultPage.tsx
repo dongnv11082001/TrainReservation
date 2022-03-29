@@ -1,27 +1,14 @@
-import axios from 'axios'
-import React, {useEffect} from 'react'
+import React from 'react'
 import ResultLayout from '../components/pages/result/layout'
-import {Ticket} from '../types/ticket'
-import {useLoading} from '../context/loadingContext'
 import {useResult} from '../context/searchContext'
+import {LoadingOverlay} from '../components/elements/LoadingOverlay'
+import {useLoading} from '../context/loadingContext'
 
 const ResultPage: React.FC = () => {
-  const {resultTickets, setResultTickets} = useResult()
-  const {loading, setLoading} = useLoading()
+  const {loading} = useLoading()
+  const {resultTickets} = useResult()
 
-  const fetchTicketResults = async () => {
-    const response = await axios.get<Ticket[]>('https://622b018b14ccb950d22be17d.mockapi.io/tickets')
-    const data = await response.data
-    setLoading(false)
-    setResultTickets(data)
-  }
-
-  useEffect(() => {
-    setLoading(true)
-    fetchTicketResults()
-  }, [])
-
-  if (loading) return <>Loading...</>
+  if (loading) return <LoadingOverlay/>
 
   return (
     <>

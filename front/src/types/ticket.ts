@@ -5,7 +5,8 @@ export interface Ticket {
   departureTime: Date
   arrivalTime: Date
   price: number
-  ticketClass: 'soft' | 'hard' | 'bed'
+  ticketClass?: 'soft' | 'hard' | 'bed'
   airline?: string
   status?: 'available' | 'pending' | 'sold'
+  passengers?: number
 }
