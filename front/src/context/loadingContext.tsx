@@ -3,9 +3,8 @@ import React, {
   useContext,
   createContext,
   Dispatch,
-  ReactElement, useEffect,
+  ReactElement
 } from 'react'
-import {useLocation} from 'react-router-dom'
 
 interface LoadingContextType {
   loading: boolean;
@@ -22,13 +21,8 @@ export function useLoading() {
 }
 
 export const LoadingProvider: React.FC = ({children}): ReactElement => {
-  const location = useLocation()
   const [loading, setLoading] = useState(true)
   const value = {loading, setLoading}
-  
-  useEffect(() => {
-    setLoading(true)
-  }, [location.pathname])
 
   return (
     <LoadingContext.Provider value={value}>{children}</LoadingContext.Provider>
