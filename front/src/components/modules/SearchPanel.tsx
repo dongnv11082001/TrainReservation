@@ -36,11 +36,11 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
   const dateFormat = 'YYYY-MM-DD'
 
   const handleIncreaseAmount = () => {
-    setAmount(amount + 1)
+    setAmount(prevState => prevState + 1)
   }
 
   const handleDecreaseAmount = () => {
-    setAmount(amount - 1)
+    setAmount(prevState => prevState - 1)
   }
 
   const showModal = () => {
@@ -68,7 +68,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
           </Title>
         </PassengerInfoWrapper>
         <Modal title={'Modal'} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} bodyStyle={{display: 'flex', justifyContent: 'space-evenly'}}>
-          <div>
+          <div> 
             <Title level={5}>Number</Title>
             <Counter amount={amount} handleDecreaseAmount={handleDecreaseAmount}
               handleIncreaseAmount={handleIncreaseAmount}/>
