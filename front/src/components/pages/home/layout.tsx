@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components/macro'
-import {Typography} from 'antd'
+import {Button, List, Typography} from 'antd'
 import {CommonLayout, FlexBox} from '../../modules/ComonLayout'
 import {SearchPanel} from '../../modules/SearchPanel'
-import {HomeServiceCard} from './HomeServiceCard'
-import bannerBackground from '../../../asserts/images/banner.jpg'
 import {HomeTicket} from './HomeTicket'
 import {Ticket} from '../../../types/ticket'
+import trainBackground from '../../../asserts/images/train.png'
+import {Services} from './Services'
+import {DailyForecast} from './DailyForecast'
+import {ForecastCenter} from './ForecastCenter'
 
 type ServiceProps = {
   title: string
@@ -15,75 +17,76 @@ type ServiceProps = {
 }
 
 interface HomeProps {
+  city?: string
+  condition: any
+  forecast: any
   services: ServiceProps[]
   tickets?: Ticket[]
 }
 
 const {Title} = Typography
 
-const Layout: React.FC<HomeProps> = ({services, tickets}) => {
-  const servicesWrapper = () => {
-    return (
-      <ServiceWrapper>
-        {services.map((service, index) => (
-          <HomeServiceCard
-            key={index}
-            title={service.title}
-            content={service.content}
-            image={service.image}
-          />
-        ))}
-      </ServiceWrapper>
-    )
+const Layout: React.FC<HomeProps> = ({services, tickets, condition, city, forecast}) => {
+  const [ticketNumber, setTicketNumber] = useState<number>(5)
+  const [showingTickets, setShowingTickets] = useState<Ticket[] | undefined>(tickets?.slice(0, 5))
+
+  const handleLoadMore = () => {
+    const newTicketList = tickets?.slice(0, ticketNumber)
+    setShowingTickets(newTicketList)
+    setTicketNumber(ticketNumber + 5)
   }
+
+  const loadMoreButton = () => (
+    <FlexBox>
+      <Button type="primary" shape="round" size="large" onClick={handleLoadMore}>
+        Load More
+      </Button>
+    </FlexBox>
+  )
+
   return (
     <CommonLayout>
-      <Banner background={bannerBackground}>
+      <Banner background={trainBackground}>
         <SearchPanel/>
       </Banner>
-      {servicesWrapper()}
-      <StyledFlexBox>
-        <Title style={{fontSize: '2rem'}}>Good-price flights</Title>
-        <TicketWrapper>
-          {tickets?.map((ticket) => (
-            <HomeTicket
-              key={ticket.id}
-              id={ticket.id}
-              departure={ticket.departure}
-              destination={ticket.destination}
-              price={ticket.price}
-              departureTime={ticket.departureTime}
-              arrivalTime={ticket.arrivalTime}
-              airline={ticket.airline}
-              ticketClass={ticket.ticketClass}
-            />
-          ))}
-        </TicketWrapper>
-      </StyledFlexBox>
+      <Services source={services}/>
+      <Heading level={2}>Good-price flights</Heading>
+      <List
+        style={{
+          background: 'rgba(78,131,100,0.3)',
+          padding: '2rem 5%'
+        }}
+        dataSource={showingTickets}
+        loadMore={loadMoreButton()}
+        renderItem={(ticket: Ticket) => (
+          <HomeTicket
+            key={ticket.id}
+            id={ticket.id}
+            departure={ticket.departure}
+            destination={ticket.destination}
+            price={ticket.price}
+            departureTime={ticket.departureTime}
+            arrivalTime={ticket.arrivalTime}
+            airline={ticket.airline}
+            ticketClass={ticket.ticketClass}
+          />
+        )}
+      />
+      <Heading level={2}>Weather Forecast</Heading>
+      <WeatherBox>
+        {condition && city && (
+          <DailyForecast condition={condition} city={city}/>
+        )}
+        {forecast && <ForecastCenter forecast={forecast}/>}
+      </WeatherBox>
     </CommonLayout>
   )
 }
 export default Layout
 
-const ServiceWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  padding: 5rem 2rem;  
-  flex-wrap: wrap;
-`
-const StyledFlexBox = styled(FlexBox)`
-  flex-direction: column;
-  background: #f5fcff;
-  padding: 3rem 5%;
-`
-const TicketWrapper = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 10px;
-  padding: 2rem 5%;
+const Heading = styled(Title)`
+  text-align: center;
+  margin: 2rem 0;
 `
 export const Banner = styled.div<{ background?: string }>`
   position: relative;
@@ -94,4 +97,18 @@ export const Banner = styled.div<{ background?: string }>`
   align-items: center;
   background: center no-repeat url(${({background}) => background});
   background-size: cover;
+  :after {
+  content: "";
+  position: absolute;
+  inset:0;
+  background: rgba(0,0,0,0.3);
+  pointer-events: none;
+}
+`
+const WeatherBox = styled(FlexBox)`
+  padding: 0 8% 5rem;
+  justify-content: space-between;
+  align-items: initial;
+  gap: 2rem;  
+  flex-wrap: wrap;
 `

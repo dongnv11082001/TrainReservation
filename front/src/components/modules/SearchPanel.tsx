@@ -76,7 +76,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
           style={{height: '45px'}}
         />
         <Link to="/result">
-          <Button>Find</Button>
+          <Button>Find Train</Button>
         </Link>
       </FlexBox>
     </SearchBarContainer>
@@ -84,13 +84,14 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
 }
 
 const SearchBarContainer = styled.div`
+  z-index:10;
   width: fit-content;
   border-radius: 1rem;
   padding: 20px;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 `
-const LocationInput = styled(AutoComplete)`
+export const LocationInput = styled(AutoComplete)`
   min-width: 200px;
   .ant-select-selector, input {
     height: 45px !important;
@@ -114,7 +115,7 @@ const Button = styled.span`
   justify-content: center;
   align-items: center;
   border-radius: 0.4rem;
-  background: #55b7f3;
-  color: white;
+  background: #729c98;
+  color: #f7f6f4;
   cursor: pointer;
 `

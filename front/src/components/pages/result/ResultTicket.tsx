@@ -42,7 +42,6 @@ const Box = styled(FlexBox)`
 const TicketWrapper = styled(List.Item)`
   background: white;
   border-radius: .6rem;
-  margin-bottom: 18px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   transition: outline 0.2s ease;
   padding: 20px !important;
@@ -54,11 +53,11 @@ const TicketWrapper = styled(List.Item)`
 `
 const Button = styled(FlexBox)`
   cursor: pointer;
-  background: #55b7f3;
+  background: #729c98;
   width:80px;
   padding: 7px 10px;
   border-radius: .6rem;
-  color: white;
+  color: #f7f6f4;
   font-weight: bold;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
 `

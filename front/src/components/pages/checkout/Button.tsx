@@ -61,6 +61,8 @@ const ButtonWrapper = styled.div`
 
   & button img {
     margin: 0 10px;
+    width: 24px !important;
+    height: 24px !important;
   }
 `
 

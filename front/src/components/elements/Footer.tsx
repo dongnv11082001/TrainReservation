@@ -71,14 +71,14 @@ export const Footer: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="copyright">© Copyright, 2020</div>
+      <div className="copyright">© Copyright Team 1, 2022</div>
     </Container>
   )
 }
 
 const Container = styled.div`
-  padding: 4rem 12% 0;
-  background: #000;
+  padding: 2rem 12% 0;
+  background: #729c98;
   color: white;
   .quick-links {
     display: flex;
@@ -87,7 +87,7 @@ const Container = styled.div`
       width: 345px;
       .phone-number {
         font-weight: bold;
-        font-size: 0.75rem;
+        font-size: 1rem;
         margin-bottom: 20px;
       }
       .social-network {
@@ -101,25 +101,26 @@ const Container = styled.div`
       .footer-item {
         width: 270px;
         .link-name {
-          font-size: 0.85rem;
+          font-size:1rem;
           margin-bottom: 10px;
         }
       }
     }
   }
   .copyright {
-    border-top: 1px solid #555;
-    color: #555;
-    font-size: 0.75rem;
+    border-top: 1px solid #bbb;
+    color: #ddd;
+    font-size: 1rem;
     padding: 1.2rem 0 3rem;
     margin-top: 2rem;
+    text-align: center;
   }
   .title {
     font-weight: bold;
     margin-bottom: 20px;
     color: white;
+    font-size: 1.2rem;
   }
-
   a {
     color: #bbb;
     font-family: "Poppins", sans-serif;

@@ -1,11 +1,11 @@
 export interface Ticket {
-  id: string
+  id?: number
   destination: string
   departure: string
   departureTime: Date
   arrivalTime: Date
   price: number
-  ticketClass: 'Ghế mềm' | 'Ghế cứng' | 'Giường nằm'
+  ticketClass: 'soft' | 'hard' | 'bed'
   airline?: string
   status?: 'available' | 'pending' | 'sold'
 }

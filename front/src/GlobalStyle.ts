@@ -7,6 +7,14 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     user-select: none;
   }
+  ::-webkit-scrollbar{
+    display: none;
+  }
+  img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
   .login-form {
   max-width: 300px;
   }
@@ -15,6 +23,16 @@ export const GlobalStyle = createGlobalStyle`
   }
   .login-form-forgot {
     float: left;
+  }
+  .ant-list-items{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 10px;
+    padding: 2rem 5%;
+  }
+  .ant-spin-container,.ant-spin-nested-loading,.ant-list{
+    width: 100% !important;
   }
 `
 

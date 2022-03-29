@@ -99,7 +99,7 @@ export const SignUpForm: React.FC = () => {
   )
 
   return <FormWrapper>
-    <Title style={{textAlign: 'center'}}>Đăng Ký</Title>
+    <Title style={{textAlign: 'center'}}>Sign Up</Title>
     <Divider/>
     <Form
       {...formItemLayout}
@@ -114,12 +114,12 @@ export const SignUpForm: React.FC = () => {
     >
       <Form.Item
         name="username"
-        label="Tên đăng nhập"
-        tooltip="Đây là tên mà chúng tôi sẽ sử dụng để gọi bạn"
+        label="Username"
+        tooltip="This is name that we call you"
         rules={[
           {
             required: true,
-            message: 'Hãy nhập tên tài khoản',
+            message: 'Please enter username',
             whitespace: true,
           },
         ]}
@@ -129,11 +129,11 @@ export const SignUpForm: React.FC = () => {
 
       <Form.Item
         name="password"
-        label="Mật khẩu"
+        label="Password"
         rules={[
           {
             required: true,
-            message: 'Vui lòng nhập mật khẩu',
+            message: 'Please enter password',
           },
         ]}
         hasFeedback
@@ -143,13 +143,13 @@ export const SignUpForm: React.FC = () => {
 
       <Form.Item
         name="confirm"
-        label="Nhập lại mật khẩu"
+        label="Re-enter password"
         dependencies={['password']}
         hasFeedback
         rules={[
           {
             required: true,
-            message: 'Hãy nhập lại mật khẩu',
+            message: 'Enter password',
           },
           ({getFieldValue}) => ({
             validator(_, value) {
@@ -170,11 +170,11 @@ export const SignUpForm: React.FC = () => {
         rules={[
           {
             type: 'email',
-            message: 'Email không hợp lê!',
+            message: 'Invalid Email!',
           },
           {
             required: true,
-            message: 'Xin hãy nhập email!',
+            message: 'Please enter email!',
           },
         ]}
       >
@@ -183,12 +183,12 @@ export const SignUpForm: React.FC = () => {
 
       <Form.Item
         name="residence"
-        label="Địa chỉ thường trú"
+        label="Residence"
         rules={[
           {
             type: 'array',
             required: true,
-            message: 'Xin hãy nhập địa chỉ!',
+            message: 'Please enter your address!',
           },
         ]}
       >
@@ -197,11 +197,11 @@ export const SignUpForm: React.FC = () => {
 
       <Form.Item
         name="phone"
-        label="Số điện thoạir"
+        label="Phone Number"
         rules={[
           {
             required: true,
-            message: 'Hãy nhập số điện thoại!',
+            message: 'Enter phone number!',
           },
         ]}
       >
@@ -215,18 +215,18 @@ export const SignUpForm: React.FC = () => {
 
       <Form.Item
         name="gender"
-        label="Giới tính"
+        label="Gender"
         rules={[
           {
             required: true,
-            message: 'Hãy chọn giới tính của bạn!',
+            message: 'Please enter your gender!',
           },
         ]}
       >
-        <Select placeholder="Giới tính của bạn là?">
-          <Option value="male">Nam</Option>
-          <Option value="female">Nữ</Option>
-          <Option value="other">Khác</Option>
+        <Select placeholder="Your Gender?">
+          <Option value="male">Male</Option>
+          <Option value="female">Female</Option>
+          <Option value="other">Others</Option>
         </Select>
       </Form.Item>
 
@@ -242,13 +242,13 @@ export const SignUpForm: React.FC = () => {
         {...tailFormItemLayout}
       >
         <Checkbox>
-          Tôi đã đọc và đồng ý với <Link to="/">bản thỏa thuận</Link>
+          I have read and agree with <Link to="/">agreement</Link>
         </Checkbox>
       </Form.Item>
 
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
-          Đăng ký
+          Sign Up
         </Button>
       </Form.Item>
     </Form>

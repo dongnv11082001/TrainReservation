@@ -3,7 +3,7 @@ import {Layout} from 'antd'
 import styled from 'styled-components'
 import {AdminSiderMenu} from '../elements/AdminSiderMenu'
 import {GuestSiderMenu} from '../elements/GuestSiderMenu'
-import {Header} from './Header'
+import {Header} from '../elements/Header'
 import {Footer} from '../elements/Footer'
 
 const {Sider} = Layout
@@ -19,23 +19,21 @@ export const CommonLayout: React.FC<LayoutProps> = ({
   const [isCollapse, setIsCollapse] = useState<boolean>(true)
 
   return (
-    <>
-      <ParentLayout>
-        <FixedSider
-          collapsible
-          collapsed={isCollapse}
-          onCollapse={() => setIsCollapse(!isCollapse)}
-          theme="dark"
-        >
-          {isAdmin ? <AdminSiderMenu/> : <GuestSiderMenu/>}
-        </FixedSider>
-        <Layout>
-          <Header isDominated={isCollapse}/>
-          <Body isDominated={isCollapse}>{children}</Body>
-          <Footer/>
-        </Layout>
-      </ParentLayout>
-    </>
+    <ParentLayout>
+      <FixedSider
+        collapsible
+        collapsed={isCollapse}
+        onCollapse={() => setIsCollapse(!isCollapse)}
+        theme="light"
+      >
+        {isAdmin ? <AdminSiderMenu/> : <GuestSiderMenu/>}
+      </FixedSider>
+      <Layout>
+        <Header isDominated={isCollapse}/>
+        <Body isDominated={isCollapse}>{children}</Body>
+        <Footer/>
+      </Layout>
+    </ParentLayout>
   )
 }
 
