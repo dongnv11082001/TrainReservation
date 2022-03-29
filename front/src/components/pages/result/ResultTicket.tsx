@@ -19,12 +19,13 @@ export const ResultTicket: React.FC<ResultTicketProps> = ({ticket, loading}) => 
   const {contextRoundTrip} = useResult()
   const {inCartTickets, setInCartTickets} = useCartTickets()
 
-  console.log(inCartTickets)
-
   const handleSelect = () => {
-    setInCartTickets([...inCartTickets, ticket])
-    if (!contextRoundTrip || inCartTickets.length === 1) {
-      navigate('/checkout')
+    if (contextRoundTrip && inCartTickets.length >= 0 && inCartTickets.length < 2) {
+      setInCartTickets([...inCartTickets, ticket])
+      if (inCartTickets.length >= 1) navigate('/checkout')
+    } else {
+      setInCartTickets([ticket])
+      if (!contextRoundTrip) navigate('/checkout')
     }
   }
 
