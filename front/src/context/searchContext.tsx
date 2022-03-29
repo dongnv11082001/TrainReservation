@@ -18,6 +18,7 @@ function useResult(): SearchContextProps {
 const SearchProvider: React.FC = ({children}): React.ReactElement => {
   const [resultTickets, setResultTickets] = useState<Ticket[] | null>(null)
   const value = {resultTickets, setResultTickets}
+
   return <SearchContext.Provider value={value}>
     {children}
   </SearchContext.Provider>

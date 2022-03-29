@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 import moment from 'moment'
-import {Link} from 'react-router-dom'
 import {
   AutoComplete,
   DatePicker,
@@ -13,19 +13,50 @@ import {
 } from 'antd'
 import {SwapRightOutlined} from '@ant-design/icons'
 import {FlexBox} from './ComonLayout'
+import {Ticket} from '../../types/ticket'
+import {useResult} from '../../context/searchContext'
+import {useNavigate} from 'react-router-dom'
+import {useLoading} from '../../context/loadingContext'
 
 type SearchProps = {
   suggestions?: { value: string }[]
 }
 
+interface FindingTicketProps extends Ticket {
+  isRoundTrip?: boolean
+}
+
 const {RangePicker} = DatePicker
 const {Title, Text} = Typography
 
+const initialTicket = {
+  destination: '',
+  departure: '',
+  departureTime: new Date(),
+  arrivalTime: new Date(),
+  price: 10000000,
+  status: 'available' as 'available' | 'pending' | 'sold',
+  passengers: 1,
+  isRoundTrip: false
+}
+
 export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
-  const [departure, setDeparture] = useState<string>()
-  const [destination, setDestination] = useState<string>()
-  const [isRoundTrip, setIsRoundTrip] = useState<boolean>(false)
+  const navigate = useNavigate()
+  const {setResultTickets} = useResult()
+  const {setLoading} = useLoading()
+  const [findingTicket, setFindingTicket] = useState<FindingTicketProps>(initialTicket)
   const dateFormat = 'YYYY-MM-DD'
+
+  const handleSearch = async () => {
+    setLoading(true)
+    // const response = await axios.post<Ticket[]>('/queryTicket',{findingTicket})
+    const response = await axios.get<Ticket[]>(
+      'https://622b018b14ccb950d22be17d.mockapi.io/tickets'
+    )
+    setResultTickets(response.data)
+    setLoading(false)
+    navigate('/result')
+  }
 
   return (
     <SearchBarContainer>
@@ -39,8 +70,8 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
           </Col>
           <Col>
             <Switch
-              onChange={() => setIsRoundTrip(!isRoundTrip)}
-              defaultChecked={isRoundTrip}
+              onChange={() => setFindingTicket({...findingTicket, isRoundTrip: !findingTicket.isRoundTrip})}
+              defaultChecked={findingTicket.isRoundTrip}
             />
           </Col>
           <Col>
@@ -52,16 +83,16 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
       <FlexBox style={{gap: '36px'}}>
         <FlexBox style={{gap: '8px'}}>
           <LocationInput
-            value={departure}
-            onChange={(value: any) => setDeparture(value)}
+            value={findingTicket.departure}
+            onChange={(value: any) => setFindingTicket({...findingTicket, departure: value})}
             options={suggestions}
             allowClear
             placeholder='Departure destination...'
           />
           <SwapRightOutlined/>
           <LocationInput
-            value={destination}
-            onChange={(value: any) => setDestination(value)}
+            value={findingTicket.destination}
+            onChange={(value: any) => setFindingTicket({...findingTicket, destination: value})}
             options={suggestions}
             allowClear
             placeholder='Arrival destination...'
@@ -72,12 +103,10 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
             moment('2019-09-03', dateFormat),
             moment('2019-11-22', dateFormat),
           ]}
-          disabled={[false, !isRoundTrip]}
+          disabled={[false, !findingTicket.isRoundTrip]}
           style={{height: '45px'}}
         />
-        <Link to="/result">
-          <Button>Find Train</Button>
-        </Link>
+        <Button onClick={handleSearch}>Find Train</Button>
       </FlexBox>
     </SearchBarContainer>
   )
