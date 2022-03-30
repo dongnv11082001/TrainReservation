@@ -8,5 +8,4 @@ export interface Ticket {
   ticketClass?: 'soft' | 'hard' | 'bed'
   airline?: string
   status?: 'available' | 'pending' | 'sold'
-  passengers?: number
 }

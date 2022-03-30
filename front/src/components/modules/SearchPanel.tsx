@@ -45,20 +45,19 @@ const initialTicket = {
 
 export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
   const navigate = useNavigate()
-  const {contextRoundTrip, setContextRoundTrip, setResultTickets} = useResult()
+  const {contextRoundTrip, setContextRoundTrip, passengers, setPassengers, setResultTickets} = useResult()
   const {setLoading} = useLoading()
   const [findingTicket, setFindingTicket] = useState<FindingTicketProps>(initialTicket)
   const dateFormat = 'YYYY-MM-DD'
-  const [amount, setAmount] = useState(1)
   const [check, setCheck] = useState('')
   const [isModalVisible, setIsModalVisible] = useState(false)
 
 
   const handleIncreaseAmount = () => {
-    setAmount(prevState => prevState + 1)
+    setPassengers(passengers + 1)
   }
   const handleDecreaseAmount = () => {
-    setAmount(prevState => prevState - 1)
+    setPassengers(passengers - 1)
   }
   const showModal = () => {
     setIsModalVisible(true)
@@ -88,8 +87,8 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
         <PassengerInfoWrapper onClick={showModal}>
           <span>Number of Passenger, Class</span>
           <Title level={5}>
-            {amount}
-            {amount === 1 ? ' Passenger' : ' Passengers'}
+            {passengers}
+            {passengers === 1 ? ' Passenger' : ' Passengers'}
             {check ? ', ' + check : ''}
           </Title>
         </PassengerInfoWrapper>
@@ -97,7 +96,7 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
           bodyStyle={{display: 'flex', justifyContent: 'space-evenly'}}>
           <div>
             <Title level={5}>Number</Title>
-            <Counter amount={amount} handleDecreaseAmount={handleDecreaseAmount}
+            <Counter amount={passengers} handleDecreaseAmount={handleDecreaseAmount}
               handleIncreaseAmount={handleIncreaseAmount}/>
           </div>
           <div style={{textAlign: 'center'}}>

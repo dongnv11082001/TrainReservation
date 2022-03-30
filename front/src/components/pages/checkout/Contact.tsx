@@ -14,7 +14,7 @@ export const Contact = () => {
         <span>Gender:</span>
         <label>
           Male
-          <input type={'radio'} name={'gender'} defaultChecked={true}/>
+          <input type={'radio'} name={'gender'} value={'male'} defaultChecked={true}/>
         </label>
         <label>
           Female

@@ -11,7 +11,6 @@ type ResultPageProps = {
 }
 
 const Layout: React.FC<ResultPageProps> = ({results}) => {
-  console.log('re-rendered')
   return <CommonLayout>
     <StickyContainer>
       <SearchPanel/>

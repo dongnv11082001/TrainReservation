@@ -16,7 +16,9 @@ export const Order: React.FC<OrderProps> = ({incartTickets}) => {
       {/*<List*/}
       {/*  dataSource={incartTickets}*/}
       {/*  itemLayout='vertical'*/}
-      {/*  renderItem={}*/}
+      {/*  renderItem={(item)=>{
+        <Component />
+      }}*/}
       {/*/>*/}
       <Field>
         <span>Shipping</span>

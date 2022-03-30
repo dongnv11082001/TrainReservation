@@ -16,16 +16,20 @@ const {Text} = Typography
 
 export const ResultTicket: React.FC<ResultTicketProps> = ({ticket, loading}) => {
   const navigate = useNavigate()
-  const {contextRoundTrip} = useResult()
+  const {contextRoundTrip, passengers} = useResult()
   const {inCartTickets, setInCartTickets} = useCartTickets()
 
   const handleSelect = () => {
-    if (contextRoundTrip && inCartTickets.length >= 0 && inCartTickets.length < 2) {
-      setInCartTickets([...inCartTickets, ticket])
-      if (inCartTickets.length >= 1) navigate('/checkout')
+    if (contextRoundTrip) {
+      if (inCartTickets.length >= 0 && inCartTickets.length < passengers * 2) {
+        setInCartTickets([...inCartTickets, ticket])
+        if (inCartTickets.length >= passengers * 2 - 1) navigate('/checkout')
+      }
     } else {
-      setInCartTickets([ticket])
-      if (!contextRoundTrip) navigate('/checkout')
+      if (inCartTickets.length >= 0 && inCartTickets.length < passengers) {
+        setInCartTickets([...inCartTickets, ticket])
+        if (inCartTickets.length >= passengers - 1) navigate('/checkout')
+      }
     }
   }
 
