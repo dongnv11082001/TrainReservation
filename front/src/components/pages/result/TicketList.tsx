@@ -35,16 +35,11 @@ export const TicketList: React.FC<TicketListProps> = ({tickets}) => {
           filterItems.map((item, index) => <Text key={index}>{item.title}</Text>)
         }
       </Filter>
-      <List
-        itemLayout="vertical"
-        size="large"
-        dataSource={tickets}
-        renderItem={ticket => (
-          <Ribbon text={ticket.ticketClass?.toUpperCase()} color="#fad739">
-            <ResultTicket ticket={ticket} loading={loading}/>
-          </Ribbon>
-        )}
-      />
+      <ResultList>
+        {tickets.map((ticket, index) => <Ribbon key={index} text={ticket.ticketClass?.toUpperCase()} color="#fad739">
+          <ResultTicket ticket={ticket} loading={loading}/>
+        </Ribbon>)}
+      </ResultList>
     </div>
   )
 }
@@ -62,6 +57,7 @@ const Filter = styled.div`
     font-weight: bold;
   }
 `
+const ResultList = styled.div``
 const Ribbon = styled(Badge.Ribbon)`
   .ant-ribbon-text{
     color:#e8762d !important;

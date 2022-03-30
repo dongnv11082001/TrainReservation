@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Avatar, List, Skeleton, Typography} from 'antd'
+import {Avatar, Skeleton, Typography} from 'antd'
 import {useNavigate} from 'react-router-dom'
 import {Ticket} from '../../../types/ticket'
 import {FlexBox} from '../../modules/ComonLayout'
@@ -29,23 +29,7 @@ export const ResultTicket: React.FC<ResultTicketProps> = ({ticket, loading}) => 
     }
   }
 
-  return <TicketWrapper
-    key={ticket.id}
-    extra={
-      !loading &&
-        <Box>
-          <Text style={{fontSize: '20px', fontWeight: 'bold'}}>${ticket.price}</Text>
-          <Button onClick={handleSelect}>Select</Button>
-        </Box>
-    }>
-    <Skeleton loading={loading} active avatar>
-      <List.Item.Meta
-        avatar={<Avatar src='https://joeschmoe.io/api/v1/random'/>}
-        title="Vé xịn giá shock"
-        description='Dark dark burh burh lamo lmao'
-      />
-      This is dummy text this is dummy text this is dummy text
-    </Skeleton>
+  return <TicketWrapper>
   </TicketWrapper>
 }
 
@@ -55,7 +39,7 @@ const Box = styled(FlexBox)`
   height: 100%;
   gap: 5px;
 `
-const TicketWrapper = styled(List.Item)`
+const TicketWrapper = styled.div`
   background: white;
   border-radius: .6rem;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;

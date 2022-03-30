@@ -45,7 +45,7 @@ const initialTicket = {
 
 export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
   const navigate = useNavigate()
-  const {contextRoundTrip, setContextRoundTrip, passengers, setPassengers, setResultTickets} = useResult()
+  const {contextRoundTrip, setContextRoundTrip, passengers, setPassengers, searchTickets} = useResult()
   const {setLoading} = useLoading()
   const [findingTicket, setFindingTicket] = useState<FindingTicketProps>(initialTicket)
   const dateFormat = 'YYYY-MM-DD'
@@ -69,16 +69,13 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
     setIsModalVisible(false)
   }
 
-  const handleSearch = async () => {
+  const handleSearch = () => {
     setLoading(true)
-    // const response = await axios.post<Ticket[]>('/queryTicket',{findingTicket})
-    const response = await axios.get<Ticket[]>(
-      'https://622b018b14ccb950d22be17d.mockapi.io/tickets'
-    )
-    setResultTickets(response.data)
+    searchTickets()
     setLoading(false)
     navigate('/result')
   }
+
 
   return (
     <SearchBarContainer>
