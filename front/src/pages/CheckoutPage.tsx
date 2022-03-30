@@ -1,6 +1,6 @@
 import {Breadcrumb} from 'antd'
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import {CommonLayout, FlexBox} from '../components/modules/ComonLayout'
 import {Contact} from '../components/pages/checkout/Contact'
@@ -16,16 +16,11 @@ import Button from '../components/pages/checkout/Button'
 import {useCartTickets} from '../context/cartContext'
 
 export const CheckoutPage = () => {
+  const navigate = useNavigate()
   const [stages, setStages] = useState(0)
   const {buttonProgress} = useProgress(stages)
   const {setLoading} = useLoading()
-  const {inCartTickets, setInCartTickets} = useCartTickets()
-
-  console.log(inCartTickets)
-
-  const handleCancle = () => {
-    setInCartTickets([])
-  }
+  const {inCartTickets} = useCartTickets()
 
   const handleNextClick = () => {
     setStages(stages + 1)
@@ -33,7 +28,7 @@ export const CheckoutPage = () => {
   }
 
   const handlePrevClick = () => {
-    if (stages <= 0) return
+    if (stages <= 0) navigate(-1)
     setStages(stages - 1)
     setLoading(true)
   }
@@ -58,7 +53,7 @@ export const CheckoutPage = () => {
           </FormContainer>
           <Button buttonProgress={buttonProgress} onNextClick={handleNextClick} onPrevClick={handlePrevClick}/>
         </div>
-        <Order/>
+        <Order incartTickets={inCartTickets}/>
       </Wrapper>
     </CommonLayout>
   )

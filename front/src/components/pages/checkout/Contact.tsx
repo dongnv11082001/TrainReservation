@@ -25,7 +25,7 @@ export const Contact = () => {
   )
 }
 
-const Input = styled.input`
+const Input = styled.input` 
   height: 50px;
   border-radius: 4px;
   text-indent: 13px;

@@ -1,12 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
+import {List} from 'antd'
+import {Ticket} from '../../../types/ticket'
 
-export const Order: React.FC = () => {
+type OrderProps = {
+  incartTickets: Ticket[]
+}
+
+export const Order: React.FC<OrderProps> = ({incartTickets}) => {
   return (
     <OrderWrapper>
       <div>
         <Name>Order total </Name>
       </div>
+      {/*<List*/}
+      {/*  dataSource={incartTickets}*/}
+      {/*  itemLayout='vertical'*/}
+      {/*  renderItem={}*/}
+      {/*/>*/}
       <Field>
         <span>Shipping</span>
         <span>FREE</span>
