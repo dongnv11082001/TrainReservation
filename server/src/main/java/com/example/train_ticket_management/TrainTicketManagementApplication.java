@@ -9,5 +9,4 @@ public class TrainTicketManagementApplication {
     public static void main(String[] args) {
         SpringApplication.run(TrainTicketManagementApplication.class, args);
     }
-
 }

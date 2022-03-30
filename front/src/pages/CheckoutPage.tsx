@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import {CommonLayout, FlexBox} from '../components/modules/ComonLayout'
 import {Contact} from '../components/pages/checkout/Contact'
 import {Payment} from '../components/pages/checkout/Payment'
-import {Shipping} from '../components/pages/checkout/Shipping'
 import {Submit} from '../components/pages/checkout/Submit'
 import {Order} from '../components/pages/checkout/Order'
 import {Banner} from '../components/pages/home/layout'
@@ -47,9 +46,8 @@ export const CheckoutPage = () => {
           </div>
           <FormContainer>
             {stages === 0 && <Contact/>}
-            {stages === 1 && <Shipping/>}
-            {stages === 2 && <Payment/>}
-            {stages === 3 && <Submit/>}
+            {stages === 1 && <Payment/>}
+            {stages === 2 && <Submit/>}
           </FormContainer>
           <Button buttonProgress={buttonProgress} onNextClick={handleNextClick} onPrevClick={handlePrevClick}/>
         </div>

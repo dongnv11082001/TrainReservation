@@ -30,6 +30,7 @@ export const ResultTicket: React.FC<ResultTicketProps> = ({ticket, loading}) => 
   }
 
   return <TicketWrapper>
+    <Button onClick={handleSelect}>Choose</Button>
   </TicketWrapper>
 }
 

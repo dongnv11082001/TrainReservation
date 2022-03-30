@@ -9,3 +9,5 @@ export interface Ticket {
   airline?: string
   status?: 'available' | 'pending' | 'sold'
 }
+
+//Foreign Key: seatID
