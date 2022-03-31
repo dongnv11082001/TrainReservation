@@ -4,4 +4,9 @@ export interface Offer {
   status: 'pending' | 'paid' | 'cancelled'
   createdAt?: Date
   deleteAt?: Date
+  passengers?: number
 }
+
+// ForeignKey:
+//   ticketID
+

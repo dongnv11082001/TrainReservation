@@ -12,11 +12,11 @@ public class Admin {
     @Column(name = "adminID", nullable = false)
     private long adminID;
 
-    @Length(min=3, max = 45)
-    @Column(name ="adminName", nullable = false)
+    @Length(min = 3, max = 45)
+    @Column(name = "adminName", nullable = false)
     private String adminName;
 
-    @Length(min=3, max = 45)
+    @Length(min = 3, max = 45)
     @Column(name = "adminPassword", nullable = false)
     private String adminPassword;
 
@@ -26,7 +26,6 @@ public class Admin {
     }
 
     public Admin() {
-
     }
 
     public long getAdminID() {

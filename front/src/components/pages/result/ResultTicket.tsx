@@ -8,7 +8,6 @@ import {useCartTickets} from '../../../context/cartContext'
 import {SwapRightOutlined} from '@ant-design/icons'
 import {Link} from 'react-router-dom'
 import {TextSize20} from '../../../GlobalStyle'
-import {useLoading} from '../../../context/loadingContext'
 
 type ResultTicketProps = {
   ticket: Ticket
@@ -18,11 +17,10 @@ export const ResultTicket: React.FC<ResultTicketProps> = ({ticket}) => {
   const navigate = useNavigate()
   const {contextRoundTrip} = useResult()
   const {inCartTickets, setInCartTickets} = useCartTickets()
-  const {setLoading} = useLoading()
+  const timeFormat = 'hh:mm'
   const dateFormat = 'DD/MM/YYYY'
 
   const handleSelect = () => {
-    setLoading(true)
     if (contextRoundTrip && inCartTickets.length >= 0 && inCartTickets.length < 2) {
       setInCartTickets([...inCartTickets, ticket])
       if (inCartTickets.length >= 1) {
@@ -39,13 +37,14 @@ export const ResultTicket: React.FC<ResultTicketProps> = ({ticket}) => {
   return (
     <TicketWrapper>
       <div>
-        <TextSize20>{moment(ticket.departureTime).format(dateFormat)}
-          <SwapRightOutlined/> {moment(ticket.arrivalTime).format(dateFormat)}
+        <TextSize20>{moment(ticket.departureTime).format(timeFormat)}
+          <SwapRightOutlined/> {moment(ticket.arrivalTime).format(timeFormat)}
         </TextSize20>
+        <div>{moment(ticket.departureTime).format(dateFormat)}</div>
         <div>{ticket.destination}</div>
         <ClassAndPriceWrapper>
           <div>
-            <TextSize20>{ticket.ticketClass?.toUpperCase()}</TextSize20>
+            <TextSize20>Train Class: {ticket.ticketClass?.toUpperCase()}</TextSize20>
           </div>
           <TextSize20>{ticket.price}$</TextSize20>
         </ClassAndPriceWrapper>
