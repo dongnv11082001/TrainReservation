@@ -49,7 +49,7 @@ const TicketWrapper = styled.div`
   padding: 20px !important;
   margin: 12px 0;
   
-  :hover{
+  &:hover{
     outline: 1px solid #55b7f3;
     transition: outline 0.2s ease;
   }
