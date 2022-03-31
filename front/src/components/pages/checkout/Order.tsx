@@ -9,18 +9,11 @@ type OrderProps = {
 }
 
 export const Order: React.FC<OrderProps> = ({incartTickets}) => {
-  const totalPrice = incartTickets.reduce((acc, curr) => {
-    const t: Ticket = {
-      ...acc,
-      price: acc.price + curr.price
-    }
-
-    return t
-  })
+  const totalPrice = incartTickets.reduce((acc, curr) => acc + curr.price, 0)
 
   return (
     <OrderWrapper>
-      <h2>Order total: {totalPrice.price}$</h2>
+      <h2>Order total: {totalPrice}$</h2>
       <List
         dataSource={incartTickets}
         renderItem={item => {
