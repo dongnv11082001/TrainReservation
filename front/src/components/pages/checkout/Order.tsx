@@ -1,26 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-import {List} from 'antd'
+import {List, Typography} from 'antd'
 import {Ticket} from '../../../types/ticket'
 import {CartTicket} from './CartTicket'
+import {useResult} from '../../../context/searchContext'
 
 type OrderProps = {
   incartTickets: Ticket[]
 }
 
+const {Text, Title} = Typography
+
 export const Order: React.FC<OrderProps> = ({incartTickets}) => {
+  const {passengers} = useResult()
+
   const totalPrice = incartTickets.reduce((acc, curr) => {
     const t: Ticket = {
       ...acc,
       price: acc.price + curr.price
     }
-
     return t
   })
 
   return (
     <OrderWrapper>
-      <h2>Order total: {totalPrice.price}$</h2>
       <List
         dataSource={incartTickets}
         renderItem={item => {
@@ -34,6 +37,8 @@ export const Order: React.FC<OrderProps> = ({incartTickets}) => {
           />
         }}
       />
+      <Text>Total Passengers: {passengers}</Text>
+      <Title level={3}>Order total: {totalPrice.price}$</Title>
     </OrderWrapper>
   )
 }
