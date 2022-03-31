@@ -11,16 +11,10 @@ type OrderProps = {
 
 const {Text, Title} = Typography
 
-export const Order: React.FC<OrderProps> = ({incartTickets}) => 
+export const Order: React.FC<OrderProps> = ({incartTickets}) => {
   const {passengers} = useResult()
 
-  const totalPrice = incartTickets.reduce((acc, curr) => {
-    const t: Ticket = {
-      ...acc,
-      price: acc.price + curr.price
-    }
-    return t
-  })
+  const totalPrice = incartTickets.reduce((acc, curr) => acc + curr.price, 0)
 
   return (
     <OrderWrapper>
@@ -38,7 +32,7 @@ export const Order: React.FC<OrderProps> = ({incartTickets}) =>
         }}
       />
       <Text>Total Passengers: {passengers}</Text>
-      <Title level={3}>Order total: {totalPrice.price}$</Title>
+      <Title level={3}>Order total: {totalPrice}$</Title>
     </OrderWrapper>
   )
 }
