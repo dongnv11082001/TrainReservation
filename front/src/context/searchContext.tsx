@@ -49,9 +49,11 @@ const SearchProvider: React.FC = ({children}): ReactElement => {
     searchTickets
   }
 
-  return <SearchContext.Provider value={value}>
-    {children}
-  </SearchContext.Provider>
+  return (
+    <SearchContext.Provider value={value}>
+      {children}
+    </SearchContext.Provider>
+  )
 }
 
 export {useResult, SearchProvider}

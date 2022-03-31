@@ -39,3 +39,7 @@ export const GlobalStyle = createGlobalStyle`
 export const FormWrapper = styled.div`
   width: 480px;
 `
+
+export const TextSize20 = styled.div`
+  font-size: 20px;    
+`

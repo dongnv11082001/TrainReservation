@@ -26,7 +26,6 @@ type TicketListProps = {
 const {Text} = Typography
 
 export const TicketList: React.FC<TicketListProps> = ({tickets}) => {
-  const {loading} = useLoading()
 
   return (
     <div>
@@ -36,9 +35,9 @@ export const TicketList: React.FC<TicketListProps> = ({tickets}) => {
         }
       </Filter>
       <ResultList>
-        {tickets.map((ticket, index) => <Ribbon key={index} text={ticket.ticketClass?.toUpperCase()} color="#fad739">
-          <ResultTicket ticket={ticket} loading={loading}/>
-        </Ribbon>)}
+        {tickets.map((ticket) =>
+          <ResultTicket key={ticket.id} ticket={ticket}/>
+        )}
       </ResultList>
     </div>
   )
@@ -58,9 +57,3 @@ const Filter = styled.div`
   }
 `
 const ResultList = styled.div``
-const Ribbon = styled(Badge.Ribbon)`
-  .ant-ribbon-text{
-    color:#e8762d !important;
-    font-size: 1rem;
-  }
-`
