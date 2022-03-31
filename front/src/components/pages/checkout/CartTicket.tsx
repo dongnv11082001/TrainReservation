@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 
 type Props = {
     arrivalTime: Date
@@ -15,10 +16,11 @@ export const CartTicket: React.FC<Props> = ({
   price,
   ticketClass
 }) => {
+
   return (
     <>
-      <div>Arrival time: {arrivalTime}</div>
-      <div>Departure time: {departureTime}</div>
+      <div>Departure time: {moment(departureTime).format('hh:mm')} - {moment(departureTime).format('DD/MM/YYYY')}</div>
+      <div>Arrival time: {moment(arrivalTime).format('hh:mm')} - {moment(arrivalTime).format('DD/MM/YYYY')}</div>
       <div>Destination: {destination}</div>
       <div>Class: {ticketClass}</div>
       <div>Price: {price}$</div>

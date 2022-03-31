@@ -8,6 +8,7 @@ import {SwapRightOutlined} from '@ant-design/icons'
 import {Link} from 'react-router-dom'
 import {TextSize20} from '../../../GlobalStyle'
 import {useLoading} from '../../../context/loadingContext'
+import moment from 'moment'
 
 type ResultTicketProps = {
   ticket: Ticket
@@ -37,7 +38,7 @@ export const ResultTicket: React.FC<ResultTicketProps> = ({ticket}) => {
   return (
     <TicketWrapper>
       <div>
-        <TextSize20>{ticket.departureTime} <SwapRightOutlined /> {ticket.arrivalTime}</TextSize20>
+        <TextSize20>{moment(ticket.departureTime).format('hh:mm')} <SwapRightOutlined /> {moment(ticket.arrivalTime).format('hh:mm')}</TextSize20>
         <div>{ticket.destination}</div>
         <ClassAndPriceWrapper>
           <div>
