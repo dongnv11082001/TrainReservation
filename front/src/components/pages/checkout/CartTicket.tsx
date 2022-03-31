@@ -5,11 +5,11 @@ import {SwapRightOutlined} from '@ant-design/icons'
 import styled from 'styled-components'
 
 type Props = {
-    arrivalTime: Date
-    departureTime: Date
-    destination: string
-    price: number
-    ticketClass?: string
+  arrivalTime: Date
+  departureTime: Date
+  destination: string
+  price: number
+  ticketClass?: string
 }
 
 export const CartTicket: React.FC<Props> = ({
@@ -19,15 +19,20 @@ export const CartTicket: React.FC<Props> = ({
   price,
   ticketClass
 }) => {
+  const timeFormat = 'hh:mm'
+  const dateFormat = 'DD/MM/YYYY'
 
   return (
     <TicketWrapper>
       <div>
-        <TextSize20>{moment(departureTime).format('hh:mm')} <SwapRightOutlined /> {moment(arrivalTime).format('hh:mm')}</TextSize20>
+        <TextSize20>{moment(departureTime).format(timeFormat)}
+          <SwapRightOutlined/> {moment(arrivalTime).format(timeFormat)}
+        </TextSize20>
+        <div>{moment(departureTime).format(dateFormat)}</div>
         <div>{destination}</div>
         <ClassAndPriceWrapper>
           <div>
-            <TextSize20>{ticketClass?.toUpperCase()}</TextSize20>
+            <TextSize20>Train Class: {ticketClass?.toUpperCase()}</TextSize20>
           </div>
           <TextSize20>{price}$</TextSize20>
         </ClassAndPriceWrapper>
@@ -39,7 +44,7 @@ export const CartTicket: React.FC<Props> = ({
 const TicketWrapper = styled.div`
   background: white;
   border-radius: .6rem;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   transition: outline 0.2s ease;
   padding: 20px !important;
   margin: 12px 0;

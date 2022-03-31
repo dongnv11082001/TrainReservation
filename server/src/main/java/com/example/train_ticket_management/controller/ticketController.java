@@ -77,18 +77,7 @@ public class ticketController {
     }
 
     //get searched ticket
-    @GetMapping(value = "/search{destination}{departure}{depatureDate}{arrivalDate}{class}{passengers}")
-    public List<Ticket> showFilteredTicket(
-            @PathVariable("destination") String destination,
-            @PathVariable("departure") String departure,
-            @PathVariable("depatureDate") Date departureDate,
-            @PathVariable("arrivalDate") Date arrivalDate,
-            @PathVariable("class") String ticketClass,
-            @PathVariable("passengers") int passengers
-    ) {
-        List<Ticket> ticketList = ticketRepository.findAllByDestinationAndDepatureAndArrivalDateAndDepatureDateAndClassAndPassengers(destination, departure, arrivalDate, ticketClass, passengers);
-        return ticketList;
-    }
+  
 
 }
 
