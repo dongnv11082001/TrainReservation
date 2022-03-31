@@ -25,12 +25,12 @@ export const Order: React.FC<OrderProps> = ({incartTickets}) => {
         dataSource={incartTickets}
         renderItem={item => {
           return <CartTicket
-            arrivalTime={item.arrivalTime}
-            departureTime={item.departureTime}
-            destination={item.destination}
             key={item.id}
             price={item.price}
             ticketClass={item.ticketClass}
+            destination={item.destination}
+            arrivalTime={item.arrivalTime}
+            departureTime={item.departureTime}
           />
         }}
       />
