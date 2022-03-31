@@ -11,7 +11,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     List<Ticket> findAllByDepatureDate(Date depDate);
 
-    List<Ticket> findAllByTicketDepatures(String ticketDep);
+    List<Ticket> findAllByTicketDepature(String ticketDep);
 
     List<Ticket> findAllByTicketDestination(String ticketDes);
 
