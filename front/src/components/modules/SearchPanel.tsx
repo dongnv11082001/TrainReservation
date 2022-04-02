@@ -9,7 +9,8 @@ import {
   Typography,
   Switch,
   Divider,
-  Modal
+  Modal,
+  Button
 } from 'antd'
 import {SwapRightOutlined} from '@ant-design/icons'
 import {FlexBox} from './ComonLayout'
@@ -23,18 +24,30 @@ type SearchProps = {
   suggestions?: { value: string }[]
 }
 
-interface FindingTicketProps extends Ticket {
-  isRoundTrip?: boolean
-}
-
 const {RangePicker} = DatePicker
 const {Title, Text} = Typography
 
-const classes = ['Soft', 'Hard', 'Bed']
+const classes = [
+  {
+    class: 'Long Chair',
+    description: 'Fly economically, meet all basic needs',
+    value: 'hard'
+  },
+  {
+    class: 'Soft Chair',
+    description: 'Reasonable cost with good meals and ample leg room',
+    value: 'soft'
+  },
+  {
+    class: 'Bed',
+    description: 'Top class, with personalized 5-star service',
+    value: 'bed'
+  }
+]
 
 const initialTicket = {
-  destination: '',
-  departure: '',
+  destination: undefined,
+  departure: undefined,
   departureTime: new Date(),
   arrivalTime: new Date(),
   price: 10000000,
@@ -44,13 +57,20 @@ const initialTicket = {
 
 export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
   const navigate = useNavigate()
-  const {contextRoundTrip, setContextRoundTrip, passengers, setPassengers, searchTickets} = useResult()
+  const {
+    contextTicketClass,
+    setContextTicketClass,
+    contextRoundTrip,
+    setContextRoundTrip,
+    passengers,
+    setPassengers,
+    searchTickets
+  } = useResult()
   const {setLoading} = useLoading()
-  const [findingTicket, setFindingTicket] = useState<FindingTicketProps>(initialTicket)
-  const dateFormat = 'YYYY-MM-DD'
-  const [check, setCheck] = useState('')
+  const [findingTicket, setFindingTicket] = useState<Ticket>(initialTicket)
   const [isModalVisible, setIsModalVisible] = useState(false)
 
+  const dateFormat = 'DD/MM/YYYY'
 
   const handleIncreaseAmount = () => {
     setPassengers(passengers + 1)
@@ -65,43 +85,58 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
     setIsModalVisible(false)
   }
   const handleCancel = () => {
+    setContextTicketClass('hard')
     setIsModalVisible(false)
   }
 
   const handleSearch = () => {
+    const queryData = {
+      ...findingTicket,
+      ticketClass: contextTicketClass,
+      isRoundTrip: contextRoundTrip
+    }
     setLoading(true)
     searchTickets()
     setLoading(false)
     navigate('/result')
   }
 
+  const validate = () => Object.values(findingTicket).some(value => !value)
 
   return (
     <SearchBarContainer>
       <FlexBox style={{justifyContent: 'space-between'}}>
         <Title style={{textAlign: 'center'}} level={3}>Find train</Title>
         <PassengerInfoWrapper onClick={showModal}>
-          <span>Number of Passenger, Class</span>
+          <span>Number of Passengers | Class</span>
           <Title level={5}>
             {passengers}
             {passengers === 1 ? ' Passenger' : ' Passengers'}
-            {check ? ', ' + check : ''}
+            {contextTicketClass ? ', ' + contextTicketClass : ''}
           </Title>
         </PassengerInfoWrapper>
-        <Modal title={'Modal'} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
-          bodyStyle={{display: 'flex', justifyContent: 'space-evenly'}}>
+        <Modal title={'Modal'} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
           <div>
-            <Title level={5}>Number</Title>
-            <Counter amount={passengers} handleDecreaseAmount={handleDecreaseAmount}
-              handleIncreaseAmount={handleIncreaseAmount}/>
+            <Title level={5}>Number of Passengers</Title>
+            <Counter
+              amount={passengers}
+              handleDecreaseAmount={handleDecreaseAmount}
+              handleIncreaseAmount={handleIncreaseAmount}
+            />
           </div>
-          <div style={{textAlign: 'center'}}>
+          <Divider/>
+          <div>
             <Title level={5}>Class</Title>
-            {classes.map((c) => (
-              <div key={c}>
-                <input type='radio' value={c} checked={c === check} onChange={() => setCheck(c)}/>
-                {c}
-              </div>
+            {classes.map((ticketClass, index) => (
+              <StyledFlexBox key={index}>
+                <input style={{width: 40, height: 18}} type='radio' value={ticketClass.value}
+                  checked={ticketClass.value === contextTicketClass}
+                  onChange={() => setContextTicketClass(ticketClass.value as 'bed' | 'soft' | 'hard' | null)}/>
+                <div>
+                  <Title style={{margin: 0}} level={5}>{ticketClass.class}</Title>
+                  <Text>{ticketClass.description}</Text>
+                </div>
+              </StyledFlexBox>
             ))}
           </div>
         </Modal>
@@ -141,13 +176,13 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
         </FlexBox>
         <RangePicker
           defaultValue={[
-            moment('2019-09-03', dateFormat),
-            moment('2019-11-22', dateFormat),
+            moment(new Date(), dateFormat),
+            moment(new Date(), dateFormat),
           ]}
-          disabled={[false, !findingTicket.isRoundTrip]}
+          disabled={[false, !contextRoundTrip]}
           style={{height: '45px'}}
         />
-        <Button onClick={handleSearch}>Find Train</Button>
+        <Button size='large' type="primary" disabled={validate()} onClick={handleSearch}>Find Train</Button>
       </FlexBox>
     </SearchBarContainer>
   )
@@ -177,19 +212,23 @@ const SwitchText = styled(Text)`
 const SpacingRow = styled(Row)`
   margin-bottom: 14px;
 `
-const Button = styled.span`
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  padding: 1rem 0.8rem;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0.4rem;
-  background: #729c98;
-  color: #f7f6f4;
-  cursor: pointer;
-`
-
+// const Button = styled.span`
+//   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+//   padding: 1rem 0.8rem;
+//   font-weight: bold;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   border-radius: 0.4rem;
+//   background: #729c98;
+//   color: #f7f6f4;
+//   cursor: pointer;
+// `
 const PassengerInfoWrapper = styled.div`
   cursor: pointer;
+`
+const StyledFlexBox = styled(FlexBox)`
+  justify-content: initial;
+  align-items: initial;
+  margin: 12px 0;
 `

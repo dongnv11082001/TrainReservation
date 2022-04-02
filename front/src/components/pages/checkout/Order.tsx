@@ -31,8 +31,8 @@ export const Order: React.FC<OrderProps> = ({incartTickets}) => {
             key={item.id}
             price={item.price}
             ticketClass={item.ticketClass}
-            destination={item.destination}
-            arrivalTime={item.arrivalTime}
+            destination={item.destination!}
+            arrivalTime={item.arrivalTime!}
             departureTime={item.departureTime}
           />
         }}

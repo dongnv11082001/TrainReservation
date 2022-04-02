@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Typography, List, Badge} from 'antd'
+import {Typography} from 'antd'
 import {Ticket} from '../../../types/ticket'
-import {useLoading} from '../../../context/loadingContext'
 import {ResultTicket} from './ResultTicket'
 
 const filterItems = [
@@ -56,4 +55,6 @@ const Filter = styled.div`
     font-weight: bold;
   }
 `
-const ResultList = styled.div``
+const ResultList = styled.div`
+  width: 600px;
+`

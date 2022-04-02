@@ -8,6 +8,7 @@ import {useCartTickets} from '../../../context/cartContext'
 import {SwapRightOutlined} from '@ant-design/icons'
 import {Link} from 'react-router-dom'
 import {TextSize20} from '../../../GlobalStyle'
+import {Divider} from 'antd'
 
 type ResultTicketProps = {
   ticket: Ticket
@@ -40,6 +41,7 @@ export const ResultTicket: React.FC<ResultTicketProps> = ({ticket}) => {
         <TextSize20>{moment(ticket.departureTime).format(timeFormat)}
           <SwapRightOutlined/> {moment(ticket.arrivalTime).format(timeFormat)}
         </TextSize20>
+        <Divider/>
         <div>{moment(ticket.departureTime).format(dateFormat)}</div>
         <div>{ticket.destination}</div>
         <ClassAndPriceWrapper>
