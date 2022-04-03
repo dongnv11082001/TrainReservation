@@ -1,15 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import {List, Typography} from 'antd'
+import {Divider, List, Typography} from 'antd'
 import {Ticket} from '../../../types/ticket'
 import {CartTicket} from './CartTicket'
 import {useResult} from '../../../context/searchContext'
+import {TextSize20} from '../../../GlobalStyle'
 
 type OrderProps = {
   incartTickets: Ticket[]
 }
 
-const {Text, Title} = Typography
+const {Title} = Typography
 
 export const Order: React.FC<OrderProps> = ({incartTickets}) => {
   const {passengers} = useResult()
@@ -24,6 +25,7 @@ export const Order: React.FC<OrderProps> = ({incartTickets}) => {
 
   return (
     <OrderWrapper>
+      <Title level={3}>Order Summary</Title>
       <List
         dataSource={incartTickets}
         renderItem={item => {
@@ -37,15 +39,27 @@ export const Order: React.FC<OrderProps> = ({incartTickets}) => {
           />
         }}
       />
-      <Text>Total Passengers: {passengers}</Text>
-      <Title level={3}>Order total: {totalPrice.price}$</Title>
+      <div className="order-summary">
+        <Divider/>
+        <TextSize20>Total Passengers: {passengers}</TextSize20>
+        <Title level={3}>Order total: {totalPrice.price}$</Title>
+      </div>
     </OrderWrapper>
   )
 }
 
 const OrderWrapper = styled.div`
-  width: 440px;
-  padding: 20px;
+  position: relative;
+  flex: 1 1 20rem;
+  height: fit-content;
+  padding: 20px 20px 170px;
   border-radius: 8px;
   background-color: white;
+  .order-summary{
+    padding: 0 25px 30px; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;  
+  }
 `
