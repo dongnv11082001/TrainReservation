@@ -1,15 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import {Button} from 'antd'
 import styled from 'styled-components'
-import { arrows } from '../../../constants/arrows'
+import {arrows} from '../../../constants/arrows'
 
 type ButtonProps = {
-    onNextClick: () => void
-    onPrevClick: () => void
-    buttonProgress: string
+  validate: () => boolean
+  onNextClick: () => void
+  onPrevClick: () => void
+  buttonProgress: string
 }
 
-const Button: React.FC<ButtonProps> = ({buttonProgress, onNextClick, onPrevClick}) => {
+const Buttons: React.FC<ButtonProps> = ({buttonProgress, onNextClick, onPrevClick, validate}) => {
   return (
     <ButtonWrapper>
       <div>
@@ -21,13 +23,13 @@ const Button: React.FC<ButtonProps> = ({buttonProgress, onNextClick, onPrevClick
               src={arrows.leftBlackArrow}
               alt=''
             />
-              Back step
+            Back step
           </PrevButton>
         )}
         {!buttonProgress && (
           <PrevButton>
             <Link to={'/'} style={{color: '#000'}}>
-                Come back homepage
+              Come back homepage
             </Link>
             <img
               src={arrows.rightBlackArrow}
@@ -38,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({buttonProgress, onNextClick, onPrevClick
       </div>
       <div>
         {buttonProgress && (
-          <NextButton onClick={onNextClick}>
+          <NextButton type='primary' disabled={validate()} onClick={onNextClick}>
             <span>{buttonProgress}</span>
             <img
               src={arrows.rightWhiteArrow}
@@ -47,11 +49,11 @@ const Button: React.FC<ButtonProps> = ({buttonProgress, onNextClick, onPrevClick
           </NextButton>
         )}
       </div>
-    </ButtonWrapper> 
+    </ButtonWrapper>
   )
 }
 
-export default Button
+export default Buttons
 
 
 const ButtonWrapper = styled.div`
@@ -73,10 +75,9 @@ const PrevButton = styled.button`
   background: transparent;
 `
 
-const NextButton = styled.button`
+const NextButton = styled(Button)`
   border: none;
   padding: 0 20px;
-  background-color: #1890ff;
   color: #fff;
   height: 46px;
   width: 175px;
