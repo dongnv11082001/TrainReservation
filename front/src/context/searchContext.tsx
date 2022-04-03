@@ -9,8 +9,8 @@ type SearchContextProps = {
   setContextRoundTrip: (roundTrip: boolean) => void | React.Dispatch<boolean>
   passengers: number
   setPassengers: (passenger: number) => void | React.Dispatch<number>
-  contextTicketClass: 'bed' | 'soft' | 'hard' | null,
-  setContextTicketClass: (ticketClass: 'bed' | 'soft' | 'hard' | null) => void | React.Dispatch<null | 'bed' | 'soft' | 'hard'>
+  contextTicketClass: 'bed' | 'soft' | 'hard',
+  setContextTicketClass: (ticketClass: 'bed' | 'soft' | 'hard') => void | React.Dispatch<'bed' | 'soft' | 'hard'>
   searchTickets: (desiredTicket?: Ticket) => void
 }
 
@@ -34,7 +34,7 @@ const SearchProvider: React.FC = ({children}): ReactElement => {
   const [resultTickets, setResultTickets] = useState<Ticket[] | null>(null)
   const [contextRoundTrip, setContextRoundTrip] = useState<boolean>(false)
   const [passengers, setPassengers] = useState<number>(1)
-  const [contextTicketClass, setContextTicketClass] = useState<'bed' | 'soft' | 'hard' | null>(null)
+  const [contextTicketClass, setContextTicketClass] = useState<'bed' | 'soft' | 'hard'>('hard')
 
   const searchTickets = async (ticket?: Ticket) => {
     // const response = await axios.post<Ticket[]>('/queryTicket',{findingTicket})
