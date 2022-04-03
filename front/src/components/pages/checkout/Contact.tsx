@@ -1,31 +1,41 @@
 import React from 'react'
 import styled from 'styled-components'
-import {FormWrapper} from '../../../GlobalStyle'
+import {Offer, UserSubmit} from '../../../types/offer'
 
-export const Contact = () => {
+type ContactProps = {
+  userInfor?: UserSubmit
+  onChangeUser: (e: React.ChangeEvent<HTMLInputElement>) => void | React.Dispatch<Offer | null>
+  onChangePhoneNumber: (e: React.ChangeEvent<HTMLInputElement>) => void | React.Dispatch<Offer | null>
+  onChangeGender: (e: React.ChangeEvent<HTMLInputElement>) => void | React.Dispatch<Offer | null>
+}
+
+export const Contact: React.FC<ContactProps> = ({userInfor, onChangeGender, onChangePhoneNumber, onChangeUser}) => {
   return (
-    <FormWrapper>
+    <>
       <h3>Fill in your information</h3>
       <div>
-        <Input placeholder={'Full name'}/>
-        <Input placeholder={'Phone number'}/>
+        <Input defaultValue={userInfor?.userName} onChange={onChangeUser} placeholder={'Full name'}/>
+        <Input defaultValue={userInfor?.phoneNumber} onChange={onChangePhoneNumber} placeholder={'Phone number'}/>
       </div>
       <ContactGender>
         <span>Gender:</span>
         <label>
           Male
-          <input type={'radio'} name={'gender'} value={'male'} defaultChecked={true}/>
+          <input checked={userInfor?.gender === 'male'} onChange={onChangeGender} type={'radio'} name={'gender'}
+            value={'male'}/>
         </label>
         <label>
           Female
-          <input type={'radio'} name={'gender'} value={'female'}/>
+          <input checked={userInfor?.gender === 'female'} onChange={onChangeGender} type={'radio'} name={'gender'}
+            value={'female'}/>
         </label>
       </ContactGender>
-    </FormWrapper>
+    </>
   )
 }
 
 const Input = styled.input` 
+  display: block;
   height: 50px;
   border-radius: 4px;
   text-indent: 13px;
