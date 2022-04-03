@@ -129,9 +129,13 @@ export const SearchPanel: React.FC<SearchProps> = ({suggestions}) => {
             <Title level={5}>Class</Title>
             {classes.map((ticketClass, index) => (
               <StyledFlexBox key={index}>
-                <input style={{width: 40, height: 18}} type='radio' value={ticketClass.value}
+                <input
+                  style={{width: 40, height: 18}}
+                  type='radio'
+                  value={ticketClass.value}
                   checked={ticketClass.value === contextTicketClass}
-                  onChange={() => setContextTicketClass(ticketClass.value as 'bed' | 'soft' | 'hard' | null)}/>
+                  onChange={() => setContextTicketClass(ticketClass.value as 'bed' | 'soft' | 'hard')}
+                />
                 <div>
                   <Title style={{margin: 0}} level={5}>{ticketClass.class}</Title>
                   <Text>{ticketClass.description}</Text>
@@ -212,18 +216,6 @@ const SwitchText = styled(Text)`
 const SpacingRow = styled(Row)`
   margin-bottom: 14px;
 `
-// const Button = styled.span`
-//   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-//   padding: 1rem 0.8rem;
-//   font-weight: bold;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border-radius: 0.4rem;
-//   background: #729c98;
-//   color: #f7f6f4;
-//   cursor: pointer;
-// `
 const PassengerInfoWrapper = styled.div`
   cursor: pointer;
 `
