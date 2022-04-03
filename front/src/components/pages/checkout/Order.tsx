@@ -12,7 +12,7 @@ type OrderProps = {
 
 const {Title} = Typography
 
-export const Order: React.FC<OrderProps> = ({incartTickets}) => {
+export const Order: React.FC<OrderProps> = ({incartTickets}) => 
   const {passengers} = useResult()
 
   const totalPrice = incartTickets.reduce((acc, curr) => {
