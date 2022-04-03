@@ -1,6 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import {FormWrapper} from '../../../GlobalStyle'
+import {Offer} from '../../../types/offer'
+
+type PaymentProps = {
+  userOffer: Offer | null
+  onCheckin: () => void
+  onOnlineMethod: () => void
+
+}
 
 const creditCards = [
   {
@@ -29,7 +36,6 @@ const creditCards = [
     value: '',
   },
 ]
-
 const onlineGateWays = [
   {
     image:
@@ -43,38 +49,26 @@ const onlineGateWays = [
   },
 ]
 
-export const Payment: React.FC = () => {
-  const [pickUpClick, setPickUpClick] = useState(false)
-  const [courierClick, setCourierClick] = useState(true)
-
-  const handlePickUpClick = () => {
-    setCourierClick(false)
-    setPickUpClick(true)
-  }
-
-  const handleCourierClick = () => {
-    setPickUpClick(false)
-    setCourierClick(true)
-  }
+export const Payment: React.FC<PaymentProps> = ({userOffer, onOnlineMethod, onCheckin}) => {
 
   return (
-    <FormWrapper>
+    <>
       <Text>Payment method</Text>
-      <Delivery onClick={handlePickUpClick} checked={pickUpClick}>
+      <Delivery onClick={onCheckin} checked={userOffer?.user.paymentMethod === 'onCheckin'}>
         <div>
-          {pickUpClick ? (
+          {userOffer?.user.paymentMethod === 'onCheckin' ? (
             <img src={'https://cassiopeia.store/svgs/radio-checked.svg'} alt={''}/>
           ) : (
             <img src={'https://cassiopeia.store/svgs/radio-unchecked.svg'} alt={''}/>
           )}
         </div>
         <div className='text'>
-          <span>Payment on Delivery</span>
+          <span>Payment on Check-in</span>
         </div>
       </Delivery>
-      <Delivery onClick={handleCourierClick} checked={courierClick}>
+      <Delivery onClick={onOnlineMethod} checked={userOffer?.user.paymentMethod === 'online'}>
         <div>
-          {courierClick ? (
+          {userOffer?.user.paymentMethod === 'online' ? (
             <img src={'https://cassiopeia.store/svgs/radio-checked.svg'} alt={''}/>
           ) : (
             <img src={'https://cassiopeia.store/svgs/radio-unchecked.svg'} alt={''}/>
@@ -84,7 +78,7 @@ export const Payment: React.FC = () => {
           <span>Online Payment</span>
         </div>
       </Delivery>
-      {courierClick && (
+      {userOffer?.user.paymentMethod === 'online' && (
         <>
           <Text>Credit Cards</Text>
           <Container>
@@ -110,7 +104,7 @@ export const Payment: React.FC = () => {
           </Container>
         </>
       )}
-    </FormWrapper>
+    </>
   )
 }
 

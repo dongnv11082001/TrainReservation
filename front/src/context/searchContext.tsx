@@ -7,8 +7,10 @@ type SearchContextProps = {
   setResultTickets: (tickets: Ticket[]) => void | React.Dispatch<Ticket[] | null>
   contextRoundTrip: boolean
   setContextRoundTrip: (roundTrip: boolean) => void | React.Dispatch<boolean>
-  passengers: number,
-  setPassengers: (passenger: number) => void | React.Dispatch<number>,
+  passengers: number
+  setPassengers: (passenger: number) => void | React.Dispatch<number>
+  contextTicketClass: 'bed' | 'soft' | 'hard',
+  setContextTicketClass: (ticketClass: 'bed' | 'soft' | 'hard') => void | React.Dispatch<'bed' | 'soft' | 'hard'>
   searchTickets: (desiredTicket?: Ticket) => void
 }
 
@@ -19,6 +21,8 @@ const SearchContext = createContext<SearchContextProps>({
   setContextRoundTrip: () => console.log('RoundTrip is not initialize'),
   passengers: 1,
   setPassengers: () => console.log('Passengers is not initialized'),
+  contextTicketClass: 'hard',
+  setContextTicketClass: () => console.log('contextTicketClass is not initialized'),
   searchTickets: () => console.log('Passengers is not initialized')
 })
 
@@ -30,6 +34,7 @@ const SearchProvider: React.FC = ({children}): ReactElement => {
   const [resultTickets, setResultTickets] = useState<Ticket[] | null>(null)
   const [contextRoundTrip, setContextRoundTrip] = useState<boolean>(false)
   const [passengers, setPassengers] = useState<number>(1)
+  const [contextTicketClass, setContextTicketClass] = useState<'bed' | 'soft' | 'hard'>('hard')
 
   const searchTickets = async (ticket?: Ticket) => {
     // const response = await axios.post<Ticket[]>('/queryTicket',{findingTicket})
@@ -46,7 +51,9 @@ const SearchProvider: React.FC = ({children}): ReactElement => {
     setContextRoundTrip,
     passengers,
     setPassengers,
-    searchTickets
+    searchTickets,
+    contextTicketClass,
+    setContextTicketClass
   }
 
   return (
