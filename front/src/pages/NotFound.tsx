@@ -14,6 +14,7 @@ const NotFound: React.FC = () => (
         <img src={notfoundImage} alt="not-found"/>
       </div>
       <Title>Oops...Something went wrong here...</Title>
+      <Title level={4}>Click any where to continue</Title>
     </NotFoundContainer>
   </Link>
 )
@@ -27,5 +28,8 @@ const NotFoundContainer = styled(FlexBox)`
   .image-wrapper{
     width:500px;
     height:500px;
+    img{
+      object-fit:contain;
+    }
   }
 `
