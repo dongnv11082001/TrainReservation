@@ -6,8 +6,8 @@ import payment from '../asserts/images/payment.svg'
 import bestPrice from '../asserts/images/bestprice.svg'
 import {useLoading} from '../context/loadingContext'
 import {Ticket} from '../types/ticket'
-import {getLocationByLocationKey, getLocationKeyByGeoposition} from '../api/utils/getLocation'
-import {getForecast, getWeatherReport} from '../api/utils/getWeather'
+import {getLocationByLocationKey, getLocationKeyByGeoposition} from '../utils/getLocation'
+import {getForecast, getWeatherReport} from '../utils/getWeather'
 import {LoadingOverlay} from '../components/elements/LoadingOverlay'
 
 
@@ -41,13 +41,13 @@ const HomePage: React.FC = () => {
       'https://622b018b14ccb950d22be17d.mockapi.io/tickets'
     )
     const resTickets = await response.data
-    const locationKey = await getLocationKeyByGeoposition()
-    const forecast = await getForecast(locationKey.Key, 5)
-    const condition = await getWeatherReport(locationKey.Key)
-    const city = await getLocationByLocationKey(locationKey.Key)
-    setForecast5Day(forecast)
-    setTodayCondition(condition)
-    setCurrentCity(city)
+    // const locationKey = await getLocationKeyByGeoposition()
+    // const forecast = await getForecast(locationKey.Key, 5)
+    // const condition = await getWeatherReport(locationKey.Key)
+    // const city = await getLocationByLocationKey(locationKey.Key)
+    // setForecast5Day(forecast)
+    // setTodayCondition(condition)
+    // setCurrentCity(city)
     setTickets(resTickets)
     setLoading(false)
   }
@@ -59,15 +59,17 @@ const HomePage: React.FC = () => {
   if (loading) return <LoadingOverlay/>
 
   return (
-    <>{!loading && tickets.length &&
-        <HomeLayout
-          city={currentCity}
-          condition={todayCondition}
-          forecast={forecast5Day}
-          services={serviceData}
-          tickets={tickets}
-        />
-    }</>
+    <>
+      {!loading && tickets.length &&
+          <HomeLayout
+            city={currentCity}
+            condition={todayCondition}
+            forecast={forecast5Day}
+            services={serviceData}
+            tickets={tickets}
+          />
+      }
+    </>
   )
 }
 export default HomePage

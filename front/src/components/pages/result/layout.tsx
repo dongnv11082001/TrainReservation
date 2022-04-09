@@ -1,17 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import {CommonLayout, FlexBox} from '../../modules/ComonLayout'
+import {FlexBox} from '../../modules/AdminLayout'
 import {SearchPanel} from '../../modules/SearchPanel'
 import {Ticket} from '../../../types/ticket'
 import {TicketList} from './TicketList'
 import {ConfigCenter} from './ConfigCenter'
+import {UserLayout} from '../../modules/UserLayout'
 
 type ResultPageProps = {
   results: Ticket[]
 }
 
 const Layout: React.FC<ResultPageProps> = ({results}) => {
-  return <CommonLayout>
+  return <UserLayout>
     <StickyContainer>
       <SearchPanel/>
     </StickyContainer>
@@ -19,7 +20,7 @@ const Layout: React.FC<ResultPageProps> = ({results}) => {
       <ConfigCenter/>
       <TicketList tickets={results}/>
     </ResultBody>
-  </CommonLayout>
+  </UserLayout>
 }
 export default Layout
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import {Divider, Typography, List, Space} from 'antd'
 import styled from 'styled-components'
-import {isDay} from '../../../api/utils/checkDay'
-import {getDateOfWeek} from '../../../api/utils/getDateOfWeek'
-import {FlexBox} from '../../modules/ComonLayout'
-import {getIcon} from '../../../api/utils/getIcon'
+import {isDay} from '../../../utils/checkDay'
+import {getDateOfWeek} from '../../../utils/getDateOfWeek'
+import {FlexBox} from '../../modules/AdminLayout'
+import {getIcon} from '../../../utils/getIcon'
 
 type ForecastCenterProps = {
   forecast: any

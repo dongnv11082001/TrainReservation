@@ -13,7 +13,7 @@ import {
   Button
 } from 'antd'
 import {SwapRightOutlined} from '@ant-design/icons'
-import {FlexBox} from './ComonLayout'
+import {FlexBox} from './AdminLayout'
 import {Ticket} from '../../types/ticket'
 import {useResult} from '../../context/searchContext'
 import {useNavigate} from 'react-router-dom'

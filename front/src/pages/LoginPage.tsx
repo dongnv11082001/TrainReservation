@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {LoginForm} from '../components/pages/login/LoginForm'
 import signinBg from '../asserts/images/signin.jpg'
-import {FlexBox} from '../components/modules/ComonLayout'
+import {FlexBox} from '../components/modules/AdminLayout'
 
 export const LoginPage: React.FC = () => {
   return (
