@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import {Form, Input, Button, Checkbox, Typography, Divider,} from 'antd'
 import {UserOutlined, LockOutlined} from '@ant-design/icons'
@@ -7,17 +7,6 @@ import {useAuth} from '../../../context/authContext'
 import {showNoti} from '../../../utils/showNoti'
 
 const {Title} = Typography
-
-const initialState = {
-  firstName: '',
-  lastName: '',
-  username: '',
-  password: '',
-  confirmPassword: '',
-  phoneNumber: '',
-  avatarURL: '',
-}
-
 
 export const LoginForm: React.FC = () => {
   const {authenticate} = useAuth()

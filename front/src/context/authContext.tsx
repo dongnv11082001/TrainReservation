@@ -12,6 +12,7 @@ type AuthenParams = {
   confirmPassword?: string,
   phoneNumber: string,
   avatarURL?: string,
+  gender: string
 }
 
 interface AuthContextType {
@@ -41,8 +42,10 @@ export const AuthProvider: React.FC = ({children}): ReactElement => {
   }, [])
 
   const authenticate = async (form: AuthenParams) => {
-    const {username, password, phoneNumber, avatarURL, firstName, lastName} = form
+    const {username, password, phoneNumber, avatarURL, firstName, lastName, gender} = form
     const URL = 'https://apihere.com'
+
+    console.log(form)
 
     try {
       if (location.pathname != 'sign_up' && location.pathname != 'sign_in') {
@@ -50,7 +53,7 @@ export const AuthProvider: React.FC = ({children}): ReactElement => {
         return
       }
       const {
-        data: {token, userId, fullName}
+        data: {token, userId, fullName, userGender}
       } = await axios.post(`${URL}/${location.pathname}`, {
         username,
         password,
@@ -58,6 +61,7 @@ export const AuthProvider: React.FC = ({children}): ReactElement => {
         lastName,
         phoneNumber,
         avatarURL,
+        gender
       })
       cookies.set('token', token)
       cookies.set('username', username)
@@ -67,10 +71,11 @@ export const AuthProvider: React.FC = ({children}): ReactElement => {
       if (location.pathname === 'sign_up') {
         cookies.set('phoneNumber', phoneNumber)
         cookies.set('avatarURL', avatarURL)
+        cookies.set('userGender', userGender)
       }
-      showNoti('success', 'Login Successfully')
+      showNoti('success', 'Authenticate Successfully')
     } catch (err) {
-      showNoti('error', 'Login Failed')
+      showNoti('error', 'Authenticate Failed')
     }
   }
 
