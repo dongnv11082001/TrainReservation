@@ -26,14 +26,6 @@ public class ticketController {
         return ticketList;
     }
 
-    //get ticket by id
-    @GetMapping(value = "/search/{id}")
-    public Ticket findTicketById(@PathVariable Long id) {
-        Ticket ticket = ticketRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Ticket with id " + id + " does not exist!"));
-        return ticket;
-    }
-
     //add ticket
     @PostMapping(value = "/add")
     public Ticket creatTicket(@RequestBody Ticket ticket) {
@@ -60,24 +52,12 @@ public class ticketController {
         Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Ticket with id " + id + " does not exist!"));
 
-        ticket.setTicketDepature(updatedTicketDetail.getTicketDepature());
-        ticket.setTicketPrice(updatedTicketDetail.getTicketPrice());
-        ticket.setTicketSeat(updatedTicketDetail.getTicketSeat());
-        ticket.setTicketDestination(updatedTicketDetail.getTicketDestination());
-        ticket.setTicketTrain(updatedTicketDetail.getTicketTrain());
-        ticket.setTicketSeat(updatedTicketDetail.getTicketSeat());
-        ticket.setArrivalDate(updatedTicketDetail.getArrivalDate());
-        ticket.setDepatureDate(updatedTicketDetail.getDepatureDate());
-        ticket.setRoundTrip(updatedTicketDetail.isRoundTrip());
-        ticket.setTravelDuration(updatedTicketDetail.getTravelDuration());
-
         Ticket updatedTicket = ticketRepository.save(ticket);
         return ResponseEntity.ok(updatedTicket);
-
     }
 
-    //get searched ticket
-  
+    //get searched tickets
+
 
 }
 

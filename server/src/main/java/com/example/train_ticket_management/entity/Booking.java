@@ -1,73 +1,51 @@
 package com.example.train_ticket_management.entity;
 
+import lombok.*;
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Entity
 @Table(name = "Booking")
+
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "bookingID", nullable = false)
-    private long bookingID;
+    @Column(name = "id", nullable = false)
+    private long id;
 
-    @Column(name = "isBooked", nullable = false)
-    private boolean isBooked;
+    @Column(name = "status", nullable = false)
+    private String status;
 
-    @Column(name = "bookingDate", nullable = false)
-    private Date bookingDate;
+    @Column(name = "isRoundTrip", nullable = false)
+    private boolean isRoundTrip;
+
+    @Column(name = "passengers", nullable = false)
+    private int passengers;
+
+    @Column(name = "createdAt", nullable = false)
+    private Date createdAt;
+
+    @Column(name = "deletedAt")
+    private Date deletedAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_user_id")
     private User user;
 
-    @OneToOne
-    private Ticket ticket;
-
-    public Booking(boolean isBooked, Date bookingDate, User user, Ticket ticket) {
-        this.isBooked = isBooked;
-        this.bookingDate = bookingDate;
-        this.user = user;
-        this.ticket = ticket;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Booking booking = (Booking) o;
+        return false;
     }
 
-    public long getBookingID() {
-        return bookingID;
-    }
-
-    public void setBookingID(int bookingID) {
-        this.bookingID = bookingID;
-    }
-
-    public boolean isBooked() {
-        return isBooked;
-    }
-
-    public void setBooked(boolean booked) {
-        isBooked = booked;
-    }
-
-    public Date getBookingDate() {
-        return bookingDate;
-    }
-
-    public void setBookingDate(Date bookingDate) {
-        this.bookingDate = bookingDate;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Ticket getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }
