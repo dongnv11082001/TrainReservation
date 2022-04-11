@@ -1,37 +1,63 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {Slider, Typography} from 'antd'
+import moment from 'moment'
 import {FlexBox} from '../../modules/AdminLayout'
 import {DawnIcon} from '../../../asserts/icons/DawnIcon'
 import {MorningIcon} from '../../../asserts/icons/MorningIcon'
 import {AfternoonIcon} from '../../../asserts/icons/AfternoonIcon'
 import {EveningIcon} from '../../../asserts/icons/EveningIcon'
+import {filterParams} from '../../../hooks/useFilter'
+
+type ConfigCenterProps = {
+  filter: (props: Omit<filterParams, 'tickets'>) => void
+}
 
 interface FilterParams {
   airline?: string
-  priceUpperBound: number
+  priceUpperBound?: number
   priceBelowBound: number
   departureTime?: Date
-  ticketClass: 'chair' | 'soft' | 'bed'
+  ticketClass?: 'chair' | 'soft' | 'bed'
 }
 
-const initialFilterData: FilterParams = {
+const filterData: FilterParams = {
   airline: 'VN Railway',
-  priceUpperBound: 8000000,
-  priceBelowBound: 0,
-  ticketClass: 'chair'
+  priceUpperBound: 100,
+  priceBelowBound: 0
+}
+
+const timeFilterData = {
+  format: 'HH:mm',
+  data: {
+    dawn: [
+      new Date(new Date().setHours(0, 0)),
+      new Date(new Date().setHours(6, 0))
+    ],
+    morning: [
+      new Date(new Date().setHours(6, 0)),
+      new Date(new Date().setHours(12, 0))
+    ],
+    afternoon: [
+      new Date(new Date().setHours(12, 0)),
+      new Date(new Date().setHours(18, 0))
+    ],
+    evening: [
+      new Date(new Date().setHours(18, 0)),
+      new Date(new Date().setHours(24, 0))
+    ],
+  }
 }
 
 const {Text} = Typography
 
-export const ConfigCenter: React.FC = () => {
-  const [filter, setFilter] = useState<FilterParams>(initialFilterData)
+export const ConfigCenter: React.FC<ConfigCenterProps> = ({filter}) => {
 
   const filterHeader = () => {
     return (
       <FlexBox style={{paddingBottom: 10, borderBottom: '1px solid #ddd', justifyContent: 'space-between'}}>
         <BoldText style={{fontSize: '1.2rem'}}>Filter</BoldText>
-        <CancelledFilter style={{fontSize: '1.2rem'}} onClick={() => setFilter(initialFilterData)}>
+        <CancelledFilter style={{fontSize: '1.2rem'}} onClick={() => filter({})}>
           Clear
         </CancelledFilter>
       </FlexBox>)
@@ -40,13 +66,12 @@ export const ConfigCenter: React.FC = () => {
   const filterPrice = () => {
     return <FlexColumn>
       <BoldText>Price</BoldText>
-      <Text>{filter.priceBelowBound.toLocaleString()}đ - {filter.priceUpperBound.toLocaleString()}đ</Text>
+      <Text>{filterData.priceBelowBound?.toLocaleString()}đ - {filterData.priceUpperBound?.toLocaleString()}đ</Text>
       <Slider
-        min={0}
-        max={800000}
+        min={filterData.priceBelowBound}
+        max={filterData.priceUpperBound}
         step={1}
-        // onChange={this.onChange}
-        // value={typeof inputValue === 'number' ? inputValue : 0}
+        onChange={(values) => filter({priceRange: [filterData.priceBelowBound, values]})}
       />
     </FlexColumn>
   }
@@ -55,25 +80,37 @@ export const ConfigCenter: React.FC = () => {
     return <FlexColumn>
       <BoldText>Take off time</BoldText>
       <Grid>
-        <Cell>
+        <Cell onClick={() => filter({timeRange: timeFilterData.data.dawn})}>
           <DawnIcon/>
           <Text>Dawn</Text>
-          <BoldText>00:00 - 06:00</BoldText>
+          <BoldText>
+            {moment(timeFilterData.data.dawn[0]).format(timeFilterData.format) + ' - '}
+            {moment(timeFilterData.data.dawn[1]).format(timeFilterData.format)}
+          </BoldText>
         </Cell>
-        <Cell>
+        <Cell onClick={() => filter({timeRange: timeFilterData.data.morning})}>
           <MorningIcon/>
           <Text>Morning</Text>
-          <BoldText>06:00 - 12:00</BoldText>
+          <BoldText>
+            {moment(timeFilterData.data.morning[0]).format(timeFilterData.format) + ' - '}
+            {moment(timeFilterData.data.morning[1]).format(timeFilterData.format)}
+          </BoldText>
         </Cell>
-        <Cell>
+        <Cell onClick={() => filter({timeRange: timeFilterData.data.afternoon})}>
           <AfternoonIcon/>
           <Text>Afternoon</Text>
-          <BoldText>12:00 - 18:00</BoldText>
+          <BoldText>
+            {moment(timeFilterData.data.afternoon[0]).format(timeFilterData.format) + ' - '}
+            {moment(timeFilterData.data.afternoon[1]).format(timeFilterData.format)}
+          </BoldText>
         </Cell>
-        <Cell>
+        <Cell onClick={() => filter({timeRange: timeFilterData.data.evening})}>
           <EveningIcon/>
           <Text>Evening</Text>
-          <BoldText>18:00 - 24:00</BoldText>
+          <BoldText>
+            {moment(timeFilterData.data.evening[0]).format(timeFilterData.format) + ' - '}
+            {moment(timeFilterData.data.evening[1]).format(timeFilterData.format)}
+          </BoldText>
         </Cell>
       </Grid>
     </FlexColumn>
