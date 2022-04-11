@@ -2,7 +2,6 @@ import {Offer} from './offer'
 
 export interface User {
   id?: number
-  offers?: number[]
   purchasedHistories?: Offer[]
   email?: string
   phoneNumber?: string

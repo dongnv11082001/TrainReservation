@@ -25,36 +25,36 @@ export const LoginForm: React.FC = () => {
       >
         <Form.Item
           name="username"
-          rules={[{required: true, message: 'Vui lòng nhập tên đăng nhập!'}]}
+          rules={[{required: true, message: 'Please enter username!'}]}
         >
           <Input style={{height: 50}} prefix={<UserOutlined className="site-form-item-icon"/>}
-            placeholder="Tên đăng nhập"/>
+            placeholder="Username"/>
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{required: true, message: 'Vui lòng nhập mật khẩu'}]}
+          rules={[{required: true, message: 'Enter password'}]}
         >
           <Input
             style={{height: 50}}
             prefix={<LockOutlined className="site-form-item-icon"/>}
             type="password"
-            placeholder="Mật khẩu"
+            placeholder="Password"
           />
         </Form.Item>
         <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Lưu mật khẩu</Checkbox>
+            <Checkbox>Save Password</Checkbox>
           </Form.Item>
           <Link to='/forget_password'>
-            Quên mật khẩu
+            Forgot Password
           </Link>
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Đăng nhập
+            Sign in
           </Button>
-          <span style={{margin: '0 10px 0'}}>Hoặc</span>
-          <Link to="/sign_up">Đăng ký ngay</Link>
+          <span style={{margin: '0 10px 0'}}>or</span>
+          <Link to="/sign_up">Create an account</Link>
         </Form.Item>
       </Form>
     </FormWrapper>

@@ -29,6 +29,11 @@ const AuthContext = createContext<AuthContextType>({
 
 const cookies = new Cookies()
 
+const cookiesExpireOption = {
+  path: '/',
+  expires: new Date(Date.now() + 172800000)
+}
+
 export function useAuth(): AuthContextType {
   return useContext(AuthContext)
 }
@@ -44,8 +49,6 @@ export const AuthProvider: React.FC = ({children}): ReactElement => {
   const authenticate = async (form: AuthenParams) => {
     const {username, password, phoneNumber, avatarURL, firstName, lastName, gender} = form
     const URL = 'https://apihere.com'
-
-    console.log(form)
 
     try {
       if (location.pathname != 'sign_up' && location.pathname != 'sign_in') {
@@ -63,15 +66,15 @@ export const AuthProvider: React.FC = ({children}): ReactElement => {
         avatarURL,
         gender
       })
-      cookies.set('token', token)
-      cookies.set('username', username)
-      cookies.set('fullName', fullName)
-      cookies.set('userId', userId)
+      cookies.set('token', token, cookiesExpireOption)
+      cookies.set('username', username, cookiesExpireOption)
+      cookies.set('fullName', fullName, cookiesExpireOption)
+      cookies.set('userId', userId, cookiesExpireOption)
 
       if (location.pathname === 'sign_up') {
-        cookies.set('phoneNumber', phoneNumber)
-        cookies.set('avatarURL', avatarURL)
-        cookies.set('userGender', userGender)
+        cookies.set('phoneNumber', phoneNumber, cookiesExpireOption)
+        cookies.set('avatarURL', avatarURL, cookiesExpireOption)
+        cookies.set('userGender', userGender, cookiesExpireOption)
       }
       showNoti('success', 'Authenticate Successfully')
     } catch (err) {

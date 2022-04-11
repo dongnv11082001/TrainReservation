@@ -4,10 +4,11 @@ import {EditableTable} from '../../components/modules/EditableTable'
 import {Ticket} from '../../types/ticket'
 import {useLoading} from '../../context/loadingContext'
 import {AdminLayout} from '../../components/modules/AdminLayout'
+import {LoadingOverlay} from '../../components/elements/LoadingOverlay'
 
 export const OfferManagePage: React.FC = () => {
   const [offers, setOffers] = useState<Ticket[]>([])
-  const {setLoading} = useLoading()
+  const {loading, setLoading} = useLoading()
 
   const fetchTickets = async () => {
     const response = await axios.get<Ticket[]>(
@@ -22,9 +23,14 @@ export const OfferManagePage: React.FC = () => {
     fetchTickets()
   }, [])
 
+  if (loading) <LoadingOverlay/>
+
   return (
-    <AdminLayout searchText="Search for offers" tableHeading="Offer management">
-      <EditableTable dataSource={offers}/>
-    </AdminLayout>
+    <>
+      {!loading && <AdminLayout searchText="Search for offers" tableHeading="Offer management">
+        <EditableTable dataSource={offers}/>
+      </AdminLayout>
+      }
+    </>
   )
 }

@@ -18,7 +18,7 @@ export const ResultTicket: React.FC<ResultTicketProps> = ({ticket}) => {
   const navigate = useNavigate()
   const {contextRoundTrip} = useResult()
   const {inCartTickets, setInCartTickets} = useCartTickets()
-  const timeFormat = 'hh:mm'
+  const timeFormat = 'HH:mm'
   const dateFormat = 'DD/MM/YYYY'
 
   const handleSelect = () => {
