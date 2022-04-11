@@ -1,60 +1,15 @@
-import React, {useState} from 'react'
-import Cookies from 'universal-cookie'
-import axios from 'axios'
+import React from 'react'
 import {Link} from 'react-router-dom'
-import {Form, Input, Button, Checkbox, Typography, Divider} from 'antd'
+import {Form, Input, Button, Checkbox, Typography, Divider,} from 'antd'
 import {UserOutlined, LockOutlined} from '@ant-design/icons'
 import styled from 'styled-components'
+import {useAuth} from '../../../context/authContext'
+import {showNoti} from '../../../utils/showNoti'
 
-const cookies = new Cookies()
 const {Title} = Typography
 
-const initialState = {
-  firstName: '',
-  lastName: '',
-  username: '',
-  password: '',
-  confirmPassword: '',
-  phoneNumber: '',
-  avatarURL: '',
-}
-
 export const LoginForm: React.FC = () => {
-  const [form, setForm] = useState(initialState)
-  const [isSignup, setIsSignup] = useState(true)
-
-  const handleChange = (e: React.FormEvent) => {
-    setForm({...form, [e.currentTarget.tagName]: e.currentTarget.textContent})
-  }
-
-  const handleSubmit = async () => {
-    const {username, password, phoneNumber, avatarURL, firstName, lastName} = form
-    const URL = 'https://apihere.com'
-    const {
-      data: {token, userId, hashedPassword, fullName},
-    } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
-      username,
-      password,
-      firstName,
-      lastName,
-      phoneNumber,
-      avatarURL,
-    })
-    cookies.set('token', token)
-    cookies.set('username', username)
-    cookies.set('fullName', fullName)
-    cookies.set('userId', userId)
-    if (isSignup) {
-      cookies.set('phoneNumber', phoneNumber)
-      cookies.set('avatarURL', avatarURL)
-      cookies.set('hashedPassword', hashedPassword)
-    }
-    window.location.reload()
-  }
-
-  const switchMode = () => {
-    setIsSignup((prevIsSignup) => !prevIsSignup)
-  }
+  const {authenticate} = useAuth()
 
   return (
     <FormWrapper>
@@ -65,7 +20,8 @@ export const LoginForm: React.FC = () => {
         name="normal_login"
         className="login-form"
         initialValues={{remember: true}}
-        onFinish={handleSubmit}
+        onFinishFailed={() => showNoti('error', 'Login Failed')}
+        onFinish={authenticate}
       >
         <Form.Item
           name="username"

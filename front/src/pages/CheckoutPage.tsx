@@ -4,7 +4,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
 import {CheckCircleFilled} from '@ant-design/icons'
-import {CommonLayout, FlexBox} from '../components/modules/ComonLayout'
+import {FlexBox} from '../components/modules/AdminLayout'
 import {Contact} from '../components/pages/checkout/Contact'
 import {Payment} from '../components/pages/checkout/Payment'
 import {Confirm} from '../components/pages/checkout/Confirm'
@@ -19,6 +19,7 @@ import {LoadingOverlay} from '../components/elements/LoadingOverlay'
 import {useOffer} from '../context/offerContext'
 import {useResult} from '../context/searchContext'
 import {Offer} from '../types/offer'
+import {UserLayout} from '../components/modules/UserLayout'
 
 const {Text} = Typography
 
@@ -100,7 +101,7 @@ export const CheckoutPage = () => {
   if (!inCartTickets || inCartTickets.length === 0) return <LoadingOverlay/>
 
   return (
-    <CommonLayout>
+    <UserLayout>
       <Banner style={{height: '35vh'}} background={bannerBackground}/>
       <Wrapper>
         <InformationFill>
@@ -111,7 +112,7 @@ export const CheckoutPage = () => {
           <div>
             <Title>Checkout</Title>
           </div>
-          <FormContainer style={{width: `${stages >= 3 && 600}`}}>
+          <FormContainer style={{width: stages >= 3 ? `${600}px` : ''}}>
             {stages === 0 &&
                 <Contact
                   userInfor={userOffer?.user}
@@ -141,7 +142,7 @@ export const CheckoutPage = () => {
         </InformationFill>
         {stages < 3 && <Order incartTickets={inCartTickets}/>}
       </Wrapper>
-    </CommonLayout>
+    </UserLayout>
   )
 }
 const Wrapper = styled(FlexBox)`

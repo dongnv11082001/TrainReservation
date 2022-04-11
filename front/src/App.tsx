@@ -16,29 +16,32 @@ import {UserManagePage} from './pages/admin/UserManagePage'
 import {AdminHome} from './pages/admin/AdminHome'
 import {SearchProvider} from './context/searchContext'
 import {OfferProvider} from './context/offerContext'
+import {AuthProvider} from './context/authContext'
 
 function App() {
   return (
     <LoadingProvider>
-      <SearchProvider>
-        <CartTicketsProvider>
-          <OfferProvider>
-            <Routes>
-              <Route path="/" element={<HomePage/>}/>
-              <Route path="/result" element={<ResultPage/>}/>
-              <Route path="/checkout" element={<CheckoutPage/>}/>
-              <Route path="/admin" element={<AdminHome/>}/>
-              <Route path="/admin/offers" element={<OfferManagePage/>}/>
-              <Route path="/admin/tickets" element={<TicketManagePage/>}/>
-              <Route path="/admin/users" element={<UserManagePage/>}/>
-              <Route path='/sign_in' element={<LoginPage/>}/>
-              <Route path='/sign_up' element={<SignUpPage/>}/>
-              <Route path="*" element={<NotFound/>}/>
-            </Routes>
-            <GlobalStyle/>
-          </OfferProvider>
-        </CartTicketsProvider>
-      </SearchProvider>
+      <AuthProvider>
+        <SearchProvider>
+          <CartTicketsProvider>
+            <OfferProvider>
+              <Routes>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/result" element={<ResultPage/>}/>
+                <Route path="/checkout" element={<CheckoutPage/>}/>
+                <Route path="/admin" element={<AdminHome/>}/>
+                <Route path="/admin/offers" element={<OfferManagePage/>}/>
+                <Route path="/admin/tickets" element={<TicketManagePage/>}/>
+                <Route path="/admin/users" element={<UserManagePage/>}/>
+                <Route path='/sign_in' element={<LoginPage/>}/>
+                <Route path='/sign_up' element={<SignUpPage/>}/>
+                <Route path="*" element={<NotFound/>}/>
+              </Routes>
+              <GlobalStyle/>
+            </OfferProvider>
+          </CartTicketsProvider>
+        </SearchProvider>
+      </AuthProvider>
     </LoadingProvider>
   )
 }

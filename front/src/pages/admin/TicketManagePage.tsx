@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import {AdminLayout} from '../../components/elements/AdminLayout'
+import axios from 'axios'
 import {EditableTable} from '../../components/modules/EditableTable'
 import {Ticket} from '../../types/ticket'
 import {useLoading} from '../../context/loadingContext'
-import axios from 'axios'
+import {AdminLayout} from '../../components/modules/AdminLayout'
 
 export const TicketManagePage: React.FC = () => {
   const [tickets, setTickets] = useState<Ticket[]>([])

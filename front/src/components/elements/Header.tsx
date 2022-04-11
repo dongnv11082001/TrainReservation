@@ -4,7 +4,7 @@ import {SlackSquareFilled} from '@ant-design/icons'
 import {Link} from 'react-router-dom'
 
 type HeaderProps = {
-  isDominated: boolean
+  isDominated?: boolean
 }
 
 export const Header: React.FC<HeaderProps> = ({isDominated}) => {
@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({isDominated}) => {
   )
 }
 
-const HeaderWrapper = styled.div<{ isShrink: boolean }>`
+const HeaderWrapper = styled.div<{ isShrink?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;

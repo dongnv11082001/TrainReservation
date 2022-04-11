@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Slider, Typography} from 'antd'
-import {FlexBox} from '../../modules/ComonLayout'
+import {FlexBox} from '../../modules/AdminLayout'
 import {DawnIcon} from '../../../asserts/icons/DawnIcon'
 import {MorningIcon} from '../../../asserts/icons/MorningIcon'
 import {AfternoonIcon} from '../../../asserts/icons/AfternoonIcon'

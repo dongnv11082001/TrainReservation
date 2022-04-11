@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/macro'
 import {Button, List, Typography} from 'antd'
-import {CommonLayout, FlexBox} from '../../modules/ComonLayout'
+import {FlexBox} from '../../modules/AdminLayout'
 import {SearchPanel} from '../../modules/SearchPanel'
 import {HomeTicket} from './HomeTicket'
 import {Ticket} from '../../../types/ticket'
@@ -9,6 +9,7 @@ import trainBackground from '../../../asserts/images/train.png'
 import {Services} from './Services'
 import {DailyForecast} from './DailyForecast'
 import {ForecastCenter} from './ForecastCenter'
+import {UserLayout} from '../../modules/UserLayout'
 
 type ServiceProps = {
   title: string
@@ -45,7 +46,7 @@ const Layout: React.FC<HomeProps> = ({services, tickets, condition, city, foreca
   )
 
   return (
-    <CommonLayout>
+    <UserLayout>
       <Banner background={trainBackground}>
         <SearchPanel/>
       </Banner>
@@ -74,12 +75,12 @@ const Layout: React.FC<HomeProps> = ({services, tickets, condition, city, foreca
       />
       <Heading level={2}>Weather Forecast</Heading>
       <WeatherBox>
-        {condition && city && (
+        {condition.length > 0 && city && (
           <DailyForecast condition={condition} city={city}/>
         )}
-        {forecast && <ForecastCenter forecast={forecast}/>}
+        {forecast.length > 0 && <ForecastCenter forecast={forecast}/>}
       </WeatherBox>
-    </CommonLayout>
+    </UserLayout>
   )
 }
 export default Layout

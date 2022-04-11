@@ -1,7 +1,7 @@
 import React from 'react'
 import {Spin} from 'antd'
 import {Link} from 'react-router-dom'
-import {FlexBox} from '../modules/ComonLayout'
+import {FlexBox} from '../modules/AdminLayout'
 
 export const LoadingOverlay: React.FC = () => {
   return <Link to='/'>

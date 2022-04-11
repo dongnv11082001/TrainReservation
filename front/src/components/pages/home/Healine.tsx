@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import {Typography} from 'antd'
 import _ from 'lodash'
-import {FlexBox} from '../../modules/ComonLayout'
-import {getIcon} from '../../../api/utils/getIcon'
+import {FlexBox} from '../../modules/AdminLayout'
+import {getIcon} from '../../../utils/getIcon'
 
 type HeadlineProps = {
   city: string

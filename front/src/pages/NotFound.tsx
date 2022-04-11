@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {Typography} from 'antd'
 import {Link} from 'react-router-dom'
-import {FlexBox} from '../components/modules/ComonLayout'
+import {FlexBox} from '../components/modules/AdminLayout'
 import notfoundImage from '../asserts/images/notfound.svg'
 
 const {Title} = Typography

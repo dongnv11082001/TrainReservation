@@ -2,7 +2,6 @@ import React from 'react'
 import {
   Form,
   Input,
-  Cascader,
   Select,
   Checkbox,
   Button,
@@ -10,43 +9,11 @@ import {
 } from 'antd'
 import {Link} from 'react-router-dom'
 import {FormWrapper} from '../login/LoginForm'
+import {useAuth} from '../../../context/authContext'
 
 const {Title} = Typography
 const {Option} = Select
-const residences = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-]
+
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -79,11 +46,8 @@ const tailFormItemLayout = {
 }
 
 export const SignUpForm: React.FC = () => {
+  const {authenticate} = useAuth()
   const [form] = Form.useForm()
-
-  const onFinish = (values: any) => {
-    console.log('Received values of form: ', values)
-  }
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -105,9 +69,8 @@ export const SignUpForm: React.FC = () => {
       {...formItemLayout}
       form={form}
       name="register"
-      onFinish={onFinish}
+      onFinish={authenticate}
       initialValues={{
-        residence: ['Hà Nội', 'TP.HCM', 'Đà Nẵng'],
         prefix: '84',
       }}
       scrollToFirstError
@@ -180,21 +143,6 @@ export const SignUpForm: React.FC = () => {
       >
         <Input/>
       </Form.Item>
-
-      <Form.Item
-        name="residence"
-        label="Residence"
-        rules={[
-          {
-            type: 'array',
-            required: true,
-            message: 'Please enter your address!',
-          },
-        ]}
-      >
-        <Cascader options={residences}/>
-      </Form.Item>
-
       <Form.Item
         name="phone"
         label="Phone Number"
@@ -212,7 +160,6 @@ export const SignUpForm: React.FC = () => {
           }}
         />
       </Form.Item>
-
       <Form.Item
         name="gender"
         label="Gender"
@@ -236,7 +183,7 @@ export const SignUpForm: React.FC = () => {
         rules={[
           {
             validator: (_, value) =>
-              value ? Promise.resolve() : Promise.reject(new Error('Hãy chấp nhận thỏa thuận để tiếp tục sử dụng dịch vụ')),
+              value ? Promise.resolve() : Promise.reject(new Error('Please accept agreement')),
           },
         ]}
         {...tailFormItemLayout}

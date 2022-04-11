@@ -3,10 +3,9 @@ import axios from 'axios'
 import {Table, Typography} from 'antd'
 import {useLoading} from '../../context/loadingContext'
 import {Ticket} from '../../types/ticket'
-import {CommonLayout} from '../../components/modules/ComonLayout'
+import {AdminLayout, Spacing} from '../../components/modules/AdminLayout'
 import {Offer} from '../../types/offer'
 import {User} from '../../types/user'
-import {Spacing} from '../../components/elements/AdminLayout'
 
 type Item = Offer | Ticket | User
 
@@ -45,7 +44,7 @@ export const AdminHome: React.FC = () => {
   if (loading) return <>Home Loading...</>
 
   return (
-    <CommonLayout isAdmin>
+    <AdminLayout>
       <Spacing>
         <Title level={3}>Tickets Management</Title>
         <Table dataSource={data} columns={createColumn(data[0])}/>
@@ -54,6 +53,6 @@ export const AdminHome: React.FC = () => {
         <Title level={3}>Users Management</Title>
         <Table dataSource={data} columns={createColumn(data[0])}/>
       </Spacing>
-    </CommonLayout>
+    </AdminLayout>
   )
 }

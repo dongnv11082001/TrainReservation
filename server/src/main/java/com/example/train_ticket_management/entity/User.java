@@ -1,104 +1,74 @@
 package com.example.train_ticket_management.entity;
 
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Entity
+@Table(name = "User")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userID", nullable = false)
-    private long userID;
+    @Column(name = "id", nullable = false)
+    private long id;
 
-    @Length(min=3, max = 45)
-    @Column(name = "userName", nullable = false)
-    private String userName;
+    @Length(min = 3, max = 45)
+    @Column(name = "username", nullable = false)
+    private String username;
 
-    @Length(min=3, max = 45)
-    @Column(name = "userPassword", nullable = false)
-    private String userPassword;
+    @Length(min = 3, max = 45)
+    @Column(name = "hashedPassword", nullable = false)
+    private String hashedPassword;
 
-    @Length(min=3, max = 45)
-    @Column(name = "userFirstName", nullable = false)
-    private String userFirstName;
+    @Length(min = 3, max = 45)
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
 
-    @Length(min=3, max = 45)
-    @Column(name = "userLastName", nullable = false)
-    private String userLastName;
+    @Length(min = 3, max = 45)
+    @Column(name = "lastName", nullable = false)
+    private String lastName;
 
-    @Length(min=3, max = 45)
-    @Column(name = "userEmail", nullable = false)
-    private String userEmail;
+    @Length(min = 3, max = 10)
+    @Column(name = "Gender")
+    private String gender;
 
-    @Column(name = "createdDate", nullable = false)
-    private Date createdDate;
+    @Length(min = 3, max = 20)
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
 
-    @Column(name = "updateDate", nullable = false)
-    private Date updateDate;
+    @Length(min = 3, max = 45)
+    @Column(name = "email", nullable = false)
+    private String email;
 
-    public long getUserID() {
-        return userID;
+    @Column(name = "createdAt", nullable = false)
+    private Date createdAt;
+
+    @Column(name = "avatarURL")
+    private String avatarURL;
+
+    @Column(name = "updatedAt")
+    private Date updatedAt;
+
+    @Column(name = "deletedAt")
+    private Date deletedAt;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        User user = (User) o;
+        return false;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public String getUserFirstName() {
-        return userFirstName;
-    }
-
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
-    }
-
-    public String getUserLastName() {
-        return userLastName;
-    }
-
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }
