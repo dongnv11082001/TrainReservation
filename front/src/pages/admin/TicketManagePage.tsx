@@ -4,10 +4,11 @@ import {EditableTable} from '../../components/modules/EditableTable'
 import {Ticket} from '../../types/ticket'
 import {useLoading} from '../../context/loadingContext'
 import {AdminLayout} from '../../components/modules/AdminLayout'
+import {LoadingOverlay} from '../../components/elements/LoadingOverlay'
 
 export const TicketManagePage: React.FC = () => {
   const [tickets, setTickets] = useState<Ticket[]>([])
-  const {setLoading} = useLoading()
+  const {loading, setLoading} = useLoading()
   const fetchTickets = async () => {
     const response = await axios.get<Ticket[]>(
       'https://622b018b14ccb950d22be17d.mockapi.io/tickets'
@@ -21,7 +22,11 @@ export const TicketManagePage: React.FC = () => {
     fetchTickets()
   }, [])
 
-  return <AdminLayout searchText="Search for tickets" tableHeading="Ticket management">
-    <EditableTable dataSource={tickets}/>
-  </AdminLayout>
+  if (loading) <LoadingOverlay/>
+
+  return <>
+    {!loading && <AdminLayout searchText="Search for tickets" tableHeading="Ticket management">
+      <EditableTable dataSource={tickets}/>
+    </AdminLayout>}
+  </>
 }

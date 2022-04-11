@@ -3,7 +3,7 @@ export interface Ticket {
   destination?: string
   departure?: string
   departureTime: Date
-  arrivalTime?: Date
+  arrivalTime: Date
   price: number
   ticketClass?: 'soft' | 'hard' | 'bed'
   airline?: string

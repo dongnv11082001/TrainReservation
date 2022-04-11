@@ -98,10 +98,15 @@ export const EditableTable: React.FC<EditableTableProps> = ({dataSource}) => {
   }
 
   const createColumns = (sampleData: Item, columnWith?: string[]) => {
-    const dataKeys = Object.keys(sampleData)
+    const keys = Object.keys(sampleData)
+    const dataKeys = [
+      keys.find(item => item === 'id'),
+      ...keys.filter(item => item !== 'id'),
+    ]
+
     const outputColumns = dataKeys.map((key, index) => (
       {
-        title: key.toUpperCase(),
+        title: key?.toUpperCase(),
         dataIndex: key,
         key: key,
         width: columnWith && columnWith[index],

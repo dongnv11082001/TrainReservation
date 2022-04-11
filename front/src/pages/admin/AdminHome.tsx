@@ -6,6 +6,8 @@ import {Ticket} from '../../types/ticket'
 import {AdminLayout, Spacing} from '../../components/modules/AdminLayout'
 import {Offer} from '../../types/offer'
 import {User} from '../../types/user'
+import {LoadingOverlay} from '../../components/elements/LoadingOverlay'
+import {EditableTable} from '../../components/modules/EditableTable'
 
 type Item = Offer | Ticket | User
 
@@ -41,18 +43,20 @@ export const AdminHome: React.FC = () => {
     fetchTickets()
   }, [])
 
-  if (loading) return <>Home Loading...</>
+  if (loading) return <LoadingOverlay/>
 
   return (
-    <AdminLayout>
-      <Spacing>
-        <Title level={3}>Tickets Management</Title>
-        <Table dataSource={data} columns={createColumn(data[0])}/>
-        <Title level={3}>Offers Management</Title>
-        <Table dataSource={data} columns={createColumn(data[0])}/>
-        <Title level={3}>Users Management</Title>
-        <Table dataSource={data} columns={createColumn(data[0])}/>
-      </Spacing>
-    </AdminLayout>
+    <>
+      {!loading && <AdminLayout>
+        <Spacing>
+          <Title level={3}>Tickets Management</Title>
+          <EditableTable dataSource={data}/>
+          <Title level={3}>Offers Management</Title>
+          <EditableTable dataSource={data}/>
+          <Title level={3}>Users Management</Title>
+          <EditableTable dataSource={data}/>
+        </Spacing>
+      </AdminLayout>}
+    </>
   )
 }
