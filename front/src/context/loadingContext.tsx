@@ -3,7 +3,7 @@ import React, {
   useContext,
   createContext,
   Dispatch,
-  ReactElement
+  ReactElement,
 } from 'react'
 
 interface LoadingContextType {
@@ -23,7 +23,6 @@ export function useLoading() {
 export const LoadingProvider: React.FC = ({children}): ReactElement => {
   const [loading, setLoading] = useState(true)
   const value = {loading, setLoading}
-
   return (
     <LoadingContext.Provider value={value}>{children}</LoadingContext.Provider>
   )
