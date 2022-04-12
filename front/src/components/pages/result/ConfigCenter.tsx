@@ -120,9 +120,9 @@ export const ConfigCenter: React.FC<ConfigCenterProps> = ({filter}) => {
     return <FlexColumn>
       <BoldText>Ticket Class</BoldText>
       <Grid>
-        <Cell>Soft chair</Cell>
-        <Cell>Long chair</Cell>
-        <Cell>Bed</Cell>
+        <Cell onClick={() => filter({ticketClass: 'soft'})}>Soft chair</Cell>
+        <Cell onClick={() => filter({ticketClass: 'hard'})}>Long chair</Cell>
+        <Cell onClick={() => filter({ticketClass: 'bed'})}>Bed</Cell>
       </Grid>
     </FlexColumn>
   }

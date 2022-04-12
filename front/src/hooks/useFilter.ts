@@ -33,13 +33,12 @@ export const useFilter = ({tickets, filterType, ticketClass, priceRange, timeRan
   if (priceRange) filteredTickets = filteredTickets.filter(ticket => ticket.price > priceRange[0] && ticket.price < priceRange[1])
   if (timeRange) {
     filteredTickets = filteredTickets.filter(ticket => {
-      const ticketDepartureTime = moment(ticket.departureTime, 'HH:mm')
-      const startTime = moment(timeRange[0], 'HH:mm')
-      const endTime = moment(timeRange[1], 'HH:mm')
-      return ticketDepartureTime.isBetween(startTime, endTime)
+      const ticketDepartureTime = moment(ticket.departureTime).hour()
+      const startTime = moment(timeRange[0]).hours()
+      const endTime = moment(timeRange[1]).hours()
+      return ticketDepartureTime >= startTime && ticketDepartureTime <= endTime
     })
   }
-  console.log(filteredTickets)
 
   return filteredTickets
 }
