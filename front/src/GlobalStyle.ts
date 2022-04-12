@@ -29,7 +29,6 @@ export const GlobalStyle = createGlobalStyle`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 10px;
-    padding: 2rem 5%;
   }
   .ant-spin-container,.ant-spin-nested-loading,.ant-list{
     width: 100% !important;
