@@ -72,7 +72,11 @@ export const ConfigCenter: React.FC<ConfigCenterProps> = ({filter}) => {
     return (
       <FlexBox style={{paddingBottom: 10, borderBottom: '1px solid #ddd', justifyContent: 'space-between'}}>
         <BoldText style={{fontSize: '1.2rem'}}>Filter</BoldText>
-        <CancelledFilter style={{fontSize: '1.2rem', cursor: 'pointer'}} onClick={() => filter({})}>
+        <CancelledFilter style={{fontSize: '1.2rem', cursor: 'pointer'}} onClick={() => {
+          filter({})
+          setSelectedClass(undefined)
+          setSelectedTime(undefined)
+        }}>
           Clear
         </CancelledFilter>
       </FlexBox>)
