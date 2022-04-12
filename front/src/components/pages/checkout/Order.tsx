@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {Divider, List, Typography} from 'antd'
 import {Ticket} from '../../../types/ticket'
-import {CartTicket} from './CartTicket'
+import {CartTicket} from '../../elements/CartTicket'
 import {useResult} from '../../../context/searchContext'
 import {TextSize20} from '../../../GlobalStyle'
 

@@ -1,13 +1,13 @@
 import React from 'react'
 import moment from 'moment'
-import {TextSize20} from '../../../GlobalStyle'
+import {TextSize20} from '../../GlobalStyle'
 import {SwapRightOutlined} from '@ant-design/icons'
 import styled from 'styled-components'
 
 type Props = {
   arrivalTime: Date
   departureTime: Date
-  destination: string
+  destination?: string
   price: number
   ticketClass?: string
 }
@@ -19,7 +19,7 @@ export const CartTicket: React.FC<Props> = ({
   price,
   ticketClass
 }) => {
-  const timeFormat = 'hh:mm'
+  const timeFormat = 'HH:mm'
   const dateFormat = 'DD/MM/YYYY'
 
   return (
