@@ -5,41 +5,47 @@ import {Link} from 'react-router-dom'
 import {LoginButton} from './LoginButton'
 import {LogoutButton} from './LogoutButton'
 import {Button, notification} from 'antd'
+import {useAuth} from '../../context/authContext'
 
 type HeaderProps = {
     isDominated?: boolean
 }
 
-const openNotification = () => {
-  notification.open({
-    message: 'Log out',
-    description: 'Bye, see you again!',
-    icon: <SmileOutlined style={{ color: '#108ee9' }} />,
-    placement:'bottomRight'
-  })
-}
 
 export const Header: React.FC<HeaderProps> = ({isDominated}) => {
+  const {isLogin, logout} = useAuth()
+
+  const openNotification = () => {
+    notification.open({
+      message: 'Log out',
+      description: 'Bye, see you again!',
+      icon: <SmileOutlined style={{color: '#108ee9'}}/>,
+      placement: 'bottomRight'
+    })
+    logout()
+  }
   return (
     <HeaderWrapper isShrink={isDominated}>
       <Logo to='/'>
         <SlackSquareFilled style={{marginRight: 10, fontSize: '2rem'}}/>
-                Train Reservation
+        Train Reservation
       </Logo>
-      <div style={{fontSize: '1.2em', display: 'flex'}}>
+      <ButtonWrapper>
         <Link to={'sign_in'}><LoginButton/></Link>
-        <Button 
-          style={{
-            background: 'none',
-            border: 0,
-            outline: 0,
-            color: '#0cbcf5'
-          }} 
-          onClick={openNotification}
-        >
-          <LogoutButton/>
-        </Button>
-      </div>
+        {isLogin && (
+          <button
+            style={{
+              background: 'none',
+              border: 0,
+              outline: 0,
+              color: '#fff'
+            }}
+            onClick={openNotification}
+          >
+            <LogoutButton/>
+          </button>
+        )}
+      </ButtonWrapper>
     </HeaderWrapper>
   )
 }
@@ -64,4 +70,11 @@ const Logo = styled(Link)`
   font-family: Garamond, serif;
   display: flex;
   align-items: center;
+`
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
 `

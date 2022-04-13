@@ -12,6 +12,6 @@ export const LoginButton: React.FC = () => {
 }
 
 const LoginButtonWrapper = styled.div`
-  font-size: 1.2em;
   margin-right: 8px;
+  color: #fff;
 `

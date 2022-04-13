@@ -12,6 +12,5 @@ export const LogoutButton: React.FC = () => {
 }
 
 const LogoutButtonWrapper = styled.div`
-  font-size: 1.2em;
   cursor: pointer;
 `
