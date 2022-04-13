@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import {Slider, Typography} from 'antd'
 import moment from 'moment'
@@ -21,14 +21,14 @@ interface FilterParams {
   ticketClass?: 'chair' | 'soft' | 'bed'
 }
 
-enum timeConstant {
+enum TimeConstant {
   DAWN = 0,
   MORNING = 1,
   AFTERNOON = 2,
   EVENING = 3
 }
 
-enum classConstant {
+enum ClassConstant {
   HARD = 0,
   SOFT = 1,
   BED = 2
@@ -65,15 +65,20 @@ const timeFilterData = {
 const {Text} = Typography
 
 export const ConfigCenter: React.FC<ConfigCenterProps> = ({filter}) => {
+  const [filterField, setFilterField] = useState<Omit<filterParams, 'tickets'>>({})
   const [selectedClass, setSelectedClass] = useState<number>()
   const [selectedTime, setSelectedTime] = useState<number>()
+
+  useEffect(() => {
+    filter({...filterField})
+  }, [filterField])
 
   const filterHeader = () => {
     return (
       <FlexBox style={{paddingBottom: 10, borderBottom: '1px solid #ddd', justifyContent: 'space-between'}}>
         <BoldText style={{fontSize: '1.2rem'}}>Filter</BoldText>
         <CancelledFilter style={{fontSize: '1.2rem', cursor: 'pointer'}} onClick={() => {
-          filter({})
+          setFilterField({})
           setSelectedClass(undefined)
           setSelectedTime(undefined)
         }}>
@@ -90,7 +95,7 @@ export const ConfigCenter: React.FC<ConfigCenterProps> = ({filter}) => {
         min={filterData.priceBelowBound}
         max={filterData.priceUpperBound}
         step={1}
-        onChange={(values) => filter({priceRange: [filterData.priceBelowBound, values]})}
+        onChange={(values) => setFilterField({...filterField, priceRange: [filterData.priceBelowBound, values]})}
       />
     </FlexColumn>
   }
@@ -100,8 +105,8 @@ export const ConfigCenter: React.FC<ConfigCenterProps> = ({filter}) => {
       <BoldText>Take off time</BoldText>
       <Grid>
         <Cell className="dawn-filter" onClick={() => {
-          filter({timeRange: timeFilterData.data.dawn})
-          setSelectedTime(timeConstant.DAWN)
+          setFilterField({...filterField, timeRange: timeFilterData.data.dawn})
+          setSelectedTime(TimeConstant.DAWN)
         }}>
           <DawnIcon/>
           <Text>Dawn</Text>
@@ -111,8 +116,8 @@ export const ConfigCenter: React.FC<ConfigCenterProps> = ({filter}) => {
           </BoldText>
         </Cell>
         <Cell className="morning-filter" onClick={() => {
-          filter({timeRange: timeFilterData.data.morning})
-          setSelectedTime(timeConstant.MORNING)
+          setFilterField({...filterField, timeRange: timeFilterData.data.morning})
+          setSelectedTime(TimeConstant.MORNING)
         }}>
           <MorningIcon/>
           <Text>Morning</Text>
@@ -122,8 +127,8 @@ export const ConfigCenter: React.FC<ConfigCenterProps> = ({filter}) => {
           </BoldText>
         </Cell>
         <Cell className="afternoon-filter" onClick={() => {
-          filter({timeRange: timeFilterData.data.afternoon})
-          setSelectedTime(timeConstant.AFTERNOON)
+          setFilterField({...filterField, timeRange: timeFilterData.data.afternoon})
+          setSelectedTime(TimeConstant.AFTERNOON)
         }}>
           <AfternoonIcon/>
           <Text>Afternoon</Text>
@@ -133,8 +138,8 @@ export const ConfigCenter: React.FC<ConfigCenterProps> = ({filter}) => {
           </BoldText>
         </Cell>
         <Cell className="evening-filter" onClick={() => {
-          filter({timeRange: timeFilterData.data.evening})
-          setSelectedTime(timeConstant.EVENING)
+          setFilterField({...filterField, timeRange: timeFilterData.data.evening})
+          setSelectedTime(TimeConstant.EVENING)
         }}>
           <EveningIcon/>
           <Text>Evening</Text>
@@ -152,20 +157,20 @@ export const ConfigCenter: React.FC<ConfigCenterProps> = ({filter}) => {
       <BoldText>Ticket Class</BoldText>
       <Grid>
         <Cell className="soft-filter" onClick={() => {
-          filter({ticketClass: 'soft'})
-          setSelectedClass(classConstant.SOFT)
+          setFilterField({...filterField, ticketClass: 'soft'})
+          setSelectedClass(ClassConstant.SOFT)
         }}>
           Soft chair
         </Cell>
         <Cell className="hard-filter" onClick={() => {
-          filter({ticketClass: 'hard'})
-          setSelectedClass(classConstant.HARD)
+          setFilterField({...filterField, ticketClass: 'hard'})
+          setSelectedClass(ClassConstant.HARD)
         }}>
           Long chair
         </Cell>
         <Cell className="bed-filter" onClick={() => {
-          filter({ticketClass: 'bed'})
-          setSelectedClass(classConstant.BED)
+          setFilterField({...filterField, ticketClass: 'bed'})
+          setSelectedClass(ClassConstant.BED)
         }}>Bed</Cell>
       </Grid>
     </FlexColumn>
@@ -193,25 +198,25 @@ const ConfigWrapper = styled(FlexColumn)<{ selectedTime?: number, selectedClass?
   border-radius: 10px;
   gap: 1.4rem;
   .dawn-filter{
-    outline: ${({selectedTime}) => selectedTime === timeConstant.DAWN && '1px solid #00b6f3'}
+    outline: ${({selectedTime}) => selectedTime === TimeConstant.DAWN && '1px solid #00b6f3'}
   }
   .morning-filter{
-    outline: ${({selectedTime}) => selectedTime === timeConstant.MORNING && '1px solid #00b6f3'}
+    outline: ${({selectedTime}) => selectedTime === TimeConstant.MORNING && '1px solid #00b6f3'}
   }
   .afternoon-filter{
-    outline: ${({selectedTime}) => selectedTime === timeConstant.AFTERNOON && '1px solid #00b6f3'}  
+    outline: ${({selectedTime}) => selectedTime === TimeConstant.AFTERNOON && '1px solid #00b6f3'}  
   }
   .evening-filter{
-    outline: ${({selectedTime}) => selectedTime === timeConstant.EVENING && '1px solid #00b6f3'}
+    outline: ${({selectedTime}) => selectedTime === TimeConstant.EVENING && '1px solid #00b6f3'}
   } 
   .hard-filter{
-    outline: ${({selectedClass}) => selectedClass === classConstant.HARD && '1px solid #00b6f3'}
+    outline: ${({selectedClass}) => selectedClass === ClassConstant.HARD && '1px solid #00b6f3'}
   } 
   .soft-filter{
-    outline: ${({selectedClass}) => selectedClass === classConstant.SOFT && '1px solid #00b6f3'}
+    outline: ${({selectedClass}) => selectedClass === ClassConstant.SOFT && '1px solid #00b6f3'}
   }
   .bed-filter{
-    outline: ${({selectedClass}) => selectedClass === classConstant.BED && '1px solid #00b6f3'}
+    outline: ${({selectedClass}) => selectedClass === ClassConstant.BED && '1px solid #00b6f3'}
   }
   
 `
