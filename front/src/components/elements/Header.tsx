@@ -32,6 +32,7 @@ export const Header: React.FC<HeaderProps> = ({isDominated}) => {
       </Logo>
       <ButtonWrapper>
         <Link to={'sign_in'}><LoginButton/></Link>
+        <Link to={'/sign_in'} style={{color: '#fff'}}>Sign in</Link>
         {isLogin && (
           <button
             style={{
@@ -67,7 +68,6 @@ const HeaderWrapper = styled.div<{ isShrink?: boolean }>`
 const Logo = styled(Link)`
   color: white;
   font-size: 1.5em;
-  font-family: Garamond, serif;
   display: flex;
   align-items: center;
 `
